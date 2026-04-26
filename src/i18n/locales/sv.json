@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Hem",
+    "about": "Om oss",
+    "services": "Tjänster",
+    "location": "Hitta oss",
+    "contact": "Kontakt",
+    "book": "Boka Nu"
+  },
+  "hero": {
+    "headline": "Din stund av lugn",
+    "subheadline": "Professionell massageterapi i hjärtat av Lund",
+    "cta": "Boka Din Tid"
+  },
+  "about": {
+    "title": "Om Let Us Massage",
+    "p1": "Välkommen till Let Us Massage — en plats där ditt välmående kommer i första hand. Mitt i Lund erbjuder vi professionell massageterapi i en lugn och välkomnande miljö.",
+    "p2": "Grundat av Ioulietta Refene är vår studio dedikerad till att hjälpa dig slappna av, återhämta dig och må bättre. Oavsett om du vill minska spänningar, lindra smärta eller bara unna dig själv, finns vi här för dig.",
+    "address_label": "Adress"
+  },
+  "services": {
+    "title": "Våra Tjänster",
+    "subtitle": "Varje behandling anpassas efter dina individuella behov",
+    "contact_price": "Kontakta oss för priser",
+    "book_service": "Boka",
+    "items": [
+      {
+        "name": "Klassisk Massage",
+        "duration": "60 min",
+        "description": "En helkroppsmassage med mjuka, flödande rörelser som lindrar spänningar och förbättrar cirkulationen."
+      },
+      {
+        "name": "Djupvävnadsmassage",
+        "duration": "60 min",
+        "description": "Riktar sig mot djupa muskelskikt för att lösa upp kroniska spänningar och lindra smärta."
+      },
+      {
+        "name": "Avslappningsmassage",
+        "duration": "90 min",
+        "description": "En längre behandling fokuserad på fullständig avslappning, som lämnar dig utvilad och förnyad."
+      },
+      {
+        "name": "Varmstenmassage",
+        "duration": "75 min",
+        "description": "Varma stenar används för att djupt slappna av muskler och förbättra energiflödet i kroppen."
+      }
+    ]
+  },
+  "hours": {
+    "title": "Öppettider",
+    "days": {
+      "mon_fri": "Måndag – Fredag",
+      "sat": "Lördag",
+      "sun": "Söndag"
+    },
+    "times": {
+      "mon_fri": "10:00 – 19:00",
+      "sat": "10:00 – 17:00",
+      "sun": "Stängt"
+    },
+    "note": "Tider utanför ordinarie öppettider kan arrangeras i förväg."
+  },
+  "location": {
+    "title": "Hitta Oss",
+    "address": "Stora Södergatan 58A, 222 23 Lund",
+    "building": "Samma byggnad som Lagom Massage by Lauren Meredith",
+    "directions": "Vägbeskrivning"
+  },
+  "contact": {
+    "title": "Kontakta Oss",
+    "phone_label": "Telefon",
+    "email_label": "E-post",
+    "follow": "Följ Oss"
+  },
+  "footer": {
+    "tagline": "Din stund av lugn i Lund",
+    "privacy": "Integritetspolicy",
+    "rights": "Alla rättigheter förbehållna"
+  },
+  "cookie": {
+    "text": "Vi använder cookies för att förbättra din upplevelse. Genom att fortsätta använda vår webbplats godkänner du vår användning av cookies.",
+    "accept": "Acceptera",
+    "decline": "Avvisa"
+  },
+  "seo": {
+    "title": "Let Us Massage – Professionell Massageterapi i Lund",
+    "description": "Boka professionell massageterapi i Lund med Ioulietta Refene. Klassisk, djupvävnads-, avslappnings- och varmstenmassage. Stora Södergatan 58A, Lund."
+  }
+}
