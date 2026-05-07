@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 const languages = [
   { code: 'sv', label: 'SV' },
@@ -8,11 +9,12 @@ const languages = [
 ]
 
 const navLinks = [
-  { key: 'nav.home', href: '#home' },
-  { key: 'nav.about', href: '#about' },
-  { key: 'nav.services', href: '#services' },
-  { key: 'nav.location', href: '#location' },
-  { key: 'nav.contact', href: '#contact' },
+  { key: 'nav.about', href: '/#about' },
+  { key: 'nav.services', href: '/#services' },
+  { key: 'nav.techniques', href: '/#techniques' },
+  { key: 'nav.why', href: '/#why' },
+  { key: 'nav.faq', href: '/#faq' },
+  { key: 'nav.location', href: '/#location' },
 ]
 
 export default function Navbar() {
@@ -25,19 +27,19 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="#home" className="text-sky-700 font-semibold text-lg tracking-wide">
+        <Link to="/" className="text-sky-700 font-semibold text-lg tracking-wide">
           Let Us Massage
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center gap-7">
           {navLinks.map(link => (
-            <a
+            <Link
               key={link.key}
-              href={link.href}
+              to={link.href}
               className="text-gray-600 hover:text-sky-600 text-sm transition-colors"
             >
               {t(link.key)}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -91,14 +93,14 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-4 py-4 flex flex-col gap-3">
           {navLinks.map(link => (
-            <a
+            <Link
               key={link.key}
-              href={link.href}
+              to={link.href}
               className="text-gray-600 text-sm py-1"
               onClick={() => setMenuOpen(false)}
             >
               {t(link.key)}
-            </a>
+            </Link>
           ))}
           <a
             href="https://business.bokadirekt.se/"

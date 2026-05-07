@@ -15,8 +15,9 @@ i18n
       el: { translation: el },
     },
     fallbackLng: 'sv',
+    supportedLngs: ['sv', 'en', 'el'],
     detection: {
-      order: ['localStorage', 'navigator'],
+      order: ['localStorage'],
       caches: ['localStorage'],
     },
     interpolation: { escapeValue: false },

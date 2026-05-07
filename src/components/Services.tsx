@@ -1,8 +1,12 @@
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 interface ServiceItem {
+  id: string
   name: string
   duration: string
+  tag: string
+  friskvard: boolean
   description: string
 }
 
@@ -11,35 +15,73 @@ export default function Services() {
   const items = t('services.items', { returnObjects: true }) as ServiceItem[]
 
   return (
-    <section id="services" className="py-24 bg-sky-50">
-      <div className="max-w-5xl mx-auto px-4">
+    <section id="services" className="py-24 bg-stone-50">
+      <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-14">
-          <h2 className="text-3xl font-light text-sky-800 mb-3">{t('services.title')}</h2>
-          <p className="text-gray-400">{t('services.subtitle')}</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-sky-600 mb-3">
+            {t('services.subtitle')}
+          </p>
+          <h2 className="font-serif text-4xl md:text-5xl text-slate-800">
+            {t('services.title')}
+          </h2>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {items.map((item, i) => (
+          {items.map(item => (
             <div
-              key={i}
-              className="bg-white rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow border border-sky-50"
+              key={item.id}
+              className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow border border-stone-100 flex flex-col overflow-hidden"
             >
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="text-lg font-medium text-sky-800">{item.name}</h3>
-                <span className="text-xs text-sky-500 bg-sky-50 border border-sky-100 px-3 py-1 rounded-full whitespace-nowrap ml-3">
+              <div className="aspect-[16/9] overflow-hidden bg-stone-100">
+                <img
+                  src={`/services/${item.id}.jpg`}
+                  alt={item.name}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
+                />
+              </div>
+              <div className="p-7 flex flex-col flex-1">
+              <div className="flex items-start justify-between mb-3 gap-3">
+                <div>
+                  <p className="text-[11px] uppercase tracking-widest text-sky-600 mb-1">
+                    {item.tag}
+                  </p>
+                  <h3 className="font-serif text-2xl text-slate-800">{item.name}</h3>
+                </div>
+                <span className="text-xs text-slate-500 bg-stone-100 px-3 py-1.5 rounded-full whitespace-nowrap">
                   {item.duration}
                 </span>
               </div>
-              <p className="text-gray-500 text-sm leading-relaxed mb-5">{item.description}</p>
-              <div className="flex items-center justify-between pt-4 border-t border-sky-50">
-                <span className="text-xs text-gray-300 italic">{t('services.contact_price')}</span>
+
+              <p className="text-slate-600 text-sm leading-relaxed mb-4 flex-1">
+                {item.description}
+              </p>
+
+              {item.friskvard && (
+                <div className="mb-4">
+                  <span className="inline-flex items-center gap-1.5 text-xs text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-1 rounded-full">
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    {t('services.friskvard_badge')}
+                  </span>
+                </div>
+              )}
+
+              <div className="flex items-center justify-between pt-4 border-t border-stone-100">
+                <Link
+                  to={`/behandlingar/${item.id}`}
+                  className="text-sm text-slate-500 hover:text-sky-600 font-medium transition-colors"
+                >
+                  {t('detail.readMore')}
+                </Link>
                 <a
                   href="https://business.bokadirekt.se/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-sky-500 hover:text-sky-700 font-medium transition-colors"
+                  className="text-sm text-sky-600 hover:text-sky-800 font-medium transition-colors"
                 >
                   {t('services.book_service')} →
                 </a>
+              </div>
               </div>
             </div>
           ))}
@@ -50,7 +92,7 @@ export default function Services() {
             href="https://business.bokadirekt.se/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-sky-500 hover:bg-sky-600 text-white font-medium px-8 py-3.5 rounded-full transition-colors shadow-sm"
+            className="inline-block bg-sky-600 hover:bg-sky-700 text-white font-medium px-8 py-3.5 rounded-full transition-colors shadow-sm"
           >
             {t('nav.book')}
           </a>

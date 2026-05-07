@@ -1,29 +1,23 @@
 import './i18n'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Services from './components/Services'
-import Hours from './components/Hours'
-import Location from './components/Location'
-import Footer from './components/Footer'
-import CookieBanner from './components/CookieBanner'
-import SEO from './components/SEO'
+import Layout from './components/Layout'
+import Home from './pages/Home'
+import ServiceDetail from './pages/ServiceDetail'
+import TechniqueDetail from './pages/TechniqueDetail'
 
 export default function App() {
   return (
     <HelmetProvider>
-      <SEO />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <Hours />
-        <Location />
-      </main>
-      <Footer />
-      <CookieBanner />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/behandlingar/:id" element={<ServiceDetail />} />
+            <Route path="/metoder/:id" element={<TechniqueDetail />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </HelmetProvider>
   )
 }
