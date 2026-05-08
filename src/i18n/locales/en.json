@@ -16,8 +16,16 @@
     "subheadline": "Professional massage in Lund for relaxation, recovery and tension relief",
     "cta": "Book your session"
   },
+  "aboutCompany": {
+    "title": "About Let Us Massage",
+    "lede": "Welcome to Let Us Massage — a space dedicated to relaxation, well-being and body care.",
+    "p1": "Here you will find professional massage services, always tailored to your individual needs — whether you are looking for a moment of calm in your daily routine or a more focused approach to release tension and improve how your body feels.",
+    "p2": "Each session is designed with care and respect for your body, aiming to help you relax, unwind and restore balance.",
+    "p3": "Treatments take place in a calm and safe environment, with a professional and personal approach, so you can feel comfortable from the very first moment.",
+    "p4": "Let Us Massage is a member of the Kroppsterapeuterna Professional Association, ensuring high standards of quality, professionalism and safety in every session."
+  },
   "about": {
-    "title": "About me",
+    "title": "About the therapist",
     "lede": "Hello, my name is Ioulietta Refene and I am a certified massage therapist.",
     "p1": "I come from Greece, where I studied Holistic Massage at Natural Health Science in Athens. Since 2009, I have been working in the field, continuously developing my approach through experience and further training.",
     "p2": "In my work, I combine techniques such as Swedish massage, deep tissue massage, myofascial release and neuromuscular therapy, adapting each session to the needs of the body — whether you are looking for relaxation or more focused, therapeutic work.",
@@ -63,7 +71,7 @@
         "name": "Prenatal Massage",
         "duration": "60 min",
         "tag": "Safe & gentle",
-        "friskvard": false,
+        "friskvard": true,
         "description": "Gentle massage for pregnant women from the second trimester. Performed in side-lying position with full pillow support, focused on back, hips, legs, neck and shoulders."
       }
     ]
@@ -143,7 +151,7 @@
     "items": [
       {
         "title": "Certified medicinsk massageterapeut",
-        "body": "Ioulietta Refene is a certified medicinsk massageterapeut and member of Kroppsterapeuterna since 2009. Trained in Swedish massage, deep tissue, myofascial release, neuromuscular therapy, prenatal massage, connective tissue techniques, sports massage and anatomy."
+        "body": "Ioulietta Refene is a certified medicinsk massageterapeut since 2009 and member of Kroppsterapeuterna. Trained in Swedish massage, deep tissue, myofascial release, neuromuscular therapy, prenatal massage, connective tissue techniques, sports massage and anatomy."
       },
       {
         "title": "Individualized sessions",
@@ -272,13 +280,26 @@
         "Anyone looking for a gentle, relaxing massage",
         "First-time massage clients"
       ],
-      "benefits": ["Deep relaxation and calmness", "Reduced muscle tension", "Improved mood", "Restored energy"],
+      "benefits": [
+        "Deep relaxation and calmness",
+        "Reduced muscle tension",
+        "Improved mood",
+        "Restored energy"
+      ],
       "sessions": [
-        { "name": "Relax Massage 30 min", "description": "Focuses on the upper body (neck, shoulders, back, arms). Perfect for relieving tension from desk work or daily stress." },
-        { "name": "Relax Massage 60 min", "description": "A full-body massage session. Provides deeper relaxation and a complete wellness experience." }
+        {
+          "name": "Relax Massage 30 min",
+          "description": "Focuses on the upper body (neck, shoulders, back, arms). Perfect for relieving tension from desk work or daily stress."
+        },
+        {
+          "name": "Relax Massage 60 min",
+          "description": "A full-body massage session. Provides deeper relaxation and a complete wellness experience."
+        }
       ],
       "important": "Eligible for friskvårdsbidrag according to Swedish wellness regulations.",
-      "related": ["svensk-massage"]
+      "related": [
+        "svensk-massage"
+      ]
     },
     "klassisk": {
       "intro": "Klassisk Massage is a more dynamic and preventive massage designed for people with sedentary work and everyday muscle tension. The goal is to support muscular wellbeing, improve mobility, and help prevent tension caused by modern working life.",
@@ -299,12 +320,25 @@
         "Prevention of stiffness from sedentary lifestyle"
       ],
       "sessions": [
-        { "name": "30 min Klassisk Massage", "description": "Focused treatment for neck, shoulders, and upper back. Perfect for quick relief from office-related tension." },
-        { "name": "45 min Klassisk Massage", "description": "The most balanced and popular option. Focuses on neck, shoulders, shoulder blades, and upper back, with optional work on the lower back depending on your needs." },
-        { "name": "60 min Klassisk Massage (Premium)", "description": "Full-body session with focus areas based on your needs. A more complete treatment aimed at improving mobility, releasing tension, and supporting long-term physical wellbeing." }
+        {
+          "name": "30 min Klassisk Massage",
+          "description": "Focused treatment for neck, shoulders, and upper back. Perfect for quick relief from office-related tension."
+        },
+        {
+          "name": "45 min Klassisk Massage",
+          "description": "The most balanced and popular option. Focuses on neck, shoulders, shoulder blades, and upper back, with optional work on the lower back depending on your needs."
+        },
+        {
+          "name": "60 min Klassisk Massage (Premium)",
+          "description": "Full-body session with focus areas based on your needs. A more complete treatment aimed at improving mobility, releasing tension, and supporting long-term physical wellbeing."
+        }
       ],
       "important": "This service is strictly preventive and wellbeing-focused (friskvård) and is not a medical or therapeutic treatment. Eligible for friskvårdsbidrag (max 1000 SEK per visit).",
-      "related": ["svensk-massage", "deep-tissue", "myofascial-release"]
+      "related": [
+        "svensk-massage",
+        "deep-tissue",
+        "myofascial-release"
+      ]
     },
     "massageterapi": {
       "intro": "Massageterapi is an advanced therapeutic massage approach focused on reducing pain, improving mobility, and restoring proper musculoskeletal function. It is not a relaxation massage, but a targeted treatment that works deeply with areas of tension, pain, and restricted movement.",
@@ -330,13 +364,30 @@
         "A more functional, balanced, and free-moving body"
       ],
       "sessions": [
-        { "name": "45 min Massageterapi", "description": "Focused treatment for neck, shoulders, and upper back. Ideal for targeted relief from pain and tension." },
-        { "name": "60 min Massageterapi (Premium)", "description": "Extends to the back, lower back, and hips for a more complete therapeutic approach." },
-        { "name": "75 min Massageterapi (Premium)", "description": "Full-body treatment with balanced focus across all areas for overall recovery and function." },
-        { "name": "90 min Massageterapi (Premium)", "description": "The most complete therapeutic session with deep and detailed work throughout the entire body." }
+        {
+          "name": "45 min Massageterapi",
+          "description": "Focused treatment for neck, shoulders, and upper back. Ideal for targeted relief from pain and tension."
+        },
+        {
+          "name": "60 min Massageterapi (Premium)",
+          "description": "Extends to the back, lower back, and hips for a more complete therapeutic approach."
+        },
+        {
+          "name": "75 min Massageterapi (Premium)",
+          "description": "Full-body treatment with balanced focus across all areas for overall recovery and function."
+        },
+        {
+          "name": "90 min Massageterapi (Premium)",
+          "description": "The most complete therapeutic session with deep and detailed work throughout the entire body."
+        }
       ],
       "important": "Massageterapi has a therapeutic focus and is not covered by friskvård. The intensity is always adapted to your body and comfort level.",
-      "related": ["deep-tissue", "trigger-point", "nmt", "myofascial-release"]
+      "related": [
+        "deep-tissue",
+        "trigger-point",
+        "nmt",
+        "myofascial-release"
+      ]
     },
     "prenatal": {
       "intro": "Prenatal Massage (pregnancy massage) is a gentle and adapted massage designed specifically for the needs of women during pregnancy. As the body changes, increased pressure is often felt in the lower back, shoulders, hips, and legs.",
@@ -358,10 +409,15 @@
         "A sense of relaxation and connection with the body"
       ],
       "sessions": [
-        { "name": "60 min Prenatal Massage", "description": "Gentle full-body treatment in side-lying or semi-reclined position with full pillow support." }
+        {
+          "name": "60 min Prenatal Massage",
+          "description": "Gentle full-body treatment in side-lying or semi-reclined position with full pillow support."
+        }
       ],
       "important": "Sessions are available from the 2nd trimester onwards. Doctor's approval is recommended before booking. The massage is not performed in case of pregnancy complications. Recommended frequency: 2nd trimester once a week or every 10 days, 3rd trimester up to twice a week depending on needs.",
-      "related": ["svensk-massage"]
+      "related": [
+        "svensk-massage"
+      ]
     }
   },
   "techniqueDetails": {
@@ -369,40 +425,88 @@
       "intro": "Swedish massage is one of the most widely used massage techniques and forms the foundation of many relaxation and wellness treatments.",
       "what": "This technique uses gentle to medium pressure to promote relaxation and improve blood circulation. It includes long flowing strokes, kneading, and rhythmic movements that help release muscle tension and calm the nervous system.",
       "how": "The pressure is always adapted to your needs, creating a balanced experience between relaxation and therapeutic effect. The strokes are flowing and rhythmic, creating deep relaxation while stimulating circulation.",
-      "benefits": ["Reduces stress and tension", "Improves circulation", "Relieves muscle fatigue", "Supports overall wellbeing", "Promotes deep relaxation"],
-      "usedIn": ["relax", "klassisk", "massageterapi", "prenatal"]
+      "benefits": [
+        "Reduces stress and tension",
+        "Improves circulation",
+        "Relieves muscle fatigue",
+        "Supports overall wellbeing",
+        "Promotes deep relaxation"
+      ],
+      "usedIn": [
+        "relax",
+        "klassisk",
+        "massageterapi",
+        "prenatal"
+      ]
     },
     "deep-tissue": {
       "intro": "Deep tissue massage is a focused technique designed to target deeper layers of muscles and chronic tension in the body.",
       "what": "A method working with deeper connective tissues, including muscles, tendons, and fascia. Especially beneficial for people experiencing tension from prolonged sitting, physical activity, stress, or past injuries.",
       "how": "Slow, deliberate strokes and firm pressure are used to release tight areas and restore mobility. The pressure is always adjusted to your comfort level, and open communication is encouraged. Deep breathing helps the body relax and enhance the effectiveness of the treatment.",
       "afterSession": "You may experience mild soreness for 1–3 days after the session. This typically fades and is followed by improved mobility and a sense of release in the body.",
-      "benefits": ["Relieves chronic muscle tension", "Improves mobility and flexibility", "Reduces pain and stiffness", "Supports better posture", "Enhances overall wellbeing"],
-      "usedIn": ["klassisk", "massageterapi"]
+      "benefits": [
+        "Relieves chronic muscle tension",
+        "Improves mobility and flexibility",
+        "Reduces pain and stiffness",
+        "Supports better posture",
+        "Enhances overall wellbeing"
+      ],
+      "usedIn": [
+        "klassisk",
+        "massageterapi"
+      ]
     },
     "myofascial-release": {
       "intro": "Myofascial Release is a gentle, targeted technique that works with the body's connective tissue (fascia) to reduce tension and improve mobility.",
       "what": "Fascia is a continuous network of connective tissue that surrounds and supports muscles, joints, and organs. When it becomes tight due to stress, injury, or inactivity, it can restrict movement and create discomfort.",
       "how": "This technique uses slow, sustained pressure and gentle stretching to release restrictions in the fascia. Instead of forceful manipulation, it allows the body to gradually relax and restore balance. Sustained, gentle pressure can release tension in connective tissues, improve mobility and support natural alignment.",
       "afterSession": "The treatment is typically slow and calming. You may feel a gentle release or softening in areas of tension, rather than strong pressure or pain.",
-      "benefits": ["Reduces tension in muscles and fascia", "Improves flexibility and movement", "Supports better posture", "Promotes relaxation and body awareness"],
-      "usedIn": ["klassisk", "massageterapi"]
+      "benefits": [
+        "Reduces tension in muscles and fascia",
+        "Improves flexibility and movement",
+        "Supports better posture",
+        "Promotes relaxation and body awareness"
+      ],
+      "usedIn": [
+        "klassisk",
+        "massageterapi"
+      ]
     },
     "nmt": {
       "intro": "Neuromuscular Therapy is an advanced, targeted approach that focuses on the connection between the muscular and nervous systems to relieve pain and improve body function.",
       "what": "NMT combines deep tissue techniques with movement-based therapy to address the underlying causes of muscular tension and dysfunction.",
       "how": "A session may include posture and movement assessment, passive and active mobilization techniques, Trigger Point Therapy, myofascial release and Deep Tissue Massage. The body functions as an interconnected system where muscles and nerves constantly interact. NMT works to restore this balance by targeting the source of the issue, not just the symptoms.",
-      "whoFor": ["Chronic muscle pain", "Neck and lower back discomfort", "Tension headaches", "Muscle stiffness", "Limited mobility"],
-      "benefits": ["Reduces pain and muscle tension", "Improves posture", "Enhances flexibility and movement", "Supports overall body balance"],
-      "usedIn": ["massageterapi"]
+      "whoFor": [
+        "Chronic muscle pain",
+        "Neck and lower back discomfort",
+        "Tension headaches",
+        "Muscle stiffness",
+        "Limited mobility"
+      ],
+      "benefits": [
+        "Reduces pain and muscle tension",
+        "Improves posture",
+        "Enhances flexibility and movement",
+        "Supports overall body balance"
+      ],
+      "usedIn": [
+        "massageterapi"
+      ]
     },
     "trigger-point": {
       "intro": "Trigger Point Therapy is a focused massage technique that targets specific areas of muscle tension to relieve pain and restore natural movement.",
       "what": "Trigger points are small, tight areas within muscle tissue, often described as \"knots.\" They can develop due to stress, repetitive movement, poor posture, or overuse, and may cause local or referred pain in other parts of the body.",
       "how": "This technique applies sustained, direct pressure to these sensitive points, helping the muscle fibers release and relax. It is often combined with myofascial release and deep tissue techniques for more effective results. Applying pressure to trigger points can reduce muscle tightness, improve blood flow and support natural recovery.",
       "afterSession": "You may feel intensity or tenderness during the treatment, especially in sensitive areas. This is normal and usually followed by a sense of relief and improved movement.",
-      "benefits": ["Relieves muscle knots and tension", "Improves mobility and posture", "Reduces stress and physical discomfort", "Promotes overall relaxation"],
-      "usedIn": ["massageterapi"]
+      "benefits": [
+        "Relieves muscle knots and tension",
+        "Improves mobility and posture",
+        "Reduces stress and physical discomfort",
+        "Promotes overall relaxation"
+      ],
+      "usedIn": [
+        "massageterapi"
+      ]
     }
   }
 }

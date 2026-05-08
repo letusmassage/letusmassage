@@ -14,13 +14,16 @@ export default function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-transparent to-white/30" />
 
+      <div className="absolute inset-y-0 left-0 w-1/3 md:w-1/4 bg-gradient-to-r from-slate-900/45 via-slate-900/15 to-transparent pointer-events-none z-[2]" />
+      <div className="absolute inset-y-0 right-0 w-1/3 md:w-1/4 bg-gradient-to-l from-slate-900/45 via-slate-900/15 to-transparent pointer-events-none z-[2]" />
+
       <img
         src="/logo.png"
         alt="Let Us Massage"
-        className="absolute top-20 left-4 md:top-24 md:left-10 w-20 md:w-28 h-auto drop-shadow-lg z-10"
+        className="absolute top-1/2 -translate-y-1/2 left-2 md:left-6 w-32 md:w-44 h-auto drop-shadow-2xl z-10"
       />
 
-      <div className="relative z-10 pt-28 md:pt-32 px-4 text-center max-w-3xl mx-auto">
+      <div className="relative z-10 pt-20 md:pt-28 px-4 text-center max-w-3xl mx-auto">
         <p className="text-white/90 text-xs uppercase tracking-[0.4em] mb-3 drop-shadow">
           {t('hero.eyebrow')}
         </p>
@@ -32,12 +35,12 @@ export default function Hero() {
         </p>
       </div>
 
-      <div className="absolute bottom-16 right-6 md:bottom-24 md:right-12 z-10">
+      <div className="absolute top-1/2 -translate-y-1/2 right-2 md:right-6 z-10">
         <a
           href="https://business.bokadirekt.se/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block bg-white/95 hover:bg-white text-slate-800 font-medium px-8 py-3.5 rounded-full text-sm md:text-base hover:scale-[1.02] transition-all shadow-xl backdrop-blur-sm"
+          className="inline-block bg-white/95 hover:bg-white text-slate-800 font-medium px-6 md:px-8 py-3 md:py-3.5 rounded-full text-sm md:text-base hover:scale-[1.02] transition-all shadow-xl backdrop-blur-sm"
         >
           {t('hero.cta')}
         </a>

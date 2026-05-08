@@ -16,8 +16,16 @@
     "subheadline": "Professionell massage i Lund för avslappning och minskad muskelspänning",
     "cta": "Boka tid"
   },
+  "aboutCompany": {
+    "title": "Om Let Us Massage",
+    "lede": "Välkommen till Let Us Massage — en plats för avslappning, välbefinnande och kroppsvård.",
+    "p1": "Här hittar du professionella massagebehandlingar som alltid anpassas efter dina behov — oavsett om du söker en stunds avkoppling i vardagen eller vill ta hand om spänningar i kroppen.",
+    "p2": "Varje behandling utförs med omtanke och respekt för kroppen, med fokus på att hjälpa dig att slappna av, minska spänningar och återfå balans.",
+    "p3": "Behandlingarna sker i en lugn och trygg miljö, med ett personligt och professionellt bemötande, så att du känner dig bekväm från första stund.",
+    "p4": "Let Us Massage är medlem i Kroppsterapeuterna, vilket garanterar hög kvalitet, professionalitet och säkerhet i varje behandling."
+  },
   "about": {
-    "title": "Om mig",
+    "title": "Om terapeuten",
     "lede": "Hej, jag heter Ioulietta Refene och är certifierad massageterapeut.",
     "p1": "Jag kommer från Grekland, där jag utbildade mig inom holistisk massage vid Natural Health Science i Aten. Sedan 2009 har jag arbetat med massage och kontinuerligt utvecklat mitt arbetssätt genom erfarenhet och vidareutbildning.",
     "p2": "I mitt arbete kombinerar jag tekniker som svensk massage, deep tissue, myofascial release och neuromuskulära tekniker, och anpassar varje behandling efter kroppens behov — oavsett om du söker avkoppling eller mer djupgående arbete.",
@@ -63,7 +71,7 @@
         "name": "Gravidmassage",
         "duration": "60 min",
         "tag": "Trygg & mjuk",
-        "friskvard": false,
+        "friskvard": true,
         "description": "Mjuk och anpassad behandling för gravida från andra trimestern. Utförs i sidoläge med kuddstöd och fokus på rygg, höfter, ben, nacke och axlar."
       }
     ]
@@ -143,7 +151,7 @@
     "items": [
       {
         "title": "Certifierad medicinsk massageterapeut",
-        "body": "Ioulietta Refene är certifierad medicinsk massageterapeut och medlem i Kroppsterapeuterna sedan 2009. Utbildning inom svensk massage, deep tissue, myofascial release, neuromuskulär behandling, gravidmassage, bindvävstekniker, idrottsmassage och anatomi."
+        "body": "Ioulietta Refene är certifierad medicinsk massageterapeut sedan 2009 och medlem i Kroppsterapeuterna. Utbildning inom svensk massage, deep tissue, myofascial release, neuromuskulär behandling, gravidmassage, bindvävstekniker, idrottsmassage och anatomi."
       },
       {
         "title": "Individuellt anpassade behandlingar",
@@ -279,11 +287,19 @@
         "Ny energi i kroppen"
       ],
       "sessions": [
-        { "name": "Relaxmassage 30 min", "description": "Fokus på överkroppen (nacke, axlar, rygg, armar). Passar dig som vill släppa spänningar från arbete eller stillasittande vardag." },
-        { "name": "Relaxmassage 60 min", "description": "Helkroppsbehandling. Ger en djupare avslappning och en mer komplett upplevelse." }
+        {
+          "name": "Relaxmassage 30 min",
+          "description": "Fokus på överkroppen (nacke, axlar, rygg, armar). Passar dig som vill släppa spänningar från arbete eller stillasittande vardag."
+        },
+        {
+          "name": "Relaxmassage 60 min",
+          "description": "Helkroppsbehandling. Ger en djupare avslappning och en mer komplett upplevelse."
+        }
       ],
       "important": "Godkänd för friskvårdsbidrag enligt svenska regler.",
-      "related": ["svensk-massage"]
+      "related": [
+        "svensk-massage"
+      ]
     },
     "klassisk": {
       "intro": "Klassisk massage är en mer dynamisk och förebyggande massageform som riktar sig till personer med stillasittande arbete och vardaglig muskelbelastning. Syftet är att stödja muskulärt välmående, förbättra rörlighet och förebygga spänningar som uppstår i ett modernt arbetsliv.",
@@ -304,12 +320,25 @@
         "Förebyggande av stelhet från stillasittande arbete"
       ],
       "sessions": [
-        { "name": "30 min Klassisk massage", "description": "Fokuserad behandling av nacke, axlar och övre rygg. Perfekt för snabb avlastning från kontorsrelaterade spänningar." },
-        { "name": "45 min Klassisk massage", "description": "Den mest balanserade och populära behandlingen. Fokuserar på nacke, axlar, skuldror och övre rygg, med möjlighet till arbete på ländrygg beroende på behov." },
-        { "name": "60 min Klassisk massage (Premium)", "description": "Helkroppsbehandling med fokusområden anpassade efter behov. En mer komplett behandling som förbättrar rörlighet, minskar spänningar och stödjer långsiktigt välmående." }
+        {
+          "name": "30 min Klassisk massage",
+          "description": "Fokuserad behandling av nacke, axlar och övre rygg. Perfekt för snabb avlastning från kontorsrelaterade spänningar."
+        },
+        {
+          "name": "45 min Klassisk massage",
+          "description": "Den mest balanserade och populära behandlingen. Fokuserar på nacke, axlar, skuldror och övre rygg, med möjlighet till arbete på ländrygg beroende på behov."
+        },
+        {
+          "name": "60 min Klassisk massage (Premium)",
+          "description": "Helkroppsbehandling med fokusområden anpassade efter behov. En mer komplett behandling som förbättrar rörlighet, minskar spänningar och stödjer långsiktigt välmående."
+        }
       ],
       "important": "Denna tjänst är förebyggande och friskvårdsinriktad och är inte en medicinsk behandling. Godkänd för friskvårdsbidrag (max 1000 kr per tillfälle).",
-      "related": ["svensk-massage", "deep-tissue", "myofascial-release"]
+      "related": [
+        "svensk-massage",
+        "deep-tissue",
+        "myofascial-release"
+      ]
     },
     "massageterapi": {
       "intro": "Massageterapi är en avancerad terapeutisk behandlingsform som fokuserar på att minska smärta, förbättra rörlighet och återställa kroppens muskuloskeletala funktion. Det är inte en vanlig avslappningsmassage, utan en riktad behandling som arbetar djupt med spänningar, smärta och begränsad rörlighet.",
@@ -335,13 +364,30 @@
         "En mer funktionell och rörlig kropp"
       ],
       "sessions": [
-        { "name": "45 min Massageterapi", "description": "Fokuserad behandling av nacke, axlar och övre rygg. Perfekt för riktad lindring av smärta och spänningar." },
-        { "name": "60 min Massageterapi (Premium)", "description": "Utökas till rygg, ländrygg och höfter för en mer komplett behandling." },
-        { "name": "75 min Massageterapi (Premium)", "description": "Helkroppsbehandling med balanserat fokus för återhämtning och funktion." },
-        { "name": "90 min Massageterapi (Premium)", "description": "Den mest kompletta behandlingen med djupgående och detaljerat arbete i hela kroppen." }
+        {
+          "name": "45 min Massageterapi",
+          "description": "Fokuserad behandling av nacke, axlar och övre rygg. Perfekt för riktad lindring av smärta och spänningar."
+        },
+        {
+          "name": "60 min Massageterapi (Premium)",
+          "description": "Utökas till rygg, ländrygg och höfter för en mer komplett behandling."
+        },
+        {
+          "name": "75 min Massageterapi (Premium)",
+          "description": "Helkroppsbehandling med balanserat fokus för återhämtning och funktion."
+        },
+        {
+          "name": "90 min Massageterapi (Premium)",
+          "description": "Den mest kompletta behandlingen med djupgående och detaljerat arbete i hela kroppen."
+        }
       ],
       "important": "Massageterapi har terapeutisk inriktning och omfattas inte av friskvårdsbidrag. Intensiteten anpassas alltid efter din kropp och komfortnivå.",
-      "related": ["deep-tissue", "trigger-point", "nmt", "myofascial-release"]
+      "related": [
+        "deep-tissue",
+        "trigger-point",
+        "nmt",
+        "myofascial-release"
+      ]
     },
     "prenatal": {
       "intro": "Gravidmassage är en mjuk och anpassad massageform som är speciellt utformad för gravida kvinnors behov. Under graviditeten förändras kroppen och belastningen ökar, särskilt i ländrygg, axlar, höfter och ben. Behandlingen hjälper till att minska denna belastning och stödja både kroppsligt och mentalt välbefinnande.",
@@ -363,10 +409,15 @@
         "En avslappnande och trygg känsla i kroppen"
       ],
       "sessions": [
-        { "name": "60 min Gravidmassage", "description": "Mjuk och anpassad helkroppsbehandling i sidoläge eller halvliggande position med fullt kuddstöd." }
+        {
+          "name": "60 min Gravidmassage",
+          "description": "Mjuk och anpassad helkroppsbehandling i sidoläge eller halvliggande position med fullt kuddstöd."
+        }
       ],
       "important": "Behandlingen erbjuds från andra trimestern och framåt. Det rekommenderas att du har godkännande från din läkare eller barnmorska. Behandlingen utförs inte vid komplikationer under graviditeten. Rekommenderad frekvens: andra trimestern 1 gång per vecka eller var 10:e dag, tredje trimestern upp till 2 gånger per vecka vid behov.",
-      "related": ["svensk-massage"]
+      "related": [
+        "svensk-massage"
+      ]
     }
   },
   "techniqueDetails": {
@@ -381,7 +432,12 @@
         "Stödjer kroppens återhämtning",
         "Ger ökad avslappning"
       ],
-      "usedIn": ["relax", "klassisk", "massageterapi", "prenatal"]
+      "usedIn": [
+        "relax",
+        "klassisk",
+        "massageterapi",
+        "prenatal"
+      ]
     },
     "deep-tissue": {
       "intro": "Djupgående massage är en mer intensiv behandlingsform som fokuserar på djupare muskelspänningar och långvarig stelhet i kroppen.",
@@ -395,7 +451,10 @@
         "Stödjer bättre hållning",
         "Bidrar till ökat välbefinnande"
       ],
-      "usedIn": ["klassisk", "massageterapi"]
+      "usedIn": [
+        "klassisk",
+        "massageterapi"
+      ]
     },
     "myofascial-release": {
       "intro": "Myofasciell behandling är en mjuk och fokuserad metod som arbetar med kroppens bindväv (fascia) för att minska spänningar och förbättra rörlighet.",
@@ -408,7 +467,10 @@
         "Stödjer bättre hållning",
         "Bidrar till avslappning"
       ],
-      "usedIn": ["klassisk", "massageterapi"]
+      "usedIn": [
+        "klassisk",
+        "massageterapi"
+      ]
     },
     "nmt": {
       "intro": "Neuromuskulär terapi är en behandlingsmetod som fokuserar på samspelet mellan muskler och nervsystem, med målet att minska smärta och förbättra kroppens funktion.",
@@ -427,7 +489,9 @@
         "Ökar rörlighet och flexibilitet",
         "Bidrar till bättre kroppslig balans"
       ],
-      "usedIn": ["massageterapi"]
+      "usedIn": [
+        "massageterapi"
+      ]
     },
     "trigger-point": {
       "intro": "Triggerpunktsbehandling är en riktad massageteknik som fokuserar på specifika spänningspunkter i musklerna för att minska smärta och förbättra rörlighet.",
@@ -440,7 +504,9 @@
         "Minskar stress",
         "Bidrar till ökat välbefinnande"
       ],
-      "usedIn": ["massageterapi"]
+      "usedIn": [
+        "massageterapi"
+      ]
     }
   }
 }

@@ -7,7 +7,21 @@ export default function About() {
     <section id="about" className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="order-2 md:order-1">
+          <div className="order-2 md:order-1 relative max-w-[85%] mx-auto md:mx-0 md:ml-auto">
+            <div className="aspect-[2/3] overflow-hidden rounded-3xl shadow-xl">
+              <img
+                src="/letta.jpg"
+                alt="Ioulietta Refene — Massageterapeut"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-4 -right-4 bg-white rounded-xl px-5 py-3 shadow-lg">
+              <p className="text-xs uppercase tracking-widest text-sky-600">Sedan 2009</p>
+              <p className="text-sm text-slate-700 font-medium mt-0.5">Certifierad terapeut</p>
+            </div>
+          </div>
+
+          <div className="order-1 md:order-2">
             <p className="text-xs uppercase tracking-[0.3em] text-sky-600 mb-3">
               {t('about.title')}
             </p>
@@ -37,20 +51,6 @@ export default function About() {
               <p className="text-sm text-slate-500 max-w-xs">
                 {t('about.credentials')}
               </p>
-            </div>
-          </div>
-
-          <div className="order-1 md:order-2 relative">
-            <div className="aspect-[4/5] overflow-hidden rounded-3xl shadow-xl">
-              <img
-                src="/ioulietta.jpg"
-                alt="Ioulietta Refene — Massageterapeut"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-4 -left-4 bg-white rounded-xl px-5 py-3 shadow-lg">
-              <p className="text-xs uppercase tracking-widest text-sky-600">Sedan 2009</p>
-              <p className="text-sm text-slate-700 font-medium mt-0.5">Certifierad terapeut</p>
             </div>
           </div>
         </div>
