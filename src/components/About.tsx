@@ -11,7 +11,7 @@ export default function About() {
             <div className="aspect-[2/3] overflow-hidden rounded-3xl shadow-xl">
               <img
                 src="/letta.jpg"
-                alt="Ioulietta Refene — Massageterapeut"
+                alt="Ioulietta Refene — certifierad medicinsk massageterapeut hos Let Us Massage i Lund"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -25,9 +25,10 @@ export default function About() {
             <p className="text-xs uppercase tracking-[0.3em] text-sky-600 mb-3">
               {t('about.title')}
             </p>
-            <h2 className="font-serif text-4xl md:text-5xl text-slate-800 mb-6 leading-tight">
+            <h2 className="font-serif text-4xl md:text-5xl text-slate-800 mb-3 leading-tight">
               {t('about.lede')}
             </h2>
+            <p className="text-sm text-slate-400 italic mb-6">{t('about.nameVariants')}</p>
             <div className="space-y-4 text-slate-600 leading-relaxed">
               <p>{t('about.p1')}</p>
               <p>{t('about.p2')}</p>
@@ -45,7 +46,7 @@ export default function About() {
             <div className="mt-8 flex items-center gap-4 flex-wrap">
               <img
                 src="/kroppsterapeuterna.png"
-                alt="Kroppsterapeuterna sigill"
+                alt="Kroppsterapeuterna – yrkesförbund för certifierade massageterapeuter i Sverige"
                 className="h-16 w-auto"
               />
               <p className="text-sm text-slate-500 max-w-xs">

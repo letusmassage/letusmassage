@@ -17,9 +17,15 @@ export default function Home() {
       <About />
       <Services />
       <Techniques />
-      <SectionDivider src="/dividers/6x2a2260.jpg" alt="Massage session at Let Us Massage" />
+      <SectionDivider
+        src="/dividers/6x2a2260.jpg"
+        alt="Massagebehandling hos Let Us Massage på Stora Södergatan i Lund"
+      />
       <WhyChooseUs />
-      <SectionDivider src="/dividers/6x2a2269.jpg" alt="Therapeutic massage detail" />
+      <SectionDivider
+        src="/dividers/6x2a2269.jpg"
+        alt="Detalj från terapeutisk massageterapi i Lund"
+      />
       <FAQ />
       <Hours />
       <Location />

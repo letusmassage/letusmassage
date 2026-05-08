@@ -19,7 +19,7 @@ export default function Hero() {
 
       <img
         src="/logo.png"
-        alt="Let Us Massage"
+        alt="Let Us Massage – Massageterapi i Lund"
         className="absolute top-1/2 -translate-y-1/2 left-2 md:left-6 w-32 md:w-44 h-auto drop-shadow-2xl z-10"
       />
 

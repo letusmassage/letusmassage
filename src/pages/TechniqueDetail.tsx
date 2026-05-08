@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { Helmet } from 'react-helmet-async'
 
 interface TechniqueItem {
   id: string
@@ -43,8 +44,37 @@ export default function TechniqueDetail() {
     .map(sid => services.find(s => s.id === sid))
     .filter((x): x is ServiceItem => Boolean(x))
 
+  const url = `https://let-us-massage.se/metoder/${id}`
+  const pageTitle = `${item.name} (${item.tagline}) — Massageteknik i Lund | Let Us Massage`
+  const pageDescription = `${item.description.slice(0, 155)}`
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://let-us-massage.se/' },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Metoder',
+        item: 'https://let-us-massage.se/#techniques',
+      },
+      { '@type': 'ListItem', position: 3, name: item.name, item: url },
+    ],
+  }
+
   return (
     <main>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={url} />
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+      </Helmet>
       <header className="relative pt-32 pb-16 px-4 bg-gradient-to-b from-stone-50 via-white to-sky-50">
         <div className="max-w-4xl mx-auto">
           <Link to="/#techniques" className="inline-flex items-center gap-2 text-sm text-sky-600 hover:text-sky-800 mb-6">

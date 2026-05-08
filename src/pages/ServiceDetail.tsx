@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { Helmet } from 'react-helmet-async'
 
 interface ServiceItem {
   id: string
@@ -50,8 +51,52 @@ export default function ServiceDetail() {
     .map(rid => techniques.find(t => t.id === rid))
     .filter((x): x is TechniqueItem => Boolean(x))
 
+  const url = `https://let-us-massage.se/behandlingar/${id}`
+  const pageTitle = `${item.name} i Lund — ${item.duration} | Let Us Massage`
+  const pageDescription = `${item.description} Boka ${item.name.toLowerCase()} hos Let Us Massage på Stora Södergatan 58A i Lund.`
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: item.name,
+    description: item.description,
+    provider: { '@id': 'https://let-us-massage.se/#business' },
+    areaServed: { '@type': 'City', name: 'Lund' },
+    url,
+    serviceType: 'Massage',
+    image: `https://let-us-massage.se/services/${id}.jpg`,
+    availableLanguage: ['sv', 'en', 'el'],
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://let-us-massage.se/' },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Behandlingar',
+        item: 'https://let-us-massage.se/#services',
+      },
+      { '@type': 'ListItem', position: 3, name: item.name, item: url },
+    ],
+  }
+
   return (
     <main>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={url} />
+        <meta property="og:image" content={`https://let-us-massage.se/services/${id}.jpg`} />
+        <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+      </Helmet>
       <header className="relative pt-28 pb-12 px-4 bg-gradient-to-b from-sky-50 via-white to-stone-50">
         <div className="max-w-6xl mx-auto">
           <Link to="/#services" className="inline-flex items-center gap-2 text-sm text-sky-600 hover:text-sky-800 mb-6">
@@ -76,7 +121,7 @@ export default function ServiceDetail() {
             <div className="aspect-[3/2] rounded-2xl overflow-hidden shadow-lg">
               <img
                 src={`/services/${id}.jpg`}
-                alt={item.name}
+                alt={`${item.name} – Massage i Lund hos Let Us Massage`}
                 className="w-full h-full object-cover"
                 onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
               />

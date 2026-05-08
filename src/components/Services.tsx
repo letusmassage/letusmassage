@@ -35,7 +35,7 @@ export default function Services() {
               <div className="aspect-[16/9] overflow-hidden bg-stone-100">
                 <img
                   src={`/services/${item.id}.jpg`}
-                  alt={item.name}
+                  alt={`${item.name} – ${item.tag} hos Let Us Massage i Lund`}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
                 />
