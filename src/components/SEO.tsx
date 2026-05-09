@@ -53,7 +53,7 @@ export default function SEO() {
         url: SITE,
         slogan: t('hero.headline'),
         image: [`${SITE}/hero.jpg`, `${SITE}/letta.jpg`, `${SITE}/og-image.jpg`],
-        logo: `${SITE}/logo.png`,
+        logo: `${SITE}/android-chrome-512x512.png`,
         founder: { '@id': PERSON_ID },
         employee: { '@id': PERSON_ID },
         foundingDate: '2026',
