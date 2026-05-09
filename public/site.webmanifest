@@ -3,19 +3,11 @@
   "short_name": "Let Us Massage",
   "description": "Professionell massage i Lund — klassisk massage, massageterapi, gravidmassage och relaxmassage.",
   "icons": [
-    {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
   ],
-  "theme_color": "#0c4a6e",
-  "background_color": "#ffffff",
+  "theme_color": "#3F6B5E",
+  "background_color": "#F5EFE3",
   "display": "standalone",
   "start_url": "/",
   "lang": "sv"

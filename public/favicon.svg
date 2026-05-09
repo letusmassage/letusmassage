@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Rounded square background, calm sage green -->
+  <rect width="64" height="64" rx="14" fill="#3F6B5E"/>
+  <!-- Stylized lotus/leaf mark in cream -->
+  <g fill="#F5EFE3">
+    <!-- Center petal/leaf -->
+    <path d="M32 12 C 28 22, 28 34, 32 44 C 36 34, 36 22, 32 12 Z"/>
+    <!-- Left petal -->
+    <path d="M14 28 C 22 26, 30 32, 32 42 C 24 42, 16 38, 14 28 Z"/>
+    <!-- Right petal (mirror) -->
+    <path d="M50 28 C 42 26, 34 32, 32 42 C 40 42, 48 38, 50 28 Z"/>
+    <!-- Base curve - hand/water suggestion -->
+    <path d="M16 46 Q 32 54, 48 46 Q 32 50, 16 46 Z"/>
+  </g>
+</svg>
