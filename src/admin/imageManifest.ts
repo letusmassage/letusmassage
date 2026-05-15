@@ -1,0 +1,111 @@
+// ---------------------------------------------------------------------------
+// Lista över alla bilder som kan bytas i admin-gränssnittet (/admin).
+//
+// Vill du lägga till en bild som ska gå att byta? Lägg till en rad här.
+//   path  = filens plats i public/-mappen (ändra ALDRIG detta för en befintlig
+//           bild – det är så hemsidan hittar bilden)
+//   label = namnet som visas i admin
+//   where = kort beskrivning av var bilden syns på hemsidan
+//   hint  = tips om format/storlek
+// ---------------------------------------------------------------------------
+
+export interface SwappableImage {
+  path: string
+  label: string
+  where: string
+  hint: string
+}
+
+export interface ImageGroup {
+  title: string
+  images: SwappableImage[]
+}
+
+export const imageGroups: ImageGroup[] = [
+  {
+    title: 'Startsidan',
+    images: [
+      {
+        path: 'hero.jpg',
+        label: 'Toppbild (hero)',
+        where: 'Stora bakgrundsbilden högst upp på startsidan.',
+        hint: 'Liggande format, gärna minst 1920 px bred. JPG.',
+      },
+      {
+        path: 'logo.png',
+        label: 'Logotyp',
+        where: 'Visas i sidhuvudet och över toppbilden.',
+        hint: 'PNG med genomskinlig bakgrund.',
+      },
+      {
+        path: 'dividers/6x2a2260.jpg',
+        label: 'Avdelarbild 1',
+        where: 'Bred bild som delar av sektionerna på startsidan.',
+        hint: 'Liggande, bred panoramabild. JPG.',
+      },
+      {
+        path: 'dividers/6x2a2269.jpg',
+        label: 'Avdelarbild 2',
+        where: 'Bred bild som delar av sektionerna på startsidan.',
+        hint: 'Liggande, bred panoramabild. JPG.',
+      },
+    ],
+  },
+  {
+    title: 'Om oss',
+    images: [
+      {
+        path: 'letta.jpg',
+        label: 'Porträtt – Letta',
+        where: '"Om oss"-avsnittet.',
+        hint: 'Stående eller liggande foto. JPG.',
+      },
+      {
+        path: 'kroppsterapeuterna.png',
+        label: 'Kroppsterapeuterna',
+        where: '"Om oss"-avsnittet.',
+        hint: 'Logotyp/bild i PNG.',
+      },
+    ],
+  },
+  {
+    title: 'Behandlingar',
+    images: [
+      {
+        path: 'services/klassisk.jpg',
+        label: 'Klassisk massage',
+        where: 'Behandlingskortet på startsidan och behandlingens egen sida.',
+        hint: 'Liggande, 16:9-format. JPG.',
+      },
+      {
+        path: 'services/massageterapi.jpg',
+        label: 'Massageterapi',
+        where: 'Behandlingskortet på startsidan och behandlingens egen sida.',
+        hint: 'Liggande, 16:9-format. JPG.',
+      },
+      {
+        path: 'services/prenatal.jpg',
+        label: 'Gravidmassage',
+        where: 'Behandlingskortet på startsidan och behandlingens egen sida.',
+        hint: 'Liggande, 16:9-format. JPG.',
+      },
+      {
+        path: 'services/relax.jpg',
+        label: 'Avkopplande massage',
+        where: 'Behandlingskortet på startsidan och behandlingens egen sida.',
+        hint: 'Liggande, 16:9-format. JPG.',
+      },
+    ],
+  },
+  {
+    title: 'Delning på sociala medier',
+    images: [
+      {
+        path: 'og-image.jpg',
+        label: 'Delningsbild',
+        where: 'Bilden som visas när hemsidan delas på Facebook, LinkedIn m.m.',
+        hint: 'Exakt 1200 × 630 px ger bäst resultat. JPG.',
+      },
+    ],
+  },
+]

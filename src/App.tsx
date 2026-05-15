@@ -1,4 +1,5 @@
 import './i18n'
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import Layout from './components/Layout'
@@ -7,6 +8,10 @@ import ServiceDetail from './pages/ServiceDetail'
 import TechniqueDetail from './pages/TechniqueDetail'
 import Articles from './pages/Articles'
 import Article from './pages/Article'
+
+// Admin-sidan laddas bara när någon besöker /admin – så den (och zip-biblioteket)
+// inte tynger den vanliga hemsidan.
+const Admin = lazy(() => import('./pages/Admin'))
 
 export default function App() {
   return (
@@ -20,6 +25,14 @@ export default function App() {
             <Route path="/artiklar" element={<Articles />} />
             <Route path="/artiklar/:slug" element={<Article />} />
           </Route>
+          <Route
+            path="/admin"
+            element={
+              <Suspense fallback={null}>
+                <Admin />
+              </Suspense>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>
