@@ -9,7 +9,7 @@ export default function Hero() {
       className="relative min-h-screen overflow-hidden"
     >
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 hero-bg bg-slate-900"
         style={{ backgroundImage: "url('/hero.jpg')" }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-transparent to-white/30" />
@@ -20,14 +20,14 @@ export default function Hero() {
       <img
         src="/logo.png"
         alt="Let Us Massage – Massageterapi i Lund"
-        className="absolute top-1/2 -translate-y-1/2 left-2 md:left-6 w-32 md:w-44 h-auto drop-shadow-2xl z-10"
+        className="hidden md:block absolute md:top-1/2 -translate-y-1/2 md:left-6 md:w-64 h-auto drop-shadow-2xl z-10"
       />
 
-      <div className="relative z-10 pt-20 md:pt-28 px-4 text-center max-w-3xl mx-auto">
+      <div className="relative z-10 pt-32 md:pt-28 px-4 text-center max-w-3xl mx-auto">
         <p className="text-white/90 text-xs uppercase tracking-[0.4em] mb-3 drop-shadow">
           {t('hero.eyebrow')}
         </p>
-        <p className="font-serif text-3xl md:text-5xl text-white font-light mb-2 drop-shadow italic">
+        <p className="font-serif text-2xl md:text-4xl text-white font-light mb-2 drop-shadow italic">
           {t('hero.headline')}
         </p>
         <p className="text-sm md:text-base text-white/85 max-w-xl mx-auto drop-shadow">
@@ -35,7 +35,7 @@ export default function Hero() {
         </p>
       </div>
 
-      <div className="absolute top-1/2 -translate-y-1/2 right-2 md:right-6 z-10">
+      <div className="hidden md:block absolute top-72 -translate-y-1/2 right-2 md:top-1/2 md:right-6 z-10">
         <a
           href="https://business.bokadirekt.se/"
           target="_blank"

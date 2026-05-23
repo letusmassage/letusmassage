@@ -106,7 +106,7 @@ export default function ServiceDetail() {
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-sky-600 mb-3">{item.tag}</p>
-              <h1 className="font-serif text-5xl md:text-6xl text-slate-800 mb-4">{item.name}</h1>
+              <h1 className="font-serif text-4xl md:text-5xl text-slate-800 mb-4">{item.name}</h1>
               <div className="flex items-center gap-3 flex-wrap mb-6">
                 <span className="text-sm text-slate-500 bg-white border border-stone-200 px-4 py-1.5 rounded-full">{item.duration}</span>
                 {item.friskvard && (

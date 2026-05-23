@@ -6,8 +6,10 @@
     "techniques": "Metoder",
     "why": "Varför oss",
     "faq": "Vanliga frågor",
+    "information": "Information",
     "location": "Hitta oss",
     "contact": "Kontakt",
+    "gifts": "Presentkort",
     "book": "Boka tid"
   },
   "hero": {
@@ -34,7 +36,19 @@
     "quote": "Jag älskar mitt arbete. Att hjälpa människor att må bättre och känna sig friskare är för mig den största belöningen.",
     "credentials": "Medlem i Kroppsterapeuterna · Medlemsnr 36786 · Ansvarsförsäkrad",
     "address_label": "Adress",
-    "nameVariants": "Många känner mig under olika stavningar – Joulietta, Louiletta, Iuletta eller Julietta. Alla varianter leder hit."
+    "nameVariants": "Många känner mig under olika stavningar – Joulietta, Louiletta, Iuletta eller Julietta. Alla varianter leder hit.",
+    "nameStoryButton": "Klicka här",
+    "nameStoryBack": "Tillbaka",
+    "nameStoryTitle": "Hej, jag heter Ioulietta — och där börjar förvirringen.",
+    "nameStoryParagraphs": [
+      "Mitt namn börjar nämligen med ett stort \"I\", men för de flesta ser det misstänkt likt ett \"L\" ut. Genom åren har jag samlat på mig en hel del alias utan att ens försöka.",
+      "För det mesta är jag Louiletta — uttalat med sådan självsäkerhet att jag nästan tror på det själv. \"Hej Louiletta, din tid är bokad!\" Visst, varför inte. Louiletta får det bli.",
+      "Ibland uppgraderas jag till Jjoulietta — ja, med två J, för om ett J är bra måste väl två vara ännu bättre? Jag föreställer mig Jjoulietta som min mystiska kusin som bär solglasögon inomhus.",
+      "Och då och då, sällan men ljuvligt, är det någon som får det rätt: Ioulietta. När det händer vill jag krama personen. Kanske till och med bjuda på en gratis massage.",
+      "Men hemma i Grekland spelar inget av detta någon roll. Där är jag helt enkelt Letta — kort, kärt och omöjligt att stava fel. Härligt.",
+      "Så oavsett om du kallar mig Ioulietta, Louiletta, Jjoulietta eller Letta — du har kommit rätt. Händerna är desamma, massagen är lika skön, och namnet? Det löser vi tillsammans."
+    ],
+    "nameStoryClosing": "Välkommen till Let Us Massage — där alla namn är rätt namn. 💆‍♀️"
   },
   "services": {
     "title": "Behandlingar",
@@ -228,6 +242,67 @@
     },
     "note": "Tider utanför ordinarie öppettider kan arrangeras i förväg."
   },
+  "information": {
+    "title": "Praktisk information",
+    "subtitle": "Inför ditt besök",
+    "hours": {
+      "title": "Öppettider",
+      "items": [
+        { "day": "Måndag – Fredag", "time": "10:00 – 19:00" },
+        { "day": "Lördag", "time": "10:00 – 14:00" },
+        { "day": "Söndagar och röda dagar", "time": "Stängt" }
+      ],
+      "note1": "Öppettiderna kan variera.",
+      "note2": "Vänligen kontrollera Bokadirekt för aktuell tillgänglighet och bokningsbara tider."
+    },
+    "cancellation": {
+      "title": "Avbokningspolicy",
+      "p1": "Avbokning eller ombokning måste ske minst 24 timmar före den bokade tiden.",
+      "p2": "Vid sen avbokning eller uteblivet besök förbehåller sig Let Us Massage rätten att debitera upp till 100 % av behandlingens pris.",
+      "p3": "Vid sjukdom, vänligen kontakta terapeuten direkt via telefon."
+    },
+    "arrival": {
+      "title": "Inför ditt besök",
+      "p1": "Vi rekommenderar att du kommer 5–10 minuter före din bokade tid för att hinna landa och koppla av innan behandlingen.",
+      "p2": "Vid sen ankomst kan behandlingstiden behöva förkortas för att nästa bokning ska kunna hållas enligt schema."
+    },
+    "parking": {
+      "title": "Parkering",
+      "p1": "En gratis parkeringsplats finns tillgänglig med infart från Gyllenkroks Allé.",
+      "p2": "Platsen är tillgänglig i mån av plats enligt först till kvarn-principen."
+    },
+    "health": {
+      "title": "Hälsa & säkerhet",
+      "p1": "För att behandlingen ska kunna anpassas tryggt och säkert fyller alla kunder i en kort hälsodeklaration inför första besöket.",
+      "p2": "Vänligen informera alltid om:",
+      "bullets": [
+        "skador",
+        "sjukdomar eller medicinska tillstånd",
+        "graviditet",
+        "mediciner",
+        "eller förändringar i ditt hälsotillstånd"
+      ]
+    },
+    "facilities": {
+      "title": "Lokal & miljö",
+      "p1": "Let Us Massage delar professionella lokaler med Lagom Massage och erbjuder en lugn, trivsam och professionell miljö för varje behandling.",
+      "p2": "Miljön är utformad för att skapa en känsla av trygghet, avslappning och komfort redan från det ögonblick du kommer in."
+    },
+    "payments": {
+      "title": "Betalning & friskvård",
+      "p1": "Behandlingar kan förbetalas online via Bokadirekt.",
+      "p2": "På plats accepteras betalning via:",
+      "bullets": ["Swish", "bankkort"],
+      "p3": "Kontanter accepteras inte.",
+      "p4": "Klassisk Massage, Relaxmassage och Gravidmassage är godkända för friskvårdsbidrag enligt svenska regler.",
+      "p5": "Enligt gällande regler för friskvård får varje enskild behandling som köps via friskvårdsbidrag inte överstiga 1 000 SEK per tillfälle."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "phone_label": "Telefon",
+      "email_label": "E-post"
+    }
+  },
   "location": {
     "title": "Hitta hit",
     "address": "Stora Södergatan 58A, 222 23 Lund",
@@ -253,6 +328,66 @@
   "seo": {
     "title": "Massage Lund | Let Us Massage – Avslappning & Terapeutisk Massage",
     "description": "Professionell massage i Lund. Avslappnande massage, klassisk friskvårdsmassage, terapeutisk massageterapi och gravidmassage anpassad efter dina behov. Boka enkelt online."
+  },
+  "gifts": {
+    "eyebrow": "Presentkort",
+    "title": "Presentkort",
+    "lede": "Ge bort avslappning, omtanke & välbefinnande",
+    "intro1": "Ett massagepresentkort är ett fint sätt att ge bort återhämtning, avkoppling och tid för egen omsorg till någon du tycker om.",
+    "intro2": "Oavsett om det gäller födelsedag, högtider, baby shower, företagsgåva eller bara en omtänksam gest, erbjuder Let Us Massage presentkort en wellnessupplevelse anpassad efter varje persons behov.",
+    "digital": {
+      "title": "Digitalt presentkort",
+      "p1": "Köp enkelt ett digitalt presentkort online via Bokadirekt.",
+      "p2": "Presentkortet skickas elektroniskt och kan användas smidigt vid onlinebokning.",
+      "bullets": [
+        "Direkt leverans",
+        "Säker onlinebetalning",
+        "Perfekt som sista minuten-present",
+        "Enkel användning via Bokadirekt"
+      ],
+      "cta": "Köp via Bokadirekt"
+    },
+    "printed": {
+      "title": "Tryckt presentkort",
+      "p1": "Du kan även köpa ett tryckt presentkort direkt på mottagningen.",
+      "p2": "Ett mer personligt och elegant alternativ för dig som vill ge bort en omtänksam wellnessupplevelse.",
+      "p3": "Tryckta presentkort hämtas efter överenskommelse.",
+      "bullets": [
+        "Perfekt för födelsedagar & högtider",
+        "Ett fint val för baby shower & gravidmassage-presenter",
+        "Passar även som företagsgåva"
+      ],
+      "cta": "Kontakta oss"
+    },
+    "faq": {
+      "title": "Vanliga frågor",
+      "items": [
+        {
+          "q": "Vilka behandlingar kan presentkortet användas till?",
+          "a": "Presentkort kan användas för alla tillgängliga behandlingar hos Let Us Massage."
+        },
+        {
+          "q": "Kan jag köpa ett specifikt massagepass eller ett valfritt belopp?",
+          "a": "Ja. Du kan välja antingen en specifik behandling eller ett valfritt belopp."
+        },
+        {
+          "q": "Hur länge är presentkortet giltigt?",
+          "a": "Presentkort gäller i 12 månader från inköpsdatum."
+        },
+        {
+          "q": "Kan presentkortet användas av någon annan?",
+          "a": "Ja. Presentkort är överlåtbara och kan användas av en annan person."
+        },
+        {
+          "q": "Kan presentkort lösas in mot kontanter?",
+          "a": "Nej. Presentkort kan inte lösas in mot kontanter."
+        }
+      ]
+    },
+    "seo": {
+      "title": "Presentkort massage Lund | Let Us Massage",
+      "description": "Köp presentkort hos Let Us Massage i Lund. Digitalt presentkort via Bokadirekt eller tryckt presentkort på mottagningen — perfekt gåva för födelsedag, högtider och företag."
+    }
   },
   "detail": {
     "backToHome": "Tillbaka",

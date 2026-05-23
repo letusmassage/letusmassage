@@ -9,7 +9,7 @@ export default function AboutCompany() {
         <p className="text-xs uppercase tracking-[0.3em] text-sky-600 mb-4">
           {t('aboutCompany.title')}
         </p>
-        <h2 className="font-serif text-4xl md:text-5xl text-slate-800 mb-8 leading-tight">
+        <h2 className="font-serif text-3xl md:text-4xl text-slate-800 mb-8 leading-tight">
           {t('aboutCompany.lede')}
         </h2>
         <div className="space-y-5 text-slate-600 leading-relaxed text-base md:text-lg">

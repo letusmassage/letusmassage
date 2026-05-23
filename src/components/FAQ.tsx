@@ -18,7 +18,7 @@ export default function FAQ() {
           <p className="text-xs uppercase tracking-[0.3em] text-sky-600 mb-3">
             {t('faq.subtitle')}
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-slate-800">
+          <h2 className="font-serif text-3xl md:text-4xl text-slate-800">
             {t('faq.title')}
           </h2>
         </div>

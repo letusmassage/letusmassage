@@ -5,6 +5,17 @@ interface WhyItem {
   body: string
 }
 
+function renderBody(body: string) {
+  if (body.startsWith('Ioulietta')) {
+    return (
+      <>
+        <span className="font-serif font-bold text-base">I</span>{body.slice(1)}
+      </>
+    )
+  }
+  return body
+}
+
 export default function WhyChooseUs() {
   const { t } = useTranslation()
   const items = t('why.items', { returnObjects: true }) as WhyItem[]
@@ -16,7 +27,7 @@ export default function WhyChooseUs() {
           <p className="text-xs uppercase tracking-[0.3em] text-sky-600 mb-3">
             {t('why.subtitle')}
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-slate-800">
+          <h2 className="font-serif text-3xl md:text-4xl text-slate-800">
             {t('why.title')}
           </h2>
         </div>
@@ -31,7 +42,7 @@ export default function WhyChooseUs() {
               </div>
               <div>
                 <h3 className="font-serif text-xl text-slate-800 mb-2">{item.title}</h3>
-                <p className="text-slate-600 leading-relaxed text-sm">{item.body}</p>
+                <p className="text-slate-600 leading-relaxed text-sm">{renderBody(item.body)}</p>
               </div>
             </div>
           ))}

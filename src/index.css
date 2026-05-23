@@ -7,3 +7,14 @@
 
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-sans); }
+
+.hero-bg {
+  background-size: auto 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media (min-width: 768px) {
+  .hero-bg {
+    background-size: cover;
+  }
+}

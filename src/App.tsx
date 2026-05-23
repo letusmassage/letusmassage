@@ -8,6 +8,7 @@ import ServiceDetail from './pages/ServiceDetail'
 import TechniqueDetail from './pages/TechniqueDetail'
 import Articles from './pages/Articles'
 import Article from './pages/Article'
+import Gifts from './pages/Gifts'
 
 // Admin-sidan laddas bara när någon besöker /admin – så den (och zip-biblioteket)
 // inte tynger den vanliga hemsidan.
@@ -24,6 +25,8 @@ export default function App() {
             <Route path="/metoder/:id" element={<TechniqueDetail />} />
             <Route path="/artiklar" element={<Articles />} />
             <Route path="/artiklar/:slug" element={<Article />} />
+            <Route path="/presentkort" element={<Gifts />} />
+            <Route path="/gift-cards" element={<Gifts />} />
           </Route>
           <Route
             path="/admin"

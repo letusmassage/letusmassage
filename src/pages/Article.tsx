@@ -147,7 +147,7 @@ export default function ArticlePage() {
             <span>·</span>
             <span>{article.readMin} min läsning</span>
           </div>
-          <h1 className="font-serif text-4xl md:text-5xl text-slate-800 mb-6 leading-tight">
+          <h1 className="font-serif text-3xl md:text-4xl text-slate-800 mb-6 leading-tight">
             {article.title}
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed">{article.intro}</p>

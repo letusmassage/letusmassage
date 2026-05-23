@@ -12,8 +12,10 @@ const navLinks = [
   { key: 'nav.about', href: '/#about' },
   { key: 'nav.services', href: '/#services' },
   { key: 'nav.techniques', href: '/#techniques' },
+  { key: 'nav.gifts', href: '/presentkort' },
   { key: 'nav.why', href: '/#why' },
   { key: 'nav.faq', href: '/#faq' },
+  { key: 'nav.information', href: '/#information' },
   { key: 'nav.location', href: '/#location' },
 ]
 
@@ -27,8 +29,13 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link to="/" className="text-sky-700 font-semibold text-lg tracking-wide">
-          Let Us Massage
+        <Link to="/" className="flex items-center gap-2.5 text-sky-700 font-semibold text-lg tracking-wide">
+          <img
+            src="/logo-blue.png"
+            alt="Let Us Massage – logotyp"
+            className="h-12 md:h-14 w-auto"
+          />
+          <span className="hidden sm:inline">Let Us Massage</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-7">
@@ -73,7 +80,7 @@ export default function Navbar() {
             href="https://business.bokadirekt.se/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:block bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+            className="bg-sky-500 hover:bg-sky-600 text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg transition-colors"
           >
             {t('nav.book')}
           </a>

@@ -60,7 +60,7 @@ export default function Articles() {
       <header className="relative pt-32 pb-16 px-4 bg-gradient-to-b from-stone-50 via-white to-sky-50">
         <div className="max-w-4xl mx-auto">
           <p className="text-xs uppercase tracking-[0.3em] text-sky-600 mb-3">Kunskapsbank</p>
-          <h1 className="font-serif text-5xl md:text-6xl text-slate-800 mb-6">
+          <h1 className="font-serif text-4xl md:text-5xl text-slate-800 mb-6">
             Artiklar om massage, kropp och välbefinnande
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed max-w-3xl">

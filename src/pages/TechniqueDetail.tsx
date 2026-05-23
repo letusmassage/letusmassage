@@ -82,7 +82,7 @@ export default function TechniqueDetail() {
           </Link>
 
           <p className="text-xs uppercase tracking-[0.3em] text-sky-600 mb-3">{item.tagline}</p>
-          <h1 className="font-serif text-5xl md:text-6xl text-slate-800 mb-6">{item.name}</h1>
+          <h1 className="font-serif text-4xl md:text-5xl text-slate-800 mb-6">{item.name}</h1>
           <p className="text-lg text-slate-600 leading-relaxed max-w-3xl">{detail.intro}</p>
         </div>
       </header>
