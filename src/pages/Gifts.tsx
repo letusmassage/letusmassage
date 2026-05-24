@@ -97,7 +97,7 @@ export default function Gifts() {
             </ul>
 
             <a
-              href="https://www.bokadirekt.se/"
+              href="https://www.bokadirekt.se/places/let-us-massage-lund-135622"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-auto inline-block text-center bg-sky-500 hover:bg-sky-600 text-white font-medium px-6 py-3 rounded-lg transition-colors"

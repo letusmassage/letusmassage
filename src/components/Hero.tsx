@@ -37,7 +37,7 @@ export default function Hero() {
 
       <div className="hidden md:block absolute top-72 -translate-y-1/2 right-2 md:top-1/2 md:right-6 z-10">
         <a
-          href="https://business.bokadirekt.se/"
+          href="https://www.bokadirekt.se/places/let-us-massage-lund-135622"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block bg-white/95 hover:bg-white text-slate-800 font-medium px-6 md:px-8 py-3 md:py-3.5 rounded-full text-sm md:text-base hover:scale-[1.02] transition-all shadow-xl backdrop-blur-sm"

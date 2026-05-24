@@ -162,7 +162,7 @@ export default function ArticlePage() {
 
           <div className="mt-12 pt-8 border-t border-stone-200 text-center">
             <a
-              href="https://business.bokadirekt.se/"
+              href="https://www.bokadirekt.se/places/let-us-massage-lund-135622"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-sky-600 hover:bg-sky-700 text-white font-medium px-10 py-4 rounded-full transition-colors shadow-sm"

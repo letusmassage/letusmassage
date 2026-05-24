@@ -46,7 +46,7 @@ export default function Footer() {
               {t('nav.book')}
             </h4>
             <a
-              href="https://business.bokadirekt.se/"
+              href="https://www.bokadirekt.se/places/let-us-massage-lund-135622"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-white text-sky-800 text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-sky-50 transition-colors"

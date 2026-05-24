@@ -74,7 +74,7 @@ export default function Services() {
                   {t('detail.readMore')}
                 </Link>
                 <a
-                  href="https://business.bokadirekt.se/"
+                  href="https://www.bokadirekt.se/places/let-us-massage-lund-135622"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-sky-600 hover:text-sky-800 font-medium transition-colors"
@@ -89,7 +89,7 @@ export default function Services() {
 
         <div className="text-center mt-12">
           <a
-            href="https://business.bokadirekt.se/"
+            href="https://www.bokadirekt.se/places/let-us-massage-lund-135622"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-sky-600 hover:bg-sky-700 text-white font-medium px-8 py-3.5 rounded-full transition-colors shadow-sm"
