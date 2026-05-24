@@ -1,0 +1,158 @@
+// Postbuild prerender: skapar dist/<route>/index.html med rätt
+// title/description/canonical/og per route. Detta gör att Google och
+// sociala crawlers ser unika meta-tags innan JS körs.
+
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const distDir = resolve(__dirname, '..', 'dist')
+const SITE = 'https://let-us-massage.se'
+const DEFAULT_OG = `${SITE}/og-image.jpg`
+
+// Hjälp: bygg HEAD-block för en given sida
+function head({ title, description, canonical, ogType = 'website', ogImage = DEFAULT_OG, keywords, articleDate }) {
+  const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+  const lines = [
+    `<title>${esc(title)}</title>`,
+    `<meta name="description" content="${esc(description)}" />`,
+    keywords ? `<meta name="keywords" content="${esc(keywords)}" />` : null,
+    `<link rel="canonical" href="${esc(canonical)}" />`,
+    `<meta property="og:type" content="${esc(ogType)}" />`,
+    `<meta property="og:site_name" content="Let Us Massage" />`,
+    `<meta property="og:locale" content="sv_SE" />`,
+    `<meta property="og:title" content="${esc(title)}" />`,
+    `<meta property="og:description" content="${esc(description)}" />`,
+    `<meta property="og:url" content="${esc(canonical)}" />`,
+    `<meta property="og:image" content="${esc(ogImage)}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${esc(title)}" />`,
+    `<meta name="twitter:description" content="${esc(description)}" />`,
+    `<meta name="twitter:image" content="${esc(ogImage)}" />`,
+    articleDate ? `<meta property="article:published_time" content="${esc(articleDate)}" />` : null,
+    articleDate ? `<meta property="article:author" content="Ioulietta Refene" />` : null,
+  ].filter(Boolean)
+  return lines.map(l => '    ' + l).join('\n')
+}
+
+// Data per route — synkat med i18n + content/articles
+const services = [
+  { id: 'relax', name: 'Relaxmassage', duration: '30 / 60 min', description: 'Mjuk och lugnande svensk massage som hjälper kroppen att släppa spänningar och sinnet att varva ner. Perfekt om du känner dig stressad eller behöver en paus i vardagen.' },
+  { id: 'klassisk', name: 'Klassisk Massage', duration: '30 / 45 / 60 min', description: 'Förebyggande friskvårdsmassage som kombinerar svensk massage, deep tissue och myofasciell release. Godkänd för friskvårdsbidrag.' },
+  { id: 'massageterapi', name: 'Massageterapi', duration: '45 / 60 / 75 / 90 min', description: 'Avancerad terapeutisk behandling för smärta, spänningar och nedsatt rörlighet. Kombinerar deep tissue, triggerpunkter, neuromuskulär terapi och myofascial release.' },
+  { id: 'prenatal', name: 'Gravidmassage', duration: '60 min', description: 'Mjuk, säker massage anpassad för gravida från andra trimestern. Utförs i sidoläge med fullt kuddstöd och fokus på rygg, höfter, ben, nacke och axlar.' },
+]
+
+const techniques = [
+  { id: 'svensk-massage', name: 'Svensk massage', tagline: 'Grunden för avslappning', description: 'Mjuka till medeltryckande rörelser med långa strykningar, knådning och rytmiska rörelser som löser upp spänningar och förbättrar blodcirkulationen.' },
+  { id: 'deep-tissue', name: 'Djupgående massage', tagline: 'Deep Tissue', description: 'Intensiv behandlingsform med långsamma rörelser och djupare tryck som arbetar med muskler, senor och bindväv för att lösa upp spända områden och förbättra rörligheten.' },
+  { id: 'myofascial-release', name: 'Myofasciell behandling', tagline: 'Myofascial Release', description: 'Mjuk och fokuserad metod som arbetar med kroppens bindväv (fascia) för att minska spänningar och förbättra rörlighet.' },
+  { id: 'nmt', name: 'Neuromuskulär terapi', tagline: 'NMT', description: 'Metod som fokuserar på samspelet mellan muskler och nervsystem för att minska smärta och förbättra kroppens funktion.' },
+  { id: 'trigger-point', name: 'Triggerpunktsbehandling', tagline: 'Trigger Point Therapy', description: 'Riktad massageteknik som fokuserar på specifika spänningspunkter — "muskelknutor" — i musklerna för att hjälpa dem att återgå till naturlig funktion.' },
+]
+
+const articles = [
+  { slug: 'massage-i-lund-guide', title: 'Massage i Lund — guide till olika behandlingsformer', description: 'En översikt över massagealternativ i Lund: avslappning, friskvård, terapeutisk massage och gravidmassage. Så väljer du rätt — och vad du bör veta innan du bokar.', date: '2026-05-11', keywords: 'massage Lund, massage Lund centrum, massageterapeut Lund, wellness Lund, boka massage Lund' },
+  { slug: 'stillasittande-arbete-nack-och-rygg-lund', title: 'Stillasittande arbete — så påverkar det nacke och rygg', description: 'Hur långvarigt stillasittande påverkar nacke, axlar och rygg — och hur regelbunden massage kan motverka spänningar och stelhet.', date: '2026-05-10', keywords: 'stillasittande Lund, nackspänningar, ryggspänningar, kontorsmassage Lund' },
+  { slug: 'triggerpunkter-vad-de-ar-och-hur-de-behandlas', title: 'Triggerpunkter — vad de är och hur de behandlas', description: 'Vad triggerpunkter (muskelknutor) är, varför de uppstår, och hur trigger point therapy och neuromuskulär behandling kan minska smärta.', date: '2026-05-09', keywords: 'triggerpunkter, muskelknutor, trigger point therapy Lund, NMT Lund' },
+  { slug: 'deep-tissue-vs-svensk-massage', title: 'Deep tissue eller svensk massage — vad ska du välja?', description: 'Skillnaden mellan deep tissue och svensk massage förklarad: när passar respektive teknik, intensitet, effekt och för vem.', date: '2026-05-08', keywords: 'deep tissue Lund, svensk massage Lund, massage val' },
+  { slug: 'gravidmassage-lund-vad-ar-sakert', title: 'Gravidmassage i Lund — vad är säkert?', description: 'Riktlinjer för gravidmassage: när du tidigast kan boka, säker positionering, vad som undviks och vilken erfarenhet du bör söka.', date: '2026-05-07', keywords: 'gravidmassage Lund, prenatal massage Lund, massage gravid' },
+  { slug: 'klassisk-massage-vs-massageterapi', title: 'Klassisk massage vs massageterapi — vad är skillnaden?', description: 'Klassisk friskvårdsmassage och terapeutisk massageterapi — vad skiljer dem, vilken passar dig och vad innebär det för friskvårdsbidraget?', date: '2026-05-06', keywords: 'klassisk massage Lund, massageterapi Lund, friskvård vs terapi' },
+  { slug: 'friskvardsbidrag-massage-lund', title: 'Friskvårdsbidrag för massage i Lund — så fungerar det', description: 'Hur du använder friskvårdsbidraget för massage i Lund: vilka behandlingar som omfattas, kvitto, Skatteverkets regler och bokning.', date: '2026-05-05', keywords: 'friskvårdsbidrag massage Lund, friskvård massage, Epassi, Benify, ActiWay' },
+  { slug: 'spanningshuvudvark-massage-lund', title: 'Spänningshuvudvärk — så kan massage hjälpa', description: 'Hur spänningar i nacke, axlar och käke kan ge huvudvärk — och varför riktad massage ofta lindrar både orsak och symtom.', date: '2026-05-04', keywords: 'spänningshuvudvärk Lund, huvudvärk massage, nackspänningar huvudvärk' },
+]
+
+// Bygg full route-lista
+const routes = [
+  // Statiska
+  {
+    path: '/',
+    title: 'Massage i Lund | Let Us Massage – Klassisk, Massageterapi & Gravidmassage',
+    description: 'Professionell massage i Lund med Ioulietta Refene, certifierad medicinsk massageterapeut sedan 2009. Klassisk massage, massageterapi, gravidmassage och relaxmassage. Stora Södergatan 58A, Lund. Boka online.',
+    keywords: 'massage Lund, massageterapi Lund, klassisk massage Lund, gravidmassage Lund, deep tissue Lund, friskvård Lund, medicinsk massageterapeut Lund, Ioulietta Refene Lund',
+  },
+  {
+    path: '/artiklar',
+    title: 'Kunskapsbank — Artiklar om massage i Lund | Let Us Massage',
+    description: 'Artiklar och guider om massage, friskvård, spänningshuvudvärk, gravidmassage och förebyggande kroppsvård i Lund.',
+  },
+  {
+    path: '/presentkort',
+    title: 'Presentkort på massage i Lund | Let Us Massage',
+    description: 'Ge bort välmående — digitala och tryckta presentkort på massage i Lund. Köp direkt via Bokadirekt eller besök mottagningen på Stora Södergatan 58A.',
+  },
+  // Behandlingar
+  ...services.map(s => ({
+    path: `/behandlingar/${s.id}`,
+    title: `${s.name} i Lund — ${s.duration} | Let Us Massage`,
+    description: `${s.description} Boka ${s.name.toLowerCase()} hos Let Us Massage på Stora Södergatan 58A i Lund.`,
+    ogType: 'article',
+    ogImage: `${SITE}/services/${s.id}.jpg`,
+  })),
+  // Metoder
+  ...techniques.map(t => ({
+    path: `/metoder/${t.id}`,
+    title: `${t.name} (${t.tagline}) — Massageteknik i Lund | Let Us Massage`,
+    description: t.description.slice(0, 155),
+    ogType: 'article',
+  })),
+  // Artiklar
+  ...articles.map(a => ({
+    path: `/artiklar/${a.slug}`,
+    title: `${a.title} | Let Us Massage Lund`,
+    description: a.description,
+    keywords: a.keywords,
+    ogType: 'article',
+    articleDate: a.date,
+  })),
+]
+
+// Läs bygget
+const indexPath = resolve(distDir, 'index.html')
+if (!existsSync(indexPath)) {
+  console.error(`[prerender] dist/index.html saknas — kör npm run build först`)
+  process.exit(1)
+}
+const template = readFileSync(indexPath, 'utf8')
+
+// Mall måste innehålla SEO_HEAD-markörer
+const HEAD_START = '<!-- SEO_HEAD -->'
+const HEAD_END = '<!-- /SEO_HEAD -->'
+if (!template.includes(HEAD_START) || !template.includes(HEAD_END)) {
+  console.error(`[prerender] dist/index.html saknar ${HEAD_START} ... ${HEAD_END} markörer`)
+  process.exit(1)
+}
+
+function injectHead(html, route) {
+  const canonical = SITE + (route.path === '/' ? '/' : route.path)
+  const newHead = head({
+    title: route.title,
+    description: route.description,
+    canonical,
+    ogType: route.ogType,
+    ogImage: route.ogImage,
+    keywords: route.keywords,
+    articleDate: route.articleDate,
+  })
+  return html.replace(
+    new RegExp(`${HEAD_START}[\\s\\S]*?${HEAD_END}`),
+    `${HEAD_START}\n${newHead}\n    ${HEAD_END}`
+  )
+}
+
+let count = 0
+for (const route of routes) {
+  const html = injectHead(template, route)
+  const outDir = route.path === '/'
+    ? distDir
+    : resolve(distDir, '.' + route.path)
+  const outFile = resolve(outDir, 'index.html')
+  mkdirSync(outDir, { recursive: true })
+  writeFileSync(outFile, html, 'utf8')
+  count++
+}
+
+console.log(`[prerender] ✓ Skrev ${count} prerenderade sidor med unik canonical/title/description`)
