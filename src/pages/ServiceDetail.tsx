@@ -119,12 +119,19 @@ export default function ServiceDetail() {
               <p className="text-lg text-slate-600 leading-relaxed">{detail.intro}</p>
             </div>
             <div className="aspect-[3/2] rounded-2xl overflow-hidden shadow-lg">
+              <picture className="contents">
+              <source srcSet={`/services/${id}.webp`} type="image/webp" />
               <img
                 src={`/services/${id}.jpg`}
                 alt={`${item.name} – Massage i Lund hos Let Us Massage`}
+                decoding="async"
+                fetchPriority="high"
+                width={900}
+                height={600}
                 className="w-full h-full object-cover"
                 onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
               />
+              </picture>
             </div>
           </div>
         </div>

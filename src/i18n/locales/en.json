@@ -237,7 +237,7 @@
     },
     "times": {
       "mon_fri": "10:00 – 19:00",
-      "sat": "10:00 – 17:00",
+      "sat": "10:00 – 15:00",
       "sun": "Closed"
     },
     "note": "Appointments available outside regular hours by prior arrangement."
@@ -249,7 +249,7 @@
       "title": "Opening hours",
       "items": [
         { "day": "Monday – Friday", "time": "10:00 – 19:00" },
-        { "day": "Saturday", "time": "10:00 – 14:00" },
+        { "day": "Saturday", "time": "10:00 – 15:00" },
         { "day": "Sundays and public holidays", "time": "Closed" }
       ],
       "note1": "Opening hours may vary.",
@@ -307,7 +307,12 @@
     "title": "Find us",
     "address": "Stora Södergatan 58A, 222 23 Lund",
     "building": "Same building as Lagom Massage by Lauren Meredith",
+    "nearby": "You'll find us on Stora Södergatan in central Lund – within walking distance of Lund C and the city centre, easy to reach by city bus, with free parking via Gyllenkroks Allé.",
     "directions": "Get directions"
+  },
+  "testimonials": {
+    "title": "What our clients say",
+    "subtitle": "Genuine experiences from guests who have visited us on Stora Södergatan in central Lund – their words mean everything to us."
   },
   "contact": {
     "title": "Contact",

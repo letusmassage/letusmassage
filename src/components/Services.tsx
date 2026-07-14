@@ -33,12 +33,19 @@ export default function Services() {
               className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow border border-stone-100 flex flex-col overflow-hidden"
             >
               <div className="aspect-[16/9] overflow-hidden bg-stone-100">
+                <picture className="contents">
+                <source srcSet={`/services/${item.id}.webp`} type="image/webp" />
                 <img
                   src={`/services/${item.id}.jpg`}
                   alt={`${item.name} – ${item.tag} hos Let Us Massage i Lund`}
+                  loading="lazy"
+                  decoding="async"
+                  width={640}
+                  height={360}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
                 />
+                </picture>
               </div>
               <div className="p-7 flex flex-col flex-1">
               <div className="flex items-start justify-between mb-3 gap-3">

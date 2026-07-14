@@ -10,6 +10,7 @@ export default function Location() {
           <h2 className="text-3xl font-light text-sky-800 mb-3">{t('location.title')}</h2>
           <p className="text-gray-600 font-medium">{t('location.address')}</p>
           <p className="text-gray-400 text-sm mt-1">{t('location.building')}</p>
+          <p className="text-gray-400 text-sm mt-1 max-w-xl mx-auto">{t('location.nearby')}</p>
           <a
             href="https://maps.google.com/?q=Stora+S%C3%B6dergatan+58A,+222+23+Lund,+Sweden"
             target="_blank"

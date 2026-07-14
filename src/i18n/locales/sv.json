@@ -237,7 +237,7 @@
     },
     "times": {
       "mon_fri": "10:00 – 19:00",
-      "sat": "10:00 – 17:00",
+      "sat": "10:00 – 15:00",
       "sun": "Stängt"
     },
     "note": "Tider utanför ordinarie öppettider kan arrangeras i förväg."
@@ -249,7 +249,7 @@
       "title": "Öppettider",
       "items": [
         { "day": "Måndag – Fredag", "time": "10:00 – 19:00" },
-        { "day": "Lördag", "time": "10:00 – 14:00" },
+        { "day": "Lördag", "time": "10:00 – 15:00" },
         { "day": "Söndagar och röda dagar", "time": "Stängt" }
       ],
       "note1": "Öppettiderna kan variera.",
@@ -307,7 +307,12 @@
     "title": "Hitta hit",
     "address": "Stora Södergatan 58A, 222 23 Lund",
     "building": "Samma byggnad som Lagom Massage by Lauren Meredith",
+    "nearby": "Du hittar oss på Stora Södergatan i centrala Lund – gångavstånd från Lund C och stadskärnan, lätt att nå med stadsbuss och med fri parkering via Gyllenkroks Allé.",
     "directions": "Vägbeskrivning"
+  },
+  "testimonials": {
+    "title": "Vad våra kunder säger",
+    "subtitle": "Äkta upplevelser från gäster som besökt oss på Stora Södergatan i Lund – deras ord betyder allt för oss."
   },
   "contact": {
     "title": "Kontakt",

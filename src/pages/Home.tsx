@@ -6,6 +6,7 @@ import Techniques from '../components/Techniques'
 import SectionDivider from '../components/SectionDivider'
 import WhyChooseUs from '../components/WhyChooseUs'
 import FAQ from '../components/FAQ'
+import Testimonials from '../components/Testimonials'
 import Information from '../components/Information'
 import Location from '../components/Location'
 
@@ -27,6 +28,7 @@ export default function Home() {
         alt="Detalj från terapeutisk massageterapi i Lund"
       />
       <FAQ />
+      <Testimonials />
       <Information />
       <Location />
     </main>

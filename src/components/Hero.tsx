@@ -30,9 +30,9 @@ export default function Hero() {
         <p className="font-serif text-2xl md:text-4xl text-white font-light mb-2 drop-shadow italic">
           {t('hero.headline')}
         </p>
-        <p className="text-sm md:text-base text-white/85 max-w-xl mx-auto drop-shadow">
+        <h1 className="text-sm md:text-base text-white/85 max-w-xl mx-auto drop-shadow">
           {t('hero.subheadline')}
-        </p>
+        </h1>
       </div>
 
       <div className="hidden md:block absolute top-72 -translate-y-1/2 right-2 md:top-1/2 md:right-6 z-10">
