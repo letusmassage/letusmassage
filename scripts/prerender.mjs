@@ -36,6 +36,7 @@ const businessGraph = {
       '@id': BUSINESS_ID,
       name: 'Let Us Massage',
       legalName: 'Let Us Massage',
+      alternateName: 'Let Us Massage Lund',
       description: svLocale.seo.description,
       url: SITE,
       slogan: svLocale.hero.headline,
