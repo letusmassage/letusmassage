@@ -1,0 +1,79 @@
+{
+  "_comment": "Riktiga omdömen hämtade från Bokadirekt-profilen. Texterna är ordagranna — skriv ALDRIG om dem och hitta ALDRIG på nya. Namnen är redan förkortade av Bokadirekt (förnamn + initial). Datumen är härledda från Bokadirekts relativa tidsangivelser ('för 12 dagar sedan') vid hämtningen 2026-08-06 och är därför ±1 dag. Uppdatera via den tvåveckliga SEO-rutinen: se docs/reviews.md.",
+  "source": {
+    "name": "Bokadirekt",
+    "url": "https://www.bokadirekt.se/places/let-us-massage-lund-135622",
+    "lastFetched": "2026-08-06"
+  },
+  "aggregate": {
+    "ratingValue": 5,
+    "ratingCount": 13,
+    "bestRating": 5,
+    "worstRating": 1
+  },
+  "items": [
+    {
+      "author": "anna f.",
+      "rating": 5,
+      "date": "2026-08-04",
+      "lang": "en",
+      "text": "This was such an amazing, professional, relaxing massage that I cannot recommend enough! Felt like walking on clouds afterwards !!!"
+    },
+    {
+      "author": "Christel M.",
+      "rating": 5,
+      "date": "2026-07-25",
+      "lang": "sv",
+      "text": "Helt suverän massage! Har gått hos Ioulietta regelbundet sen hon arbetade på Brunnshögs massage och fortsätter givetvis nu när hon arbetar i egen regi. Har testat flera massörer men det här är en helt egen nivå! Rekommenderas varmt!"
+    },
+    {
+      "author": "Gizem G.",
+      "rating": 5,
+      "date": "2026-07-25",
+      "lang": "en",
+      "text": "I had very relaxing session with loulietta, highly recommended!✨"
+    },
+    {
+      "author": "Niclas H.",
+      "rating": 5,
+      "date": "2026-07-25",
+      "lang": "sv",
+      "text": "En riktigt kompetent massör/massös är guld värd, och Ioulietta är just en riktig guldklimp. Inte bara att hon har kompetens och är trevlig, hon lyssnar för att fånga upp vad behovet verkligen är.\nLetade och fann henne för några år sen då hon arbetade i annan regi och följer självklart med till hennes egna nya verksamhet.\nKan alltså med varm hand starkt rekommendera henne.\n/Niclas"
+    },
+    {
+      "author": "Ammie B.",
+      "rating": 5,
+      "date": "2026-07-24",
+      "lang": "en",
+      "text": "I've gotten regular massages from Ioulietta during the last year, and I keep coming back because I feel very well taken care of each time. I started seeing Ioulietta when I was pregnant, and have continued during postpartum. Ioulietta is very sensitive to personal needs and preferences. I very much recommend Ioulietta!"
+    },
+    {
+      "author": "Ann-Sofie K.",
+      "rating": 5,
+      "date": "2026-07-21",
+      "lang": "sv",
+      "text": "Otroligt bra och effektiv massage som jag varmt kan rekommendera! Professionellt och kunnigt bemötande i fräscha och trevliga lokaler. Jag kände mig väldigt väl omhändertagen och härligt avslappnad efteråt. Kommer definitivt att gå hit igen!"
+    },
+    {
+      "author": "Bea L.",
+      "rating": 5,
+      "date": "2026-07-20",
+      "lang": "sv",
+      "text": "Ioulietta har magiska händer!"
+    },
+    {
+      "author": "Paul B.",
+      "rating": 5,
+      "date": "2026-07-18",
+      "lang": "sv",
+      "text": "Väldigt bra upplevelse hos Let Us Massage. Ioulietta är väldigt skicklig och lyhörd – hon känner verkligen av vad kroppen behöver och anpassar behandlingen därefter. Utöver att hon är grym på massage är hon dessutom charmig, vilket gör hela besöket avslappnande från början till slut. Mådde väldigt bra efter min massage. Varmt rekommenderat!"
+    },
+    {
+      "author": "Maria O.",
+      "rating": 5,
+      "date": "2026-07-14",
+      "lang": "sv",
+      "text": "Fantastisk massage och otroligt skicklig terapeut! Mina problem med axeln blev mycket bättre redan efter första behandlingen, och jag kan varmt rekommendera henne till alla som har spänningar eller smärta. Jag kommer definitivt tillbaka."
+    }
+  ]
+}

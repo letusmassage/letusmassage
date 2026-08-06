@@ -21,6 +21,39 @@ const svLocale = JSON.parse(
   readFileSync(resolve(__dirname, '..', 'src', 'i18n', 'locales', 'sv.json'), 'utf8')
 )
 
+// Kundomdömen — samma fil som klienten läser (src/content/reviews.ts), så att
+// schemat aldrig kan säga något annat än det besökaren faktiskt ser på sidan.
+const reviewData = JSON.parse(
+  readFileSync(resolve(__dirname, '..', 'src', 'content', 'reviews.json'), 'utf8')
+)
+
+// ratingCount = alla betyg (även de utan text), reviewCount = de med skriven text.
+const aggregateRating = reviewData.items.length
+  ? {
+      '@type': 'AggregateRating',
+      ratingValue: reviewData.aggregate.ratingValue,
+      ratingCount: reviewData.aggregate.ratingCount,
+      reviewCount: reviewData.items.length,
+      bestRating: reviewData.aggregate.bestRating,
+      worstRating: reviewData.aggregate.worstRating,
+    }
+  : null
+
+const reviewNodes = reviewData.items.map(r => ({
+  '@type': 'Review',
+  reviewRating: {
+    '@type': 'Rating',
+    ratingValue: r.rating,
+    bestRating: reviewData.aggregate.bestRating,
+    worstRating: reviewData.aggregate.worstRating,
+  },
+  author: { '@type': 'Person', name: r.author },
+  datePublished: r.date,
+  inLanguage: r.lang,
+  reviewBody: r.text,
+  publisher: { '@type': 'Organization', name: reviewData.source.name, url: reviewData.source.url },
+}))
+
 const SCHEMA_SERVICES = [
   { id: 'relax', name: 'Relaxmassage', description: 'Avslappnande svensk massage för stresshantering och välbefinnande.', therapeutic: false },
   { id: 'klassisk', name: 'Klassisk Massage', description: 'Förebyggande friskvårdsmassage med svensk massage, deep tissue och myofasciell release. Godkänd för friskvårdsbidrag.', therapeutic: false },
@@ -28,7 +61,10 @@ const SCHEMA_SERVICES = [
   { id: 'prenatal', name: 'Gravidmassage', description: 'Mjuk, säker massage anpassad för gravida från andra trimestern. Sidoläge med fullt kuddstöd.', therapeutic: false },
 ]
 
-const businessGraph = {
+// aggregateRating följer med på alla sidor (del av verksamhetens identitet), medan
+// hela review-listan bara bakas in där omdömena faktiskt syns — startsidan och
+// /recensioner — så att markup och synligt innehåll matchar.
+const buildBusinessGraph = (withReviews = false) => ({
   '@context': 'https://schema.org',
   '@graph': [
     {
@@ -78,6 +114,8 @@ const businessGraph = {
         'https://www.bokadirekt.se/places/let-us-massage-lund-135622',
         'https://maps.app.goo.gl/v66Jk7S2g5QqUKn56',
       ],
+      ...(aggregateRating ? { aggregateRating } : {}),
+      ...(withReviews && reviewNodes.length ? { review: reviewNodes } : {}),
       makesOffer: SCHEMA_SERVICES.map(s => ({
         '@type': 'Offer',
         itemOffered: { '@id': `${BUSINESS_ID}/service/${s.id}` },
@@ -121,7 +159,11 @@ const businessGraph = {
       availableLanguage: ['sv', 'en', 'el'],
     })),
   ],
-}
+})
+
+const businessGraph = buildBusinessGraph(false)
+const businessGraphWithReviews = buildBusinessGraph(true)
+const REVIEW_PAGES = new Set(['/', '/recensioner'])
 
 const faqGraph = {
   '@context': 'https://schema.org',
@@ -210,6 +252,12 @@ const routes = [
     title: 'Presentkort på massage i Lund | Let Us Massage',
     description: 'Ge bort välmående — digitala och tryckta presentkort på massage i Lund. Köp direkt via Bokadirekt eller besök mottagningen på Stora Södergatan 58A.',
   },
+  {
+    path: '/recensioner',
+    title: svLocale.reviewsPage.seo.title,
+    description: svLocale.reviewsPage.seo.description,
+    keywords: 'recensioner massage Lund, omdömen massageterapeut Lund, Let Us Massage recensioner, bästa massage Lund, Ioulietta Refene omdömen',
+  },
   // Behandlingar
   ...services.map(s => ({
     path: `/behandlingar/${s.id}`,
@@ -263,7 +311,8 @@ function injectHead(html, route) {
     keywords: route.keywords,
     articleDate: route.articleDate,
   })
-  const schema = [ldScript(businessGraph), route.path === '/' ? ldScript(faqGraph) : null]
+  const graph = REVIEW_PAGES.has(route.path) ? businessGraphWithReviews : businessGraph
+  const schema = [ldScript(graph), route.path === '/' ? ldScript(faqGraph) : null]
     .filter(Boolean)
     .map(l => '    ' + l)
     .join('\n')

@@ -60,6 +60,7 @@ export default function Footer() {
           <p>© {year} Let Us Massage. {t('footer.rights')}.</p>
           <div className="flex items-center gap-4">
             <a href="/presentkort" className="hover:text-sky-300 transition-colors">{t('nav.gifts')}</a>
+            <a href="/recensioner" className="hover:text-sky-300 transition-colors">{t('nav.reviews')}</a>
             <a href="/artiklar" className="hover:text-sky-300 transition-colors">Kunskapsbank</a>
             <a href="#privacy" className="hover:text-sky-300 transition-colors">{t('footer.privacy')}</a>
           </div>

@@ -10,6 +10,7 @@
     "location": "Location",
     "contact": "Contact",
     "gifts": "Gift Cards",
+    "reviews": "Reviews",
     "book": "Book now"
   },
   "hero": {
@@ -312,7 +313,29 @@
   },
   "testimonials": {
     "title": "What our clients say",
-    "subtitle": "Genuine experiences from guests who have visited us on Stora Södergatan in central Lund – their words mean everything to us."
+    "subtitle": "Genuine experiences from guests who have visited us on Stora Södergatan in central Lund – their words mean everything to us.",
+    "aggregate": "average from {{total}} reviews via {{source}}",
+    "readAll": "Read all reviews"
+  },
+  "reviewsPage": {
+    "eyebrow": "Reviews",
+    "title": "Reviews – massage in Lund",
+    "listHeading": "Client reviews of Let Us Massage in Lund",
+    "aggregate": "average from {{total}} reviews via {{source}}",
+    "intro1": "This is what clients write after their visits to Let Us Massage at Stora Södergatan 58A in Lund. The reviews come from our booking profile and are reproduced word for word – we neither rewrite nor edit them.",
+    "intro2": "Many of the people writing come back regularly, and several mention the same thing: that the treatment is adapted to what the body actually needs that day – whether it is neck and shoulder tension from desk work, long-standing pain, or prenatal massage.",
+    "attribution": "Reviews were published by clients on {{source}}.",
+    "attributionLink": "See the profile and all ratings",
+    "leave": {
+      "title": "Have you visited us?",
+      "body": "Your review helps others in Lund find the right treatment – and means a great deal to a small practice. It takes a minute.",
+      "google": "Leave a review on Google",
+      "bokadirekt": "Leave a review on Bokadirekt"
+    },
+    "seo": {
+      "title": "Reviews – Let Us Massage in Lund | 5.0 out of 5",
+      "description": "Read what clients say about massage with Ioulietta Refene in Lund. 5.0 out of 5 from 13 reviews – classic massage, massage therapy and prenatal massage at Stora Södergatan 58A."
+    }
   },
   "contact": {
     "title": "Contact",
