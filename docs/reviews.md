@@ -13,9 +13,45 @@ Eftersom båda läser samma fil kan det synliga innehållet aldrig glida isär f
 strukturerad data — vilket är ett uttryckligt krav i Googles riktlinjer för
 review-markup.
 
-## Lägga till nya omdömen
+## Automatisk hämtning
+
+`scripts/fetch-reviews.mjs` sköter uppdateringen. Bokadirekt bäddar in **sitt eget
+schema.org-JSON-LD** i platssidan med `aggregateRating` och de **4 senaste** omdömena,
+inklusive exakta ISO-tidsstämplar. Skriptet läser det istället för att skrapa DOM:en —
+formatet är stabilt, texterna ordagranna och datumen exakta. Vanlig `fetch` räcker,
+ingen headless browser behövs.
+
+```bash
+node scripts/fetch-reviews.mjs --dry-run
+```
+
+| Exitkod | Betydelse |
+| --- | --- |
+| `0` | Nya omdömen skrevs till `reviews.json` |
+| `2` | Inget nytt — filen orörd |
+| `1` | Fel (nätverk, ändrad sidstruktur, orimligt aggregat) — **inget skrivs** |
+
+Skriptet lägger bara till, aldrig tar bort, och avbryter hellre än gissar:
+det vägrar skriva om Bokadirekt rapporterar färre betyg än vi sparat, om
+aggregatet är orimligt, eller om `review[]` saknas i schemat.
+
+**Rutinen** "Let Us Massage — hämta nya omdömen" kör detta varje måndag morgon i
+molnet, verifierar att bygget går igenom, och pushar till `main` (vilket deployar
+via Netlify). Hittar den inget nytt gör den ingenting.
+
+### Fönstret på 4 omdömen
+
+Bokadirekt exponerar bara de fyra senaste. Kommer det fler än så mellan två körningar
+faller de äldsta ur och missas. Skriptet upptäcker det genom att jämföra ökningen i
+`ratingCount` mot antalet nya omdömen det fick tag på, och skriver då en `VARNING`.
+Ser du den: hämta de missade för hand enligt nästa avsnitt.
+
+## Lägga till omdömen för hand
+
+Behövs bara om varningen ovan dykt upp, eller för omdömen från andra källor än Bokadirekt.
 
 1. Öppna Bokadirekt-profilen och gå till avsnittet **Omdömen** (`#reviews`).
+   Listan är JS-renderad — expandera varje "Läs mer" och bläddra igenom sidorna.
 2. Kopiera texten **ordagrant**. Skriv inte om, korta inte ner, rätta inte stavfel.
    Namnen är redan förkortade av Bokadirekt (förnamn + initial) — behåll dem som de är.
 3. Lägg till ett objekt i `items`:
