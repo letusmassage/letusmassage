@@ -3,15 +3,43 @@
   "source": {
     "name": "Bokadirekt",
     "url": "https://www.bokadirekt.se/places/let-us-massage-lund-135622",
-    "lastFetched": "2026-08-06"
+    "lastFetched": "2026-08-22"
   },
   "aggregate": {
     "ratingValue": 5,
-    "ratingCount": 13,
+    "ratingCount": 22,
     "bestRating": 5,
     "worstRating": 1
   },
   "items": [
+    {
+      "author": "Hedda J.",
+      "rating": 5,
+      "date": "2026-08-21",
+      "lang": "en",
+      "text": "Really good! Very thorough and helpful. Strongly recommend!"
+    },
+    {
+      "author": "Merve K.",
+      "rating": 5,
+      "date": "2026-08-20",
+      "lang": "sv",
+      "text": "Jättebra massage! Hon var väldigt trevlig och anpassade massagen utefter mina behov. Kändes jättebra efter!!"
+    },
+    {
+      "author": "Ann-Sofi N.",
+      "rating": 5,
+      "date": "2026-08-15",
+      "lang": "sv",
+      "text": "Väl genomförd och inkännande massage, som verkligen fokuserar på kroppens problemområden."
+    },
+    {
+      "author": "Lina L.",
+      "rating": 5,
+      "date": "2026-08-09",
+      "lang": "en",
+      "text": "I felt like a new person after the prenatal massage! Louilette did a great job, would highly recommend!"
+    },
     {
       "author": "anna f.",
       "rating": 5,
