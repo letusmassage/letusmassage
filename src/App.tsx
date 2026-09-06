@@ -9,6 +9,7 @@ import TechniqueDetail from './pages/TechniqueDetail'
 import Articles from './pages/Articles'
 import Article from './pages/Article'
 import Gifts from './pages/Gifts'
+import Friskvard from './pages/Friskvard'
 import Reviews from './pages/Reviews'
 
 // Admin-sidan laddas bara när någon besöker /admin – så den (och zip-biblioteket)
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/metoder/:id" element={<TechniqueDetail />} />
             <Route path="/artiklar" element={<Articles />} />
             <Route path="/artiklar/:slug" element={<Article />} />
+            <Route path="/friskvard" element={<Friskvard />} />
             <Route path="/presentkort" element={<Gifts />} />
             <Route path="/gift-cards" element={<Gifts />} />
             <Route path="/recensioner" element={<Reviews />} />

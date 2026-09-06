@@ -12,6 +12,7 @@ const navLinks = [
   { key: 'nav.about', href: '/#about' },
   { key: 'nav.services', href: '/#services' },
   { key: 'nav.techniques', href: '/#techniques' },
+  { key: 'nav.friskvard', href: '/friskvard' },
   { key: 'nav.gifts', href: '/presentkort' },
   { key: 'nav.why', href: '/#why' },
   { key: 'nav.faq', href: '/#faq' },
@@ -35,10 +36,10 @@ export default function Navbar() {
             alt="Let Us Massage – logotyp"
             className="h-12 md:h-14 w-auto"
           />
-          <span className="hidden sm:inline">Let Us Massage</span>
+          <span className="hidden xl:inline">Let Us Massage</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-7">
+        <div className="hidden lg:flex items-center gap-5 xl:gap-7 whitespace-nowrap">
           {navLinks.map(link => (
             <Link
               key={link.key}
@@ -86,7 +87,7 @@ export default function Navbar() {
           </a>
 
           <button
-            className="md:hidden p-2 text-gray-600"
+            className="lg:hidden p-2 text-gray-600"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
           >
@@ -98,7 +99,7 @@ export default function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-4 py-4 flex flex-col gap-3">
+        <div className="lg:hidden bg-white border-t border-gray-100 px-4 py-4 flex flex-col gap-3">
           {navLinks.map(link => (
             <Link
               key={link.key}

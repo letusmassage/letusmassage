@@ -1,4 +1,5 @@
 import Hero from '../components/Hero'
+import FriskvardTeaser from '../components/FriskvardTeaser'
 import AboutCompany from '../components/AboutCompany'
 import About from '../components/About'
 import Services from '../components/Services'
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <FriskvardTeaser />
       <AboutCompany />
       <About />
       <Services />

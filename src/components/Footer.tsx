@@ -59,6 +59,7 @@ export default function Footer() {
         <div className="border-t border-sky-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-sky-500">
           <p>© {year} Let Us Massage. {t('footer.rights')}.</p>
           <div className="flex items-center gap-4">
+            <a href="/friskvard" className="hover:text-sky-300 transition-colors">{t('nav.friskvard')}</a>
             <a href="/presentkort" className="hover:text-sky-300 transition-colors">{t('nav.gifts')}</a>
             <a href="/recensioner" className="hover:text-sky-300 transition-colors">{t('nav.reviews')}</a>
             <a href="/artiklar" className="hover:text-sky-300 transition-colors">Kunskapsbank</a>

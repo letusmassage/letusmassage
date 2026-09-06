@@ -108,7 +108,7 @@ const buildBusinessGraph = (withReviews = false) => ({
       email: 'let.us.massage.info@gmail.com',
       priceRange: '550-1295 SEK',
       currenciesAccepted: 'SEK',
-      paymentAccepted: 'Cash, Credit Card, Epassi, Benify, ActiWay',
+      paymentAccepted: 'Credit Card, Swish, Epassi, Benifex',
       knowsLanguage: ['sv', 'en', 'el'],
       sameAs: [
         'https://www.bokadirekt.se/places/let-us-massage-lund-135622',
@@ -165,15 +165,18 @@ const businessGraph = buildBusinessGraph(false)
 const businessGraphWithReviews = buildBusinessGraph(true)
 const REVIEW_PAGES = new Set(['/', '/recensioner'])
 
-const faqGraph = {
+const buildFaqGraph = (items) => ({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: (svLocale.faq?.items ?? []).map(item => ({
+  mainEntity: (items ?? []).map(item => ({
     '@type': 'Question',
     name: item.q,
     acceptedAnswer: { '@type': 'Answer', text: item.a },
   })),
-}
+})
+
+const faqGraph = buildFaqGraph(svLocale.faq?.items)
+const friskvardFaqGraph = buildFaqGraph(svLocale.friskvardPage?.faq?.items)
 
 // Serialisera JSON-LD säkert för inbäddning i en <script>-tagg (escapa "<").
 const ldScript = (obj) =>
@@ -229,7 +232,7 @@ const articles = [
   { slug: 'deep-tissue-vs-svensk-massage', title: 'Deep tissue eller svensk massage — vad ska du välja?', description: 'Skillnaden mellan deep tissue och svensk massage förklarad: när passar respektive teknik, intensitet, effekt och för vem.', date: '2026-05-08', keywords: 'deep tissue Lund, svensk massage Lund, massage val' },
   { slug: 'gravidmassage-lund-vad-ar-sakert', title: 'Gravidmassage i Lund — vad är säkert?', description: 'Riktlinjer för gravidmassage: när du tidigast kan boka, säker positionering, vad som undviks och vilken erfarenhet du bör söka.', date: '2026-05-07', keywords: 'gravidmassage Lund, prenatal massage Lund, massage gravid' },
   { slug: 'klassisk-massage-vs-massageterapi', title: 'Klassisk massage vs massageterapi — vad är skillnaden?', description: 'Klassisk friskvårdsmassage och terapeutisk massageterapi — vad skiljer dem, vilken passar dig och vad innebär det för friskvårdsbidraget?', date: '2026-05-06', keywords: 'klassisk massage Lund, massageterapi Lund, friskvård vs terapi' },
-  { slug: 'friskvardsbidrag-massage-lund', title: 'Friskvårdsbidrag för massage i Lund — så fungerar det', description: 'Hur du använder friskvårdsbidraget för massage i Lund: vilka behandlingar som omfattas, kvitto, Skatteverkets regler och bokning.', date: '2026-05-05', keywords: 'friskvårdsbidrag massage Lund, friskvård massage, Epassi, Benify, ActiWay' },
+  { slug: 'friskvardsbidrag-massage-lund', title: 'Friskvårdsbidrag för massage i Lund — så fungerar det', description: 'Hur du använder friskvårdsbidraget för massage i Lund: vilka behandlingar som omfattas, kvitto, Skatteverkets regler och bokning.', date: '2026-05-05', keywords: 'friskvårdsbidrag massage Lund, friskvård massage, Epassi, Benifex, Benify' },
   { slug: 'spanningshuvudvark-massage-lund', title: 'Spänningshuvudvärk — så kan massage hjälpa', description: 'Hur spänningar i nacke, axlar och käke kan ge huvudvärk — och varför riktad massage ofta lindrar både orsak och symtom.', date: '2026-05-04', keywords: 'spänningshuvudvärk Lund, huvudvärk massage, nackspänningar huvudvärk' },
 ]
 
@@ -249,8 +252,14 @@ const routes = [
   },
   {
     path: '/presentkort',
-    title: 'Presentkort på massage i Lund | Let Us Massage',
-    description: 'Ge bort välmående — digitala och tryckta presentkort på massage i Lund. Köp direkt via Bokadirekt eller besök mottagningen på Stora Södergatan 58A.',
+    title: svLocale.gifts.seo.title,
+    description: svLocale.gifts.seo.description,
+  },
+  {
+    path: '/friskvard',
+    title: svLocale.friskvardPage.seo.title,
+    description: svLocale.friskvardPage.seo.description,
+    keywords: 'friskvårdsbidrag massage Lund, friskvårdsmassage Lund, Epassi massage Lund, Benifex massage Lund, Benify massage Lund, friskvård Lund',
   },
   {
     path: '/recensioner',
@@ -312,7 +321,9 @@ function injectHead(html, route) {
     articleDate: route.articleDate,
   })
   const graph = REVIEW_PAGES.has(route.path) ? businessGraphWithReviews : businessGraph
-  const schema = [ldScript(graph), route.path === '/' ? ldScript(faqGraph) : null]
+  const pageFaq =
+    route.path === '/' ? faqGraph : route.path === '/friskvard' ? friskvardFaqGraph : null
+  const schema = [ldScript(graph), pageFaq ? ldScript(pageFaq) : null]
     .filter(Boolean)
     .map(l => '    ' + l)
     .join('\n')
