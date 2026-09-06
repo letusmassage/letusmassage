@@ -4,6 +4,7 @@
     "about": "About",
     "services": "Treatments",
     "techniques": "Techniques",
+    "friskvard": "Friskvård",
     "why": "Why us",
     "faq": "FAQ",
     "information": "Information",
@@ -18,6 +19,12 @@
     "headline": "Exactly what you need",
     "subheadline": "Professional massage in Lund for relaxation, recovery and tension relief",
     "cta": "Book time"
+  },
+  "friskvardTeaser": {
+    "title": "Friskvård at Let Us Massage",
+    "line": "Use your wellness allowance through:",
+    "benifexNote": "(formerly Benify)",
+    "cta": "Read more"
   },
   "aboutCompany": {
     "title": "About Let Us Massage",
@@ -197,7 +204,7 @@
       },
       {
         "q": "Do you accept friskvårdsbidrag?",
-        "a": "Yes. Klassisk Massage and Relaxmassage are eligible for friskvårdsbidrag (max 1000 SEK per visit under Swedish rules). Massageterapi has a therapeutic focus and is not covered by friskvård."
+        "a": "Yes. Relaxmassage, Klassisk Massage and Prenatal Massage are eligible for friskvårdsbidrag (max 1000 SEK per visit under Swedish rules). We are available through Benifex (formerly Benify) and Epassi — see the Friskvård page for details. Massageterapi has a therapeutic focus and is not covered by friskvård."
       },
       {
         "q": "Which treatment is right for me?",
@@ -249,9 +256,18 @@
     "hours": {
       "title": "Opening hours",
       "items": [
-        { "day": "Monday – Friday", "time": "10:00 – 19:00" },
-        { "day": "Saturday", "time": "10:00 – 15:00" },
-        { "day": "Sundays and public holidays", "time": "Closed" }
+        {
+          "day": "Monday – Friday",
+          "time": "10:00 – 19:00"
+        },
+        {
+          "day": "Saturday",
+          "time": "10:00 – 15:00"
+        },
+        {
+          "day": "Sundays and public holidays",
+          "time": "Closed"
+        }
       ],
       "note1": "Opening hours may vary.",
       "note2": "Please check Bokadirekt for updated availability and booking times."
@@ -269,7 +285,7 @@
     },
     "parking": {
       "title": "Parking information",
-      "p1": "One free parking space is available with entrance from Gyllenkroks Allé.",
+      "p1": "One free parking space (no. 6) is available with entrance from Gyllenkroks Allé.",
       "p2": "The parking space is available on a first-come, first-served basis."
     },
     "health": {
@@ -293,7 +309,10 @@
       "title": "Payments & friskvård",
       "p1": "Appointments can be prepaid online through Bokadirekt.",
       "p2": "Payments on-site are accepted via:",
-      "bullets": ["Swish", "debit or credit card"],
+      "bullets": [
+        "Swish",
+        "debit or credit card"
+      ],
       "p3": "Cash payments are not accepted.",
       "p4": "Klassisk Massage, Relaxmassage and Prenatal Massage are approved for friskvårdsbidrag according to Swedish regulations.",
       "p5": "According to current Swedish friskvård rules, each individual treatment purchased through friskvårdsbidrag must not exceed 1,000 SEK per session."
@@ -357,36 +376,168 @@
     "title": "Massage in Lund | Let Us Massage – Relax & Therapeutic Massage",
     "description": "Professional massage in Lund. Relaxation, classic wellness, therapeutic massage and prenatal massage tailored to your needs. Book your session online."
   },
+  "friskvardPage": {
+    "eyebrow": "Friskvård",
+    "title": "Massage in Lund – Use Your Wellness Allowance",
+    "lede": "Use your wellness allowance for massage at Let Us Massage",
+    "question": "Do you have a wellness allowance through your employer?",
+    "intro1": "At Let Us Massage in Lund, you can use your wellness allowance for our eligible massage treatments. We are available through Benifex (formerly Benify) and Epassi, making it easy to use your wellness allowance with us.",
+    "intro2": "Choose the massage treatment that suits you and give your body some time to relax, recover and recharge.",
+    "partnersLabel": "Available through",
+    "benifexNote": "(formerly Benify)",
+    "how": {
+      "title": "How it works",
+      "intro": "Using your wellness allowance for a massage at Let Us Massage is simple.",
+      "steps": [
+        {
+          "title": "Purchase your treatment through Benifex or Epassi",
+          "p1": "Log in to the wellness platform you use and search for Let Us Massage Lund.",
+          "p2": "Choose the treatment you would like to use your wellness allowance for and complete your purchase directly through Benifex or Epassi."
+        },
+        {
+          "title": "You will receive a unique booking code",
+          "p1": "Once your purchase is complete, you will receive a unique booking code.",
+          "p2": "Keep your code safe – you will need it when making your appointment and when you arrive for your visit."
+        },
+        {
+          "title": "Book your massage through Bokadirekt",
+          "p1": "Go to Let Us Massage Lund on Bokadirekt and choose the day and time that suits you.",
+          "listIntro": "When making your booking:",
+          "list": [
+            "Enter your unique booking code in the message field.",
+            "Select “Betala på plats” as your payment option."
+          ],
+          "important": "This is important: your treatment has already been paid for through Benifex or Epassi, so you will not pay anything extra at Let Us Massage."
+        },
+        {
+          "title": "Come to your appointment",
+          "p1": "Bring your booking code with you and show it when you arrive.",
+          "p2": "Your treatment has already been paid for through Benifex or Epassi. All you need to do is arrive for your appointment, relax and enjoy your massage."
+        }
+      ]
+    },
+    "treatments": {
+      "title": "Which treatments can you use your wellness allowance for?",
+      "intro": "At Let Us Massage, you can use your wellness allowance for the following massage treatments:",
+      "items": [
+        {
+          "id": "relax",
+          "name": "Relaxmassage",
+          "text": "A calm and relaxing massage for those who want to unwind, release tension and give their body some time to recover."
+        },
+        {
+          "id": "klassisk",
+          "name": "Classic Massage",
+          "text": "A deeper and more dynamic massage, suitable for those experiencing muscle tension or who have a sedentary or physically demanding everyday life."
+        },
+        {
+          "id": "prenatal",
+          "name": "Pregnancy Massage",
+          "text": "A gentle, specially adapted massage for pregnant women who want to give their body some extra care, relaxation and recovery during pregnancy."
+        }
+      ],
+      "all": "See all treatments"
+    },
+    "why": {
+      "title": "Wellness and massage – a moment for yourself",
+      "p1": "A wellness allowance is an employee benefit that can be used for various wellness activities and certain treatments that promote relaxation and well-being.",
+      "p2": "Massage can be part of your wellness routine and is a simple way to give your body some time to recover.",
+      "p3": "Your wellness allowance gives you an opportunity to take care of yourself a little more often – while making use of a benefit you already have through your work."
+    },
+    "faq": {
+      "title": "Frequently asked questions about wellness allowance and massage",
+      "items": [
+        {
+          "q": "Do I need to pay anything at Let Us Massage?",
+          "a": "No. When you have purchased your treatment through Benifex or Epassi, it has already been paid for. When booking through Bokadirekt, select “Betala på plats”, but you do not need to make any payment at Let Us Massage."
+        },
+        {
+          "q": "Why do I need to select “Betala på plats” on Bokadirekt?",
+          "a": "Bokadirekt requires you to select a payment option in order to complete your booking. Since your treatment has already been paid for through Benifex or Epassi, select “Betala på plats”. This does not mean that you need to pay anything extra at Let Us Massage."
+        },
+        {
+          "q": "Do I need to enter my booking code when making the appointment?",
+          "a": "Yes. Enter your unique booking code in the message field when booking your appointment through Bokadirekt. Please also bring the code with you and show it when you arrive for your appointment."
+        },
+        {
+          "q": "When should I purchase my treatment?",
+          "a": "First, purchase the treatment you would like to use your wellness allowance for through Benifex or Epassi. After your purchase, you will receive your unique booking code. You can then book your appointment through Bokadirekt."
+        },
+        {
+          "q": "Can I use my entire wellness allowance for a massage?",
+          "a": "This depends on the amount of wellness allowance you have and the terms that apply to you. Check your current balance and the applicable terms with Benifex or Epassi before making your purchase."
+        },
+        {
+          "q": "What if I need to cancel or reschedule my appointment?",
+          "a": "Cancellations or rescheduling must be made at least 24 hours before your scheduled appointment. For late cancellations or no-shows, Let Us Massage’s cancellation policy applies."
+        },
+        {
+          "q": "Where is Let Us Massage located?",
+          "a": "Let Us Massage is located centrally in Lund, making it easy to reach if you live or work in Lund or the surrounding areas."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Do you have a wellness allowance?",
+      "body": "Use it for something that gives you a moment to relax, recharge and take some time for yourself.",
+      "button": "Book your wellness treatment"
+    },
+    "seo": {
+      "title": "Massage in Lund – Use Your Wellness Allowance | Let Us Massage",
+      "description": "Use your wellness allowance (friskvårdsbidrag) for massage at Let Us Massage in Lund. Available through Benifex (formerly Benify) and Epassi. How it works, step by step."
+    }
+  },
   "gifts": {
     "eyebrow": "Gift Cards",
-    "title": "Gift Cards",
-    "lede": "Give the gift of relaxation, care & wellbeing",
-    "intro1": "A massage gift card is a thoughtful way to offer rest, relaxation and self-care to someone you care about.",
-    "intro2": "Whether it's for a birthday, holiday, baby shower, corporate gift or simply a kind gesture, Let Us Massage gift cards offer a wellness experience tailored to each individual's needs.",
+    "title": "Gift Card",
+    "lede": "Give the gift of relaxation",
+    "quote": "A gift that says, “Take some time for yourself.”",
+    "intro": [
+      "Some gifts are opened and quickly forgotten.",
+      "Others give you something to truly enjoy, a moment of calm, care and wellbeing.",
+      "With a Let Us Massage gift card, you are giving someone the gift of time for themselves, a relaxing massage experience tailored to their needs.",
+      "It’s a thoughtful gift for someone you love, a friend, a colleague, or simply someone who deserves a little break from everyday life."
+    ],
+    "enjoy": {
+      "title": "Give a gift they will truly enjoy",
+      "p1": "You don’t need to know which massage is right for them.",
+      "p2": "The recipient can choose the treatment that suits them best and enjoy a personal massage experience in a calm and welcoming environment in the heart of Lund."
+    },
+    "choose": {
+      "title": "Choose how you want to give your gift"
+    },
     "digital": {
       "title": "Digital Gift Card",
-      "p1": "Purchase a digital gift card easily online through the Bokadirekt platform.",
-      "p2": "The gift card is delivered electronically and can be used conveniently during online booking.",
-      "bullets": [
-        "Instant delivery",
-        "Secure online payment",
-        "Perfect for last-minute gifts",
-        "Easy to use through Bokadirekt"
-      ],
-      "cta": "Purchase via Bokadirekt"
+      "p1": "Looking for something quick and easy?",
+      "p2": "Purchase a gift card online through Bokadirekt. It’s the perfect choice when you want to give someone a thoughtful gift, even at the last minute.",
+      "cta": "Buy a Gift Card Online"
     },
-    "printed": {
-      "title": "Printed Gift Card",
-      "p1": "You can also purchase a printed gift card in person at the studio.",
-      "p2": "A more personal and elegant option for those who want to offer a meaningful wellness experience.",
-      "p3": "Printed gift cards are available by arrangement.",
-      "bullets": [
-        "Ideal for birthdays & holidays",
-        "A beautiful option for baby shower & prenatal massage gifts",
-        "Suitable for corporate gifts"
-      ],
-      "cta": "Contact Us"
+    "physical": {
+      "title": "Physical Gift Card",
+      "p1": "Would you like your gift to feel a little more personal?",
+      "p2": "You can purchase a physical gift card directly from Let Us Massage.",
+      "p3": "We’ll prepare a beautiful printed gift card in an envelope, ready for you to give to someone special.",
+      "p4": "Choose the amount you would like to give and take home a real gift they can look forward to.",
+      "cta": "Buy & Collect Your Gift Card",
+      "note": "Physical gift cards are purchased by appointment at Let Us Massage. Payment is available by card or Swish."
     },
+    "occasions": {
+      "title": "A gift for every occasion",
+      "items": [
+        "Birthdays",
+        "Christmas",
+        "Anniversaries",
+        "A thank you",
+        "A special occasion",
+        "Or simply because someone deserves it"
+      ],
+      "p1": "Sometimes the best gift isn’t something they need to keep.",
+      "p2": "It’s a little time for themselves."
+    },
+    "closing": {
+      "tagline": "Professional massage, personal care and a moment that is all about you."
+    },
+    "imageAlt": "Physical gift card from Let Us Massage in Lund – printed card with a personal greeting",
     "faq": {
       "title": "Frequently Asked Questions",
       "items": [
@@ -414,7 +565,7 @@
     },
     "seo": {
       "title": "Massage Gift Cards Lund | Let Us Massage",
-      "description": "Buy a gift card at Let Us Massage in Lund. Digital gift card via Bokadirekt or printed gift card at the studio — perfect for birthdays, holidays and corporate gifts."
+      "description": "Give the gift of relaxation – gift cards from Let Us Massage in Lund. Buy a digital gift card online via Bokadirekt, or book a time and collect a physical gift card in person."
     }
   },
   "detail": {
@@ -467,7 +618,7 @@
     },
     "klassisk": {
       "intro": "Klassisk Massage is a more dynamic and preventive massage designed for people with sedentary work and everyday muscle tension. The goal is to support muscular wellbeing, improve mobility, and help prevent tension caused by modern working life.",
-      "what": "A preventive wellness treatment combining Swedish techniques, deep tissue style work and myofascial release. Suitable for friskvård (corporate wellness) and can be used through benefits such as Benify and Epassi.",
+      "what": "A preventive wellness treatment combining Swedish techniques, deep tissue style work and myofascial release. Suitable for friskvård (corporate wellness) and can be used through benefits such as Benifex (formerly Benify) and Epassi.",
       "how": "Adapted techniques are used depending on your body's needs: Swedish massage techniques, deep tissue style work and myofascial release techniques. These methods help release deeper layers of muscle tension, improve circulation, and reduce stiffness caused by prolonged sitting and repetitive strain.",
       "whoFor": [
         "Office workers and sedentary jobs",

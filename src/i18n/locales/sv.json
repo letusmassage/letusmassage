@@ -4,6 +4,7 @@
     "about": "Om oss",
     "services": "Behandlingar",
     "techniques": "Metoder",
+    "friskvard": "Friskvård",
     "why": "Varför oss",
     "faq": "FAQ",
     "information": "Information",
@@ -18,6 +19,12 @@
     "headline": "Precis vad du behöver",
     "subheadline": "Professionell massage i Lund för avslappning och minskad muskelspänning",
     "cta": "Boka tid"
+  },
+  "friskvardTeaser": {
+    "title": "Friskvård hos Let Us Massage",
+    "line": "Använd ditt friskvårdsbidrag via:",
+    "benifexNote": "(tidigare Benify)",
+    "cta": "Läs mer"
   },
   "aboutCompany": {
     "title": "Om Let Us Massage",
@@ -197,7 +204,7 @@
       },
       {
         "q": "Tar ni emot friskvårdsbidrag?",
-        "a": "Ja. Klassisk massage och Relaxmassage är godkända för friskvårdsbidrag (max 1000 kr per tillfälle enligt svenska regler). Massageterapi har terapeutisk inriktning och omfattas inte av friskvård."
+        "a": "Ja. Relaxmassage, Klassisk massage och Gravidmassage är godkända för friskvårdsbidrag (max 1000 kr per tillfälle enligt svenska regler). Vi är anslutna till Benifex (tidigare Benify) och Epassi — läs mer under Friskvård. Massageterapi har terapeutisk inriktning och omfattas inte av friskvård."
       },
       {
         "q": "Vilken behandling passar mig?",
@@ -249,9 +256,18 @@
     "hours": {
       "title": "Öppettider",
       "items": [
-        { "day": "Måndag – Fredag", "time": "10:00 – 19:00" },
-        { "day": "Lördag", "time": "10:00 – 15:00" },
-        { "day": "Söndagar och röda dagar", "time": "Stängt" }
+        {
+          "day": "Måndag – Fredag",
+          "time": "10:00 – 19:00"
+        },
+        {
+          "day": "Lördag",
+          "time": "10:00 – 15:00"
+        },
+        {
+          "day": "Söndagar och röda dagar",
+          "time": "Stängt"
+        }
       ],
       "note1": "Öppettiderna kan variera.",
       "note2": "Vänligen kontrollera Bokadirekt för aktuell tillgänglighet och bokningsbara tider."
@@ -269,7 +285,7 @@
     },
     "parking": {
       "title": "Parkering",
-      "p1": "En gratis parkeringsplats finns tillgänglig med infart från Gyllenkroks Allé.",
+      "p1": "En gratis parkeringsplats (plats nr 6) finns tillgänglig med infart från Gyllenkroks Allé.",
       "p2": "Platsen är tillgänglig i mån av plats enligt först till kvarn-principen."
     },
     "health": {
@@ -293,7 +309,10 @@
       "title": "Betalning & friskvård",
       "p1": "Behandlingar kan förbetalas online via Bokadirekt.",
       "p2": "På plats accepteras betalning via:",
-      "bullets": ["Swish", "bankkort"],
+      "bullets": [
+        "Swish",
+        "bankkort"
+      ],
       "p3": "Kontanter accepteras inte.",
       "p4": "Klassisk Massage, Relaxmassage och Gravidmassage är godkända för friskvårdsbidrag enligt svenska regler.",
       "p5": "Enligt gällande regler för friskvård får varje enskild behandling som köps via friskvårdsbidrag inte överstiga 1 000 SEK per tillfälle."
@@ -357,36 +376,168 @@
     "title": "Massage Lund | Let Us Massage – Avslappning & Terapeutisk Massage",
     "description": "Professionell massage i Lund. Avslappnande massage, klassisk friskvårdsmassage, terapeutisk massageterapi och gravidmassage anpassad efter dina behov. Boka enkelt online."
   },
+  "friskvardPage": {
+    "eyebrow": "Friskvård",
+    "title": "Friskvårdsmassage i Lund – använd ditt friskvårdsbidrag",
+    "lede": "Använd ditt friskvårdsbidrag till massage hos Let Us Massage",
+    "question": "Har du friskvårdsbidrag via jobbet?",
+    "intro1": "Hos Let Us Massage i Lund kan du använda ditt friskvårdsbidrag till våra godkända massagebehandlingar. Vi är anslutna till Benifex (tidigare Benify) och Epassi, så att du enkelt kan använda ditt friskvårdsbidrag hos oss.",
+    "intro2": "Välj den massagebehandling som passar dig och ge kroppen en stund för avkoppling, återhämtning och välmående.",
+    "partnersLabel": "Anslutna till",
+    "benifexNote": "(tidigare Benify)",
+    "how": {
+      "title": "Så fungerar det",
+      "intro": "Det är enkelt att använda ditt friskvårdsbidrag till massage hos Let Us Massage.",
+      "steps": [
+        {
+          "title": "Köp din behandling via Benifex eller Epassi",
+          "p1": "Logga in på den friskvårdsplattform du använder och sök efter Let Us Massage Lund.",
+          "p2": "Välj den behandling du vill använda ditt friskvårdsbidrag till och genomför köpet direkt via Benifex eller Epassi."
+        },
+        {
+          "title": "Du får en unik bokningskod",
+          "p1": "Efter att köpet är genomfört får du en unik bokningskod.",
+          "p2": "Spara koden – du behöver den när du bokar din tid och när du kommer till ditt besök."
+        },
+        {
+          "title": "Boka din massage via Bokadirekt",
+          "p1": "Gå till Let Us Massage Lund på Bokadirekt och välj den dag och tid som passar dig.",
+          "listIntro": "När du bokar:",
+          "list": [
+            "Ange din unika bokningskod i meddelandefältet.",
+            "Välj ”Betala på plats” som betalningsalternativ."
+          ],
+          "important": "Detta är viktigt: din behandling är redan betald via Benifex eller Epassi, så du betalar inget extra hos Let Us Massage."
+        },
+        {
+          "title": "Kom till ditt bokade besök",
+          "p1": "Ta med din bokningskod och visa den när du kommer.",
+          "p2": "Din behandling är redan betald via Benifex eller Epassi. Du behöver bara komma till din bokade tid, koppla av och njuta av din massage."
+        }
+      ]
+    },
+    "treatments": {
+      "title": "Vilka behandlingar kan du använda ditt friskvårdsbidrag till?",
+      "intro": "Hos Let Us Massage kan du använda ditt friskvårdsbidrag till följande massagebehandlingar:",
+      "items": [
+        {
+          "id": "relax",
+          "name": "Relaxmassage",
+          "text": "En lugn och avslappnande massage för dig som vill varva ner, minska spänningar och ge kroppen en stund för återhämtning."
+        },
+        {
+          "id": "klassisk",
+          "name": "Klassisk Massage",
+          "text": "En mer djupgående och dynamisk massage som passar dig som upplever muskelspänningar eller har en stillasittande eller fysiskt krävande vardag."
+        },
+        {
+          "id": "prenatal",
+          "name": "Gravidmassage",
+          "text": "En varsamt anpassad massage för dig som är gravid och vill ge kroppen extra omtanke, avkoppling och återhämtning under graviditeten."
+        }
+      ],
+      "all": "Se alla behandlingar"
+    },
+    "why": {
+      "title": "Friskvård och massage – en stund för dig",
+      "p1": "Friskvårdsbidraget är en personalförmån som kan användas till olika friskvårdsaktiviteter och vissa behandlingar som bidrar till avkoppling och välmående.",
+      "p2": "Massage kan vara en del av friskvården och ett enkelt sätt att ge kroppen tid för återhämtning.",
+      "p3": "Ditt friskvårdsbidrag ger dig möjlighet att ta hand om dig själv lite oftare – och samtidigt använda en förmån du redan har genom ditt arbete."
+    },
+    "faq": {
+      "title": "Vanliga frågor om friskvårdsbidrag och massage",
+      "items": [
+        {
+          "q": "Behöver jag betala något hos Let Us Massage?",
+          "a": "Nej. När du har köpt din behandling via Benifex eller Epassi är den redan betald. När du bokar via Bokadirekt väljer du ”Betala på plats”, men du behöver inte betala något på plats hos Let Us Massage."
+        },
+        {
+          "q": "Varför ska jag välja ”Betala på plats” på Bokadirekt?",
+          "a": "Bokadirekt kräver att du väljer ett betalningsalternativ för att kunna slutföra bokningen. Eftersom din behandling redan är betald via Benifex eller Epassi väljer du ”Betala på plats”. Det innebär inte att du ska betala något extra hos oss."
+        },
+        {
+          "q": "Måste jag ange min bokningskod när jag bokar?",
+          "a": "Ja. Ange din unika bokningskod i meddelandefältet när du bokar din tid på Bokadirekt. Ta även med koden till ditt besök och visa den när du kommer."
+        },
+        {
+          "q": "När ska jag köpa min behandling?",
+          "a": "Du köper först den behandling du vill använda ditt friskvårdsbidrag till via Benifex eller Epassi. Efter köpet får du din unika bokningskod. Därefter bokar du din tid via Bokadirekt."
+        },
+        {
+          "q": "Kan jag använda hela mitt friskvårdsbidrag till massage?",
+          "a": "Det beror på hur stort friskvårdsbidrag du har och vilka villkor som gäller för dig. Kontrollera ditt aktuella saldo och villkoren hos Benifex eller Epassi innan du genomför köpet."
+        },
+        {
+          "q": "Vad händer om jag behöver avboka eller boka om min tid?",
+          "a": "Avbokning eller ombokning ska göras minst 24 timmar före den bokade tiden. Vid sen avbokning eller uteblivet besök gäller Let Us Massages avbokningsvillkor."
+        },
+        {
+          "q": "Var ligger Let Us Massage?",
+          "a": "Let Us Massage ligger centralt i Lund och är enkelt att ta sig till för dig som bor eller arbetar i Lund med omnejd."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Har du friskvårdsbidrag?",
+      "body": "Använd det till något som ger dig en stund för avkoppling, återhämtning och tid för dig själv.",
+      "button": "Boka din friskvårdsbehandling"
+    },
+    "seo": {
+      "title": "Friskvårdsmassage i Lund – använd ditt friskvårdsbidrag | Let Us Massage",
+      "description": "Använd ditt friskvårdsbidrag till massage hos Let Us Massage i Lund. Anslutna till Benifex (tidigare Benify) och Epassi. Relaxmassage, klassisk massage och gravidmassage – så fungerar det steg för steg."
+    }
+  },
   "gifts": {
     "eyebrow": "Presentkort",
     "title": "Presentkort",
-    "lede": "Ge bort avslappning, omtanke & välbefinnande",
-    "intro1": "Ett massagepresentkort är ett fint sätt att ge bort återhämtning, avkoppling och tid för egen omsorg till någon du tycker om.",
-    "intro2": "Oavsett om det gäller födelsedag, högtider, baby shower, företagsgåva eller bara en omtänksam gest, erbjuder Let Us Massage presentkort en wellnessupplevelse anpassad efter varje persons behov.",
+    "lede": "Ge bort avkoppling",
+    "quote": "En present som säger: ”Ta lite tid för dig själv.”",
+    "intro": [
+      "Vissa presenter öppnas och glöms snabbt bort.",
+      "Andra ger något som verkligen kan njutas av, en stund av lugn, omtanke och välbefinnande.",
+      "Med ett presentkort från Let Us Massage ger du bort tid för någon att ta hand om sig själv, en skön massageupplevelse som anpassas efter personens behov.",
+      "En omtänksam present till någon du tycker om, en vän, kollega eller helt enkelt någon som behöver en liten paus från vardagen."
+    ],
+    "enjoy": {
+      "title": "Ge bort något som verkligen uppskattas",
+      "p1": "Du behöver inte veta vilken massage som passar bäst.",
+      "p2": "Mottagaren kan själv välja den behandling som passar och njuta av en personlig massageupplevelse i en lugn och trivsam miljö mitt i Lund."
+    },
+    "choose": {
+      "title": "Välj hur du vill ge bort din present"
+    },
     "digital": {
       "title": "Digitalt presentkort",
-      "p1": "Köp enkelt ett digitalt presentkort online via Bokadirekt.",
-      "p2": "Presentkortet skickas elektroniskt och kan användas smidigt vid onlinebokning.",
-      "bullets": [
-        "Direkt leverans",
-        "Säker onlinebetalning",
-        "Perfekt som sista minuten-present",
-        "Enkel användning via Bokadirekt"
-      ],
-      "cta": "Köp via Bokadirekt"
+      "p1": "Vill du ha ett enkelt och snabbt alternativ?",
+      "p2": "Köp presentkortet online via Bokadirekt. Det passar perfekt när du vill ge bort en fin och uppskattad present – även när du är ute i sista minuten.",
+      "cta": "Köp presentkort online"
     },
-    "printed": {
-      "title": "Tryckt presentkort",
-      "p1": "Du kan även köpa ett tryckt presentkort direkt på mottagningen.",
-      "p2": "Ett mer personligt och elegant alternativ för dig som vill ge bort en omtänksam wellnessupplevelse.",
-      "p3": "Tryckta presentkort hämtas efter överenskommelse.",
-      "bullets": [
-        "Perfekt för födelsedagar & högtider",
-        "Ett fint val för baby shower & gravidmassage-presenter",
-        "Passar även som företagsgåva"
-      ],
-      "cta": "Kontakta oss"
+    "physical": {
+      "title": "Fysiskt presentkort",
+      "p1": "Vill du att presenten ska kännas lite mer personlig?",
+      "p2": "Du kan köpa ett fysiskt presentkort direkt hos Let Us Massage.",
+      "p3": "Vi förbereder ett fint, tryckt presentkort i ett kuvert, färdigt att ge bort till någon speciell.",
+      "p4": "Du väljer själv beloppet och får med dig en riktig present som mottagaren kan se fram emot.",
+      "cta": "Köp & hämta presentkort på plats",
+      "note": "Det fysiska presentkortet köps efter tidsbokning hos Let Us Massage. Betalning sker med kort eller Swish."
     },
+    "occasions": {
+      "title": "En present för alla tillfällen",
+      "items": [
+        "Födelsedag",
+        "Jul",
+        "Årsdag",
+        "Ett tack",
+        "En speciell dag",
+        "Eller helt enkelt för att någon behöver det"
+      ],
+      "p1": "Ibland är den bästa presenten inte något man behöver spara.",
+      "p2": "Det är lite tid för sig själv."
+    },
+    "closing": {
+      "tagline": "Professionell massage, personlig omtanke och en stund som bara är din."
+    },
+    "imageAlt": "Fysiskt presentkort från Let Us Massage i Lund – tryckt kort med personlig hälsning",
     "faq": {
       "title": "Vanliga frågor",
       "items": [
@@ -413,8 +564,8 @@
       ]
     },
     "seo": {
-      "title": "Presentkort massage Lund | Let Us Massage",
-      "description": "Köp presentkort hos Let Us Massage i Lund. Digitalt presentkort via Bokadirekt eller tryckt presentkort på mottagningen — perfekt gåva för födelsedag, högtider och företag."
+      "title": "Presentkort på massage i Lund | Let Us Massage",
+      "description": "Ge bort avkoppling – presentkort från Let Us Massage i Lund. Köp digitalt presentkort online via Bokadirekt eller boka en tid och hämta ett fysiskt presentkort på plats."
     }
   },
   "detail": {
@@ -467,7 +618,7 @@
     },
     "klassisk": {
       "intro": "Klassisk massage är en mer dynamisk och förebyggande massageform som riktar sig till personer med stillasittande arbete och vardaglig muskelbelastning. Syftet är att stödja muskulärt välmående, förbättra rörlighet och förebygga spänningar som uppstår i ett modernt arbetsliv.",
-      "what": "En förebyggande friskvårdsbehandling som kombinerar svenska grepp, deep tissue och myofasciell release. Tjänsten är godkänd som friskvård och kan användas via förmåner som Benify och Epassi.",
+      "what": "En förebyggande friskvårdsbehandling som kombinerar svenska grepp, deep tissue och myofasciell release. Tjänsten är godkänd som friskvård och kan användas via förmåner som Benifex (tidigare Benify) och Epassi.",
       "how": "Under behandlingen används anpassade tekniker beroende på kroppens behov: svenska massagegrepp, djupgående massage (deep tissue style) och myofasciell release-teknik. Dessa tekniker hjälper till att släppa djupare muskelspänningar, förbättra blodcirkulationen och minska stelhet som orsakas av stillasittande arbete och ensidiga rörelser.",
       "whoFor": [
         "Arbetar på kontor eller har stillasittande arbete",
