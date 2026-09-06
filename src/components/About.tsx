@@ -76,6 +76,17 @@ export default function About() {
                   <img
                     src="/kroppsterapeuterna.png"
                     alt="Kroppsterapeuterna – yrkesförbund för certifierade massageterapeuter i Sverige"
+                    width={591}
+                    height={591}
+                    decoding="async"
+                    className="h-16 w-auto"
+                  />
+                  <img
+                    src="/kroppsterapeuterna-devis.png"
+                    alt="Kroppsterapeuterna – branschorganisationen för ett friskare Sverige"
+                    width={300}
+                    height={224}
+                    decoding="async"
                     className="h-16 w-auto"
                   />
                   <p className="text-sm text-slate-500 max-w-xs">

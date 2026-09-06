@@ -143,7 +143,7 @@ export const article: Article = {
     { type: 'h2', text: 'Boka klassisk massage i Lund' },
     {
       type: 'p',
-      text: 'Vi finns på Stora Södergatan 58A, mitt i centrala Lund. Boka via Bokadirekt — vi tar emot både kontant betalning och förmånsleverantörer som Epassi och Benify.',
+      text: 'Vi finns på Stora Södergatan 58A, mitt i centrala Lund. Boka via Bokadirekt — vi tar emot kort, Swish och förmånsleverantörerna Benifex (tidigare Benify) och Epassi.',
     },
   ],
 }

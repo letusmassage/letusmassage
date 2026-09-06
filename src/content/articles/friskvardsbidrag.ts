@@ -11,6 +11,7 @@ export const article: Article = {
     'friskvårdsbidrag massage',
     'friskvård Lund',
     'Epassi massage Lund',
+    'Benifex massage',
     'Benify massage',
     'wellness Lund',
   ],
@@ -60,10 +61,10 @@ export const article: Article = {
       type: 'p',
       text: 'Det finns två huvudsätt att använda bidraget på:',
     },
-    { type: 'h3', text: '1. Via förmånsleverantör (Epassi, Benify m.fl.)' },
+    { type: 'h3', text: '1. Via förmånsleverantör (Benifex eller Epassi)' },
     {
       type: 'p',
-      text: 'Om din arbetsgivare använder Epassi, Benify, ActiWay eller liknande system kan du betala direkt i appen vid bokningen. Friskvårdsbeloppet dras automatiskt från ditt saldo. Det är det smidigaste alternativet.',
+      text: 'Vi är anslutna till **Benifex** (tidigare Benify) och **Epassi**. Du köper behandlingen i den plattform din arbetsgivare använder och får då en unik bokningskod. Därefter bokar du din tid på Bokadirekt, anger koden i meddelandefältet och väljer "Betala på plats" — behandlingen är redan betald, så du betalar inget extra hos oss. Hela flödet steg för steg finns på [friskvårdssidan](/friskvard).',
     },
     { type: 'h3', text: '2. Egen utlägg + kvitto till arbetsgivaren' },
     {
@@ -96,7 +97,7 @@ export const article: Article = {
     { type: 'h2', text: 'Boka via Bokadirekt' },
     {
       type: 'p',
-      text: 'Vi tar emot friskvårdsbidrag både via Epassi/Benify-systemen och som vanlig betalning med kvitto. Hör av dig om du är osäker på vad som gäller hos just din arbetsgivare — vi hjälper gärna till.',
+      text: 'Vi tar emot friskvårdsbidrag både via [Benifex och Epassi](/friskvard) och som vanlig betalning med kvitto. Hör av dig om du är osäker på vad som gäller hos just din arbetsgivare — vi hjälper gärna till.',
     },
   ],
 }
