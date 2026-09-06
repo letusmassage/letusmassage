@@ -62,9 +62,15 @@ export const imageGroups: ImageGroup[] = [
       },
       {
         path: 'kroppsterapeuterna.png',
-        label: 'Kroppsterapeuterna',
-        where: '"Om oss"-avsnittet.',
+        label: 'Kroppsterapeuterna – kvalitetsmärke',
+        where: '"Om oss"-avsnittet, till vänster av de två märkena.',
         hint: 'Logotyp/bild i PNG.',
+      },
+      {
+        path: 'kroppsterapeuterna-devis.png',
+        label: 'Kroppsterapeuterna – logotyp med devis',
+        where: '"Om oss"-avsnittet, till höger om kvalitetsmärket.',
+        hint: 'Logotyp i PNG. Visas 64 px hög – gärna minst 400 px bred.',
       },
     ],
   },
@@ -94,6 +100,34 @@ export const imageGroups: ImageGroup[] = [
         label: 'Avkopplande massage',
         where: 'Behandlingskortet på startsidan och behandlingens egen sida.',
         hint: 'Liggande, 16:9-format. JPG.',
+      },
+    ],
+  },
+  {
+    title: 'Friskvård',
+    images: [
+      {
+        path: 'partners/benifex.png',
+        label: 'Benifex-logotyp',
+        where: 'Friskvårdsrutan på startsidan och friskvårdssidan.',
+        hint: 'Liggande PNG med genomskinlig bakgrund.',
+      },
+      {
+        path: 'partners/epassi.png',
+        label: 'Epassi-logotyp',
+        where: 'Friskvårdsrutan på startsidan och friskvårdssidan.',
+        hint: 'Liggande PNG med genomskinlig bakgrund.',
+      },
+    ],
+  },
+  {
+    title: 'Presentkort',
+    images: [
+      {
+        path: 'presentkort-fysiskt.jpg',
+        label: 'Foto – fysiskt presentkort',
+        where: 'Högst upp på presentkortssidan.',
+        hint: 'Liggande foto i 4:3-format. JPG.',
       },
     ],
   },
