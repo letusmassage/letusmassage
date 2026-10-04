@@ -2,9 +2,11 @@ import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { reviews, reviewAggregate, reviewSource } from '../content/reviews'
 import ReviewCard from '../components/ReviewCard'
+import { usePageMeta } from '../lib/usePageMeta'
+import { SITE, canonicalUrl } from '../lib/site'
 
-const SITE = 'https://let-us-massage.se'
-const CANONICAL = `${SITE}/recensioner`
+const PATH = '/recensioner'
+const CANONICAL = canonicalUrl(PATH)
 
 // Google Business Profile. TODO(owner): byt till den korta "skriv omdöme"-länken
 // (https://g.page/r/.../review) som finns i GBP-adminen — den öppnar formuläret direkt.
@@ -13,13 +15,19 @@ const GOOGLE_REVIEW_URL = 'https://maps.app.goo.gl/v66Jk7S2g5QqUKn56'
 // JSON-LD för aggregateRating + review bakas in statiskt av scripts/prerender.mjs.
 // Här läggs bara breadcrumb till, i linje med övriga undersidor.
 export default function Reviews() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
+
+  usePageMeta({
+    title: t('reviewsPage.seo.title'),
+    description: t('reviewsPage.seo.description', { total: reviewAggregate.ratingCount }),
+    path: PATH,
+  })
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: `${SITE}/` },
       { '@type': 'ListItem', position: 2, name: t('reviewsPage.title'), item: CANONICAL },
     ],
   }
@@ -29,14 +37,6 @@ export default function Reviews() {
   return (
     <main>
       <Helmet>
-        <title>{t('reviewsPage.seo.title')}</title>
-        <meta name="description" content={t('reviewsPage.seo.description', { total: reviewAggregate.ratingCount })} />
-        <link rel="canonical" href={CANONICAL} />
-        <meta property="og:title" content={t('reviewsPage.seo.title')} />
-        <meta property="og:description" content={t('reviewsPage.seo.description', { total: reviewAggregate.ratingCount })} />
-        <meta property="og:url" content={CANONICAL} />
-        <meta property="og:type" content="website" />
-        <html lang={i18n.language} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 

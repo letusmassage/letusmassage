@@ -1,11 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
+import { usePageMeta } from '../lib/usePageMeta'
+import { SITE, canonicalUrl } from '../lib/site'
 import { Link } from 'react-router-dom'
 import FaqAccordion, { type FaqItem } from '../components/FaqAccordion'
 import { BOKADIREKT_PLACE } from '../lib/bokadirekt'
 
-const SITE = 'https://let-us-massage.se'
-const CANONICAL = `${SITE}/friskvard`
+const PATH = '/friskvard'
+const CANONICAL = canonicalUrl(PATH)
 
 interface Step {
   title: string
@@ -59,7 +61,9 @@ function PartnerLogos({ size = 'lg' }: { size?: 'sm' | 'lg' }) {
 // FAQPage-schemat för den här sidan bakas in statiskt av scripts/prerender.mjs,
 // precis som för startsidan. Här läggs bara brödsmulorna till.
 export default function Friskvard() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
+
+  usePageMeta({ title: t('friskvardPage.seo.title'), description: t('friskvardPage.seo.description'), path: PATH })
 
   const steps = t('friskvardPage.how.steps', { returnObjects: true }) as Step[]
   const treatments = t('friskvardPage.treatments.items', { returnObjects: true }) as Treatment[]
@@ -69,7 +73,7 @@ export default function Friskvard() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: `${SITE}/` },
       { '@type': 'ListItem', position: 2, name: t('friskvardPage.title'), item: CANONICAL },
     ],
   }
@@ -77,14 +81,6 @@ export default function Friskvard() {
   return (
     <main>
       <Helmet>
-        <title>{t('friskvardPage.seo.title')}</title>
-        <meta name="description" content={t('friskvardPage.seo.description')} />
-        <link rel="canonical" href={CANONICAL} />
-        <meta property="og:title" content={t('friskvardPage.seo.title')} />
-        <meta property="og:description" content={t('friskvardPage.seo.description')} />
-        <meta property="og:url" content={CANONICAL} />
-        <meta property="og:type" content="website" />
-        <html lang={i18n.language} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
@@ -228,7 +224,7 @@ export default function Friskvard() {
                   </div>
 
                   <Link
-                    to={`/behandlingar/${item.id}`}
+                    to={`/behandlingar/${item.id}/`}
                     className="text-sm text-sky-600 hover:text-sky-800 font-medium transition-colors pt-4 border-t border-stone-100"
                   >
                     {t('detail.readMore')} →

@@ -27,7 +27,7 @@ export const article: Article = {
     { type: 'h3', text: '1. Avslappnande massage (Relaxmassage)' },
     {
       type: 'p',
-      text: '[Relaxmassage](/behandlingar/relax) är den mjukaste formen, baserad på [svensk massage](/metoder/svensk-massage). Syftet är ren avslappning, stresslindring och en paus från vardagen. Trycket är mjukt till medel, tempot är flytande och fokus ligger på en behaglig helhetsupplevelse.',
+      text: '[Relaxmassage](/behandlingar/relax/) är den mjukaste formen, baserad på [svensk massage](/metoder/svensk-massage/). Syftet är ren avslappning, stresslindring och en paus från vardagen. Trycket är mjukt till medel, tempot är flytande och fokus ligger på en behaglig helhetsupplevelse.',
     },
     {
       type: 'p',
@@ -36,7 +36,7 @@ export const article: Article = {
     { type: 'h3', text: '2. Klassisk friskvårdsmassage' },
     {
       type: 'p',
-      text: '[Klassisk massage](/behandlingar/klassisk) är förebyggande friskvård, framtagen för aktiva och stillasittande människor som vill underhålla kroppen. Den kombinerar svenska grepp med [deep tissue](/metoder/deep-tissue) och [myofasciell release](/metoder/myofascial-release).',
+      text: '[Klassisk massage](/behandlingar/klassisk/) är förebyggande friskvård, framtagen för aktiva och stillasittande människor som vill underhålla kroppen. Den kombinerar svenska grepp med [deep tissue](/metoder/deep-tissue/) och [myofasciell release](/metoder/myofascial-release/).',
     },
     {
       type: 'p',
@@ -45,7 +45,7 @@ export const article: Article = {
     { type: 'h3', text: '3. Terapeutisk massageterapi' },
     {
       type: 'p',
-      text: '[Massageterapi](/behandlingar/massageterapi) är den mest specialiserade formen — terapeutisk, riktad och ofta mer intensiv. Den kombinerar [trigger point therapy](/metoder/trigger-point), [neuromuskulär terapi](/metoder/nmt) och djup [deep tissue](/metoder/deep-tissue).',
+      text: '[Massageterapi](/behandlingar/massageterapi/) är den mest specialiserade formen — terapeutisk, riktad och ofta mer intensiv. Den kombinerar [trigger point therapy](/metoder/trigger-point/), [neuromuskulär terapi](/metoder/nmt/) och djup [deep tissue](/metoder/deep-tissue/).',
     },
     {
       type: 'p',
@@ -54,11 +54,11 @@ export const article: Article = {
     { type: 'h3', text: '4. Gravidmassage' },
     {
       type: 'p',
-      text: '[Gravidmassage](/behandlingar/prenatal) är en specialanpassad form med särskild positionering, mjukare tryck och fokus på de områden som tar mest stryk under graviditeten. Erbjuds från andra trimestern och framåt.',
+      text: '[Gravidmassage](/behandlingar/prenatal/) är en specialanpassad form med särskild positionering, mjukare tryck och fokus på de områden som tar mest stryk under graviditeten. Erbjuds från andra trimestern och framåt.',
     },
     {
       type: 'p',
-      text: 'Läs gärna vår fördjupningsartikel: [Gravidmassage i Lund — vad är säkert och från när?](/artiklar/gravidmassage-lund-vad-ar-sakert).',
+      text: 'Läs gärna vår fördjupningsartikel: [Gravidmassage i Lund — vad är säkert och från när?](/artiklar/gravidmassage-lund-vad-ar-sakert/).',
     },
     { type: 'h2', text: 'Vad du bör veta innan du bokar' },
     { type: 'h3', text: 'Certifiering' },
@@ -73,7 +73,7 @@ export const article: Article = {
     { type: 'h3', text: 'Friskvårdsbidrag' },
     {
       type: 'p',
-      text: 'Inte all massage täcks av friskvårdsbidraget — endast förebyggande/friskvårdsinriktade behandlingar, max 1 000 kr per tillfälle. Detaljerade regler finns i vår artikel om [friskvårdsbidrag på massage i Lund](/artiklar/friskvardsbidrag-massage-lund).',
+      text: 'Inte all massage täcks av friskvårdsbidraget — endast förebyggande/friskvårdsinriktade behandlingar, max 1 000 kr per tillfälle. Detaljerade regler finns i vår artikel om [friskvårdsbidrag på massage i Lund](/artiklar/friskvardsbidrag-massage-lund/).',
     },
     { type: 'h3', text: 'Behandlingens längd' },
     {
@@ -88,11 +88,11 @@ export const article: Article = {
     {
       type: 'ul',
       items: [
-        '**"Jag är stressad och vill bara koppla av"** → [Relaxmassage](/behandlingar/relax)',
-        '**"Jag sitter mycket framför dator och vill underhålla kroppen"** → [Klassisk massage](/behandlingar/klassisk)',
-        '**"Jag har återkommande smärta eller stelhet"** → [Massageterapi](/behandlingar/massageterapi)',
-        '**"Jag är gravid och har spänningar i ländrygg och höfter"** → [Gravidmassage](/behandlingar/prenatal)',
-        '**"Jag vill använda mitt friskvårdsbidrag"** → [Klassisk massage](/behandlingar/klassisk) eller [Relaxmassage](/behandlingar/relax)',
+        '**"Jag är stressad och vill bara koppla av"** → [Relaxmassage](/behandlingar/relax/)',
+        '**"Jag sitter mycket framför dator och vill underhålla kroppen"** → [Klassisk massage](/behandlingar/klassisk/)',
+        '**"Jag har återkommande smärta eller stelhet"** → [Massageterapi](/behandlingar/massageterapi/)',
+        '**"Jag är gravid och har spänningar i ländrygg och höfter"** → [Gravidmassage](/behandlingar/prenatal/)',
+        '**"Jag vill använda mitt friskvårdsbidrag"** → [Klassisk massage](/behandlingar/klassisk/) eller [Relaxmassage](/behandlingar/relax/)',
       ],
     },
     { type: 'h2', text: 'Fördjupningsartiklar' },
@@ -103,13 +103,13 @@ export const article: Article = {
     {
       type: 'ul',
       items: [
-        '[Spänningshuvudvärk i Lund — kan massage hjälpa?](/artiklar/spanningshuvudvark-massage-lund)',
-        '[Klassisk massage eller massageterapi — vilken passar dig?](/artiklar/klassisk-massage-vs-massageterapi)',
-        '[Deep tissue eller svensk massage? Skillnaderna förklarade](/artiklar/deep-tissue-vs-svensk-massage)',
-        '[Triggerpunkter — vad de är och hur de behandlas](/artiklar/triggerpunkter-vad-de-ar-och-hur-de-behandlas)',
-        '[Stillasittande arbete? Så förebygger du nack- och ryggspänningar](/artiklar/stillasittande-arbete-nack-och-rygg-lund)',
-        '[Friskvårdsbidrag på massage i Lund — så fungerar det](/artiklar/friskvardsbidrag-massage-lund)',
-        '[Gravidmassage i Lund — vad är säkert och från när?](/artiklar/gravidmassage-lund-vad-ar-sakert)',
+        '[Spänningshuvudvärk i Lund — kan massage hjälpa?](/artiklar/spanningshuvudvark-massage-lund/)',
+        '[Klassisk massage eller massageterapi — vilken passar dig?](/artiklar/klassisk-massage-vs-massageterapi/)',
+        '[Deep tissue eller svensk massage? Skillnaderna förklarade](/artiklar/deep-tissue-vs-svensk-massage/)',
+        '[Triggerpunkter — vad de är och hur de behandlas](/artiklar/triggerpunkter-vad-de-ar-och-hur-de-behandlas/)',
+        '[Stillasittande arbete? Så förebygger du nack- och ryggspänningar](/artiklar/stillasittande-arbete-nack-och-rygg-lund/)',
+        '[Friskvårdsbidrag på massage i Lund — så fungerar det](/artiklar/friskvardsbidrag-massage-lund/)',
+        '[Gravidmassage i Lund — vad är säkert och från när?](/artiklar/gravidmassage-lund-vad-ar-sakert/)',
       ],
     },
     { type: 'h2', text: 'Hitta hit' },

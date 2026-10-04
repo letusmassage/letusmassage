@@ -47,7 +47,7 @@ export default function Testimonials() {
 
         <div className="text-center mt-10">
           <Link
-            to="/recensioner"
+            to="/recensioner/"
             className="inline-block border-2 border-sky-500 text-sky-700 hover:bg-sky-50 font-medium px-6 py-3 rounded-lg transition-colors"
           >
             {t('testimonials.readAll')} →

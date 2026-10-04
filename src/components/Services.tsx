@@ -75,7 +75,7 @@ export default function Services() {
 
               <div className="flex items-center justify-between pt-4 border-t border-stone-100">
                 <Link
-                  to={`/behandlingar/${item.id}`}
+                  to={`/behandlingar/${item.id}/`}
                   className="text-sm text-slate-500 hover:text-sky-600 font-medium transition-colors"
                 >
                   {t('detail.readMore')}

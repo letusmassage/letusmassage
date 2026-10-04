@@ -1,6 +1,8 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
+import { usePageMeta } from '../lib/usePageMeta'
+import { SITE, BUSINESS_ID, canonicalUrl } from '../lib/site'
 
 interface ServiceItem {
   id: string
@@ -42,6 +44,18 @@ export default function ServiceDetail() {
   const details = t('serviceDetails', { returnObjects: true }) as Record<string, ServiceDetailData>
   const detail = id ? details[id] : undefined
 
+  usePageMeta(
+    item && detail
+      ? {
+          title: `${item.name} i Lund — ${item.duration} | Let Us Massage`,
+          description: `${item.description} Boka ${item.name.toLowerCase()} hos Let Us Massage på Stora Södergatan 58A i Lund.`,
+          path: `/behandlingar/${item.id}`,
+          ogType: 'article',
+          ogImage: `${SITE}/services/${item.id}.jpg`,
+        }
+      : null,
+  )
+
   if (!item || !detail) {
     return <Navigate to="/" replace />
   }
@@ -51,20 +65,20 @@ export default function ServiceDetail() {
     .map(rid => techniques.find(t => t.id === rid))
     .filter((x): x is TechniqueItem => Boolean(x))
 
-  const url = `https://let-us-massage.se/behandlingar/${id}`
-  const pageTitle = `${item.name} i Lund — ${item.duration} | Let Us Massage`
-  const pageDescription = `${item.description} Boka ${item.name.toLowerCase()} hos Let Us Massage på Stora Södergatan 58A i Lund.`
+  const url = canonicalUrl(`/behandlingar/${item.id}`)
 
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    // Samma @id som Service-noden i prerender-grafen, så att de slås ihop till en entitet.
+    '@id': `${BUSINESS_ID}/service/${item.id}`,
     name: item.name,
     description: item.description,
-    provider: { '@id': 'https://let-us-massage.se/#business' },
+    provider: { '@id': BUSINESS_ID },
     areaServed: { '@type': 'City', name: 'Lund' },
     url,
     serviceType: 'Massage',
-    image: `https://let-us-massage.se/services/${id}.jpg`,
+    image: `${SITE}/services/${item.id}.jpg`,
     availableLanguage: ['sv', 'en', 'el'],
   }
 
@@ -72,12 +86,12 @@ export default function ServiceDetail() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://let-us-massage.se/' },
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: `${SITE}/` },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Behandlingar',
-        item: 'https://let-us-massage.se/#services',
+        item: `${SITE}/#services`,
       },
       { '@type': 'ListItem', position: 3, name: item.name, item: url },
     ],
@@ -86,14 +100,6 @@ export default function ServiceDetail() {
   return (
     <main>
       <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <link rel="canonical" href={url} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={url} />
-        <meta property="og:image" content={`https://let-us-massage.se/services/${id}.jpg`} />
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
@@ -192,7 +198,7 @@ export default function ServiceDetail() {
                 {relatedTechniques.map(t => (
                   <Link
                     key={t.id}
-                    to={`/metoder/${t.id}`}
+                    to={`/metoder/${t.id}/`}
                     className="px-5 py-2.5 bg-white border border-stone-200 hover:border-sky-300 rounded-full text-sm text-slate-700 hover:text-sky-700 transition-colors"
                   >
                     {t.name}

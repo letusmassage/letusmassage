@@ -1,13 +1,17 @@
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
+import { usePageMeta } from '../lib/usePageMeta'
+import { SITE, canonicalUrl } from '../lib/site'
 import FaqAccordion, { type FaqItem } from '../components/FaqAccordion'
 import { BOKADIREKT_GIFTCARD, BOKADIREKT_PHYSICAL_GIFTCARD } from '../lib/bokadirekt'
 
-const SITE = 'https://let-us-massage.se'
-const CANONICAL = `${SITE}/presentkort`
+const PATH = '/presentkort'
+const CANONICAL = canonicalUrl(PATH)
 
 export default function Gifts() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
+
+  usePageMeta({ title: t('gifts.seo.title'), description: t('gifts.seo.description'), path: PATH })
 
   const intro = t('gifts.intro', { returnObjects: true }) as string[]
   const occasions = t('gifts.occasions.items', { returnObjects: true }) as string[]
@@ -27,7 +31,7 @@ export default function Gifts() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: `${SITE}/` },
       { '@type': 'ListItem', position: 2, name: t('gifts.title'), item: CANONICAL },
     ],
   }
@@ -35,14 +39,6 @@ export default function Gifts() {
   return (
     <main>
       <Helmet>
-        <title>{t('gifts.seo.title')}</title>
-        <meta name="description" content={t('gifts.seo.description')} />
-        <link rel="canonical" href={CANONICAL} />
-        <meta property="og:title" content={t('gifts.seo.title')} />
-        <meta property="og:description" content={t('gifts.seo.description')} />
-        <meta property="og:url" content={CANONICAL} />
-        <meta property="og:type" content="website" />
-        <html lang={i18n.language} />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>

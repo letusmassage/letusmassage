@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import CookieBanner from './CookieBanner'
-import SEO from './SEO'
 
 export default function Layout() {
   const { pathname, hash } = useLocation()
@@ -21,7 +20,6 @@ export default function Layout() {
 
   return (
     <>
-      <SEO />
       <Navbar />
       <Outlet />
       <Footer />

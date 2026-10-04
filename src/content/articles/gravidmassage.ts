@@ -31,7 +31,7 @@ export const article: Article = {
     { type: 'h2', text: 'Säkra positioner under behandlingen' },
     {
       type: 'p',
-      text: 'Tvärtemot vanlig massage ligger du **inte på magen** under en [gravidmassage](/behandlingar/prenatal). De positioner vi använder är:',
+      text: 'Tvärtemot vanlig massage ligger du **inte på magen** under en [gravidmassage](/behandlingar/prenatal/). De positioner vi använder är:',
     },
     {
       type: 'ul',
@@ -60,7 +60,7 @@ export const article: Article = {
     },
     {
       type: 'callout',
-      text: 'Magområdet behandlas inte under gravidmassage. Vi använder också mjukare grepp än vanligt — gravidmassagen bygger på [svensk massage](/metoder/svensk-massage) i en lugnare och mer omsorgsfull tappning.',
+      text: 'Magområdet behandlas inte under gravidmassage. Vi använder också mjukare grepp än vanligt — gravidmassagen bygger på [svensk massage](/metoder/svensk-massage/) i en lugnare och mer omsorgsfull tappning.',
     },
     { type: 'h2', text: 'Fördelar du kan vänta dig' },
     {

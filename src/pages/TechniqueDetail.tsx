@@ -1,6 +1,8 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
+import { usePageMeta } from '../lib/usePageMeta'
+import { SITE, canonicalUrl } from '../lib/site'
 
 interface TechniqueItem {
   id: string
@@ -35,6 +37,17 @@ export default function TechniqueDetail() {
   const details = t('techniqueDetails', { returnObjects: true }) as Record<string, TechniqueDetailData>
   const detail = id ? details[id] : undefined
 
+  usePageMeta(
+    item && detail
+      ? {
+          title: `${item.name} (${item.tagline}) — Massageteknik i Lund | Let Us Massage`,
+          description: item.description.slice(0, 155),
+          path: `/metoder/${item.id}`,
+          ogType: 'article',
+        }
+      : null,
+  )
+
   if (!item || !detail) {
     return <Navigate to="/" replace />
   }
@@ -44,20 +57,18 @@ export default function TechniqueDetail() {
     .map(sid => services.find(s => s.id === sid))
     .filter((x): x is ServiceItem => Boolean(x))
 
-  const url = `https://let-us-massage.se/metoder/${id}`
-  const pageTitle = `${item.name} (${item.tagline}) — Massageteknik i Lund | Let Us Massage`
-  const pageDescription = `${item.description.slice(0, 155)}`
+  const url = canonicalUrl(`/metoder/${item.id}`)
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://let-us-massage.se/' },
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: `${SITE}/` },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Metoder',
-        item: 'https://let-us-massage.se/#techniques',
+        item: `${SITE}/#techniques`,
       },
       { '@type': 'ListItem', position: 3, name: item.name, item: url },
     ],
@@ -66,13 +77,6 @@ export default function TechniqueDetail() {
   return (
     <main>
       <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <link rel="canonical" href={url} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={url} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
       <header className="relative pt-32 pb-16 px-4 bg-gradient-to-b from-stone-50 via-white to-sky-50">
@@ -131,7 +135,7 @@ export default function TechniqueDetail() {
                 {usedInServices.map(s => (
                   <Link
                     key={s.id}
-                    to={`/behandlingar/${s.id}`}
+                    to={`/behandlingar/${s.id}/`}
                     className="px-5 py-2.5 bg-white border border-stone-200 hover:border-sky-300 rounded-full text-sm text-slate-700 hover:text-sky-700 transition-colors"
                   >
                     {s.name}

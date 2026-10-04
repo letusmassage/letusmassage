@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { runnerImport } from 'vite'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const distDir = resolve(__dirname, '..', 'dist')
@@ -16,6 +17,14 @@ const DEFAULT_OG = `${SITE}/og-image.jpg`
 // Detta är den enda källan till schemat (klienten dubblerar det inte längre). ---
 const BUSINESS_ID = `${SITE}/#business`
 const PERSON_ID = `${SITE}/#ioulietta`
+const BOKADIREKT_PLACE = 'https://www.bokadirekt.se/places/let-us-massage-lund-135622'
+// Google Business Profile via CID (0x5f4b27bdb9f58f3e) — pekar på själva verksamheten,
+// inte på en adress som kortlänken/kartinbäddningen gör.
+const GOOGLE_MAPS = 'https://www.google.com/maps?cid=6866625752678633278'
+
+// Kanonisk URL — alltid med avslutande snedstreck (samma regel som src/lib/site.ts).
+// Netlify serverar dist/<route>/index.html och 301:ar formen utan snedstreck.
+const canonicalUrl = (path) => SITE + (path === '/' ? '/' : `${path.replace(/\/+$/, '')}/`)
 
 const svLocale = JSON.parse(
   readFileSync(resolve(__dirname, '..', 'src', 'i18n', 'locales', 'sv.json'), 'utf8')
@@ -61,20 +70,20 @@ const SCHEMA_SERVICES = [
   { id: 'prenatal', name: 'Gravidmassage', description: 'Mjuk, säker massage anpassad för gravida från andra trimestern. Sidoläge med fullt kuddstöd.', therapeutic: false },
 ]
 
-// aggregateRating följer med på alla sidor (del av verksamhetens identitet), medan
-// hela review-listan bara bakas in där omdömena faktiskt syns — startsidan och
-// /recensioner — så att markup och synligt innehåll matchar.
+// aggregateRating och review-listan bakas bara in där betyget och omdömena faktiskt
+// syns — startsidan och /recensioner — så att markup och synligt innehåll matchar.
 const buildBusinessGraph = (withReviews = false) => ({
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': ['LocalBusiness', 'HealthAndBeautyBusiness'],
       '@id': BUSINESS_ID,
-      name: 'Let Us Massage',
-      legalName: 'Let Us Massage',
-      alternateName: 'Let Us Massage Lund',
+      // Samma namn som i Google-profilen, på Bokadirekt och Hitta. Enskild firma utan
+      // registrerat företagsnamn, därför ingen legalName.
+      name: 'Let Us Massage Lund',
+      alternateName: 'Let Us Massage',
       description: svLocale.seo.description,
-      url: SITE,
+      url: `${SITE}/`,
       slogan: svLocale.hero.headline,
       image: [`${SITE}/hero.jpg`, `${SITE}/letta.jpg`, `${SITE}/og-image.jpg`],
       logo: `${SITE}/android-chrome-512x512.png`,
@@ -90,36 +99,38 @@ const buildBusinessGraph = (withReviews = false) => ({
         addressCountry: 'SE',
       },
       geo: { '@type': 'GeoCoordinates', latitude: 55.696716, longitude: 13.189148 },
-      hasMap: 'https://maps.app.goo.gl/v66Jk7S2g5QqUKn56',
-      areaServed: [
-        { '@type': 'City', name: 'Lund' },
-        { '@type': 'City', name: 'Lomma' },
-        { '@type': 'City', name: 'Staffanstorp' },
-        { '@type': 'City', name: 'Bjärred' },
-        { '@type': 'City', name: 'Eslöv' },
-        { '@type': 'City', name: 'Dalby' },
-        { '@type': 'AdministrativeArea', name: 'Skåne län' },
-      ],
+      hasMap: GOOGLE_MAPS,
+      // Kunderna kommer till mottagningen; grannorterna nämns inte på sajten och
+      // listas därför inte heller här.
+      areaServed: { '@type': 'City', name: 'Lund' },
       openingHoursSpecification: [
         { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '10:00', closes: '19:00' },
         { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '10:00', closes: '15:00' },
       ],
       telephone: '+46767690887',
       email: 'let.us.massage.info@gmail.com',
-      priceRange: '550-1295 SEK',
+      // Bokadirekt 2026-10-04: Relax 30 min 530 kr … Massageterapi 90 min 1 300 kr.
+      priceRange: '530-1300 SEK',
       currenciesAccepted: 'SEK',
       paymentAccepted: 'Credit Card, Swish, Epassi, Benifex',
       knowsLanguage: ['sv', 'en', 'el'],
-      sameAs: [
-        'https://www.bokadirekt.se/places/let-us-massage-lund-135622',
-        'https://maps.app.goo.gl/v66Jk7S2g5QqUKn56',
-      ],
-      ...(aggregateRating ? { aggregateRating } : {}),
+      sameAs: [BOKADIREKT_PLACE, GOOGLE_MAPS],
+      potentialAction: {
+        '@type': 'ReserveAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: BOKADIREKT_PLACE,
+          actionPlatform: ['https://schema.org/DesktopWebPlatform', 'https://schema.org/MobileWebPlatform'],
+        },
+        result: { '@type': 'Reservation', name: 'Boka massage' },
+      },
+      ...(withReviews && aggregateRating ? { aggregateRating } : {}),
       ...(withReviews && reviewNodes.length ? { review: reviewNodes } : {}),
+      // Priser per behandling visas inte på sajten och märks därför inte upp per Offer.
       makesOffer: SCHEMA_SERVICES.map(s => ({
         '@type': 'Offer',
         itemOffered: { '@id': `${BUSINESS_ID}/service/${s.id}` },
-        url: `${SITE}/behandlingar/${s.id}`,
+        url: canonicalUrl(`/behandlingar/${s.id}`),
         areaServed: { '@type': 'City', name: 'Lund' },
       })),
     },
@@ -153,9 +164,9 @@ const buildBusinessGraph = (withReviews = false) => ({
       description: s.description,
       provider: { '@id': BUSINESS_ID },
       areaServed: { '@type': 'City', name: 'Lund' },
-      url: `${SITE}/behandlingar/${s.id}`,
-      serviceType: s.therapeutic ? 'Therapeutic Massage' : 'Wellness Massage',
-      category: s.therapeutic ? 'Therapeutic Massage' : 'Wellness Massage',
+      url: canonicalUrl(`/behandlingar/${s.id}`),
+      serviceType: s.therapeutic ? 'Massageterapi' : 'Friskvårdsmassage',
+      category: s.therapeutic ? 'Massageterapi' : 'Friskvårdsmassage',
       availableLanguage: ['sv', 'en', 'el'],
     })),
   ],
@@ -189,13 +200,13 @@ function head({ title, description, canonical, ogType = 'website', ogImage = DEF
     `<title>${esc(title)}</title>`,
     `<meta name="description" content="${esc(description)}" />`,
     keywords ? `<meta name="keywords" content="${esc(keywords)}" />` : null,
-    `<link rel="canonical" href="${esc(canonical)}" />`,
+    canonical ? `<link rel="canonical" href="${esc(canonical)}" />` : null,
     `<meta property="og:type" content="${esc(ogType)}" />`,
     `<meta property="og:site_name" content="Let Us Massage" />`,
     `<meta property="og:locale" content="sv_SE" />`,
     `<meta property="og:title" content="${esc(title)}" />`,
     `<meta property="og:description" content="${esc(description)}" />`,
-    `<meta property="og:url" content="${esc(canonical)}" />`,
+    canonical ? `<meta property="og:url" content="${esc(canonical)}" />` : null,
     `<meta property="og:image" content="${esc(ogImage)}" />`,
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
@@ -209,40 +220,30 @@ function head({ title, description, canonical, ogType = 'website', ogImage = DEF
   return lines.map(l => '    ' + l).join('\n')
 }
 
-// Data per route — synkat med i18n + content/articles
-const services = [
-  { id: 'relax', name: 'Relaxmassage', duration: '30 / 60 min', description: 'Mjuk och lugnande svensk massage som hjälper kroppen att släppa spänningar och sinnet att varva ner. Perfekt om du känner dig stressad eller behöver en paus i vardagen.' },
-  { id: 'klassisk', name: 'Klassisk Massage', duration: '30 / 45 / 60 min', description: 'Förebyggande friskvårdsmassage som kombinerar svensk massage, deep tissue och myofasciell release. Godkänd för friskvårdsbidrag.' },
-  { id: 'massageterapi', name: 'Massageterapi', duration: '45 / 60 / 75 / 90 min', description: 'Avancerad terapeutisk behandling för smärta, spänningar och nedsatt rörlighet. Kombinerar deep tissue, triggerpunkter, neuromuskulär terapi och myofascial release.' },
-  { id: 'prenatal', name: 'Gravidmassage', duration: '60 min', description: 'Mjuk, säker massage anpassad för gravida från andra trimestern. Utförs i sidoläge med fullt kuddstöd och fokus på rygg, höfter, ben, nacke och axlar.' },
-]
+// Data per route. Behandlingar och metoder läses ur sv.json — exakt samma texter som
+// sidorna renderar (ServiceDetail/TechniqueDetail), så att den statiska head:en och den
+// renderade aldrig säger olika saker. (Tidigare hårdkodade kopior hade glidit isär.)
+const services = svLocale.services.items.map(({ id, name, duration, description }) => ({ id, name, duration, description }))
+const techniques = svLocale.techniques.items.map(({ id, name, tagline, description }) => ({ id, name, tagline, description }))
 
-const techniques = [
-  { id: 'svensk-massage', name: 'Svensk massage', tagline: 'Grunden för avslappning', description: 'Mjuka till medeltryckande rörelser med långa strykningar, knådning och rytmiska rörelser som löser upp spänningar och förbättrar blodcirkulationen.' },
-  { id: 'deep-tissue', name: 'Djupgående massage', tagline: 'Deep Tissue', description: 'Intensiv behandlingsform med långsamma rörelser och djupare tryck som arbetar med muskler, senor och bindväv för att lösa upp spända områden och förbättra rörligheten.' },
-  { id: 'myofascial-release', name: 'Myofasciell behandling', tagline: 'Myofascial Release', description: 'Mjuk och fokuserad metod som arbetar med kroppens bindväv (fascia) för att minska spänningar och förbättra rörlighet.' },
-  { id: 'nmt', name: 'Neuromuskulär terapi', tagline: 'NMT', description: 'Metod som fokuserar på samspelet mellan muskler och nervsystem för att minska smärta och förbättra kroppens funktion.' },
-  { id: 'trigger-point', name: 'Triggerpunktsbehandling', tagline: 'Trigger Point Therapy', description: 'Riktad massageteknik som fokuserar på specifika spänningspunkter — "muskelknutor" — i musklerna för att hjälpa dem att återgå till naturlig funktion.' },
-]
-
-const articles = [
-  { slug: 'massage-i-lund-guide', title: 'Massage i Lund — guide till olika behandlingsformer', description: 'En översikt över massagealternativ i Lund: avslappning, friskvård, terapeutisk massage och gravidmassage. Så väljer du rätt — och vad du bör veta innan du bokar.', date: '2026-05-11', keywords: 'massage Lund, massage Lund centrum, massageterapeut Lund, wellness Lund, boka massage Lund' },
-  { slug: 'stillasittande-arbete-nack-och-rygg-lund', title: 'Stillasittande arbete — så påverkar det nacke och rygg', description: 'Hur långvarigt stillasittande påverkar nacke, axlar och rygg — och hur regelbunden massage kan motverka spänningar och stelhet.', date: '2026-05-10', keywords: 'stillasittande Lund, nackspänningar, ryggspänningar, kontorsmassage Lund' },
-  { slug: 'triggerpunkter-vad-de-ar-och-hur-de-behandlas', title: 'Triggerpunkter — vad de är och hur de behandlas', description: 'Vad triggerpunkter (muskelknutor) är, varför de uppstår, och hur trigger point therapy och neuromuskulär behandling kan minska smärta.', date: '2026-05-09', keywords: 'triggerpunkter, muskelknutor, trigger point therapy Lund, NMT Lund' },
-  { slug: 'deep-tissue-vs-svensk-massage', title: 'Deep tissue eller svensk massage — vad ska du välja?', description: 'Skillnaden mellan deep tissue och svensk massage förklarad: när passar respektive teknik, intensitet, effekt och för vem.', date: '2026-05-08', keywords: 'deep tissue Lund, svensk massage Lund, massage val' },
-  { slug: 'gravidmassage-lund-vad-ar-sakert', title: 'Gravidmassage i Lund — vad är säkert?', description: 'Riktlinjer för gravidmassage: när du tidigast kan boka, säker positionering, vad som undviks och vilken erfarenhet du bör söka.', date: '2026-05-07', keywords: 'gravidmassage Lund, prenatal massage Lund, massage gravid' },
-  { slug: 'klassisk-massage-vs-massageterapi', title: 'Klassisk massage vs massageterapi — vad är skillnaden?', description: 'Klassisk friskvårdsmassage och terapeutisk massageterapi — vad skiljer dem, vilken passar dig och vad innebär det för friskvårdsbidraget?', date: '2026-05-06', keywords: 'klassisk massage Lund, massageterapi Lund, friskvård vs terapi' },
-  { slug: 'friskvardsbidrag-massage-lund', title: 'Friskvårdsbidrag för massage i Lund — så fungerar det', description: 'Hur du använder friskvårdsbidraget för massage i Lund: vilka behandlingar som omfattas, kvitto, Skatteverkets regler och bokning.', date: '2026-05-05', keywords: 'friskvårdsbidrag massage Lund, friskvård massage, Epassi, Benifex, Benify' },
-  { slug: 'spanningshuvudvark-massage-lund', title: 'Spänningshuvudvärk — så kan massage hjälpa', description: 'Hur spänningar i nacke, axlar och käke kan ge huvudvärk — och varför riktad massage ofta lindrar både orsak och symtom.', date: '2026-05-04', keywords: 'spänningshuvudvärk Lund, huvudvärk massage, nackspänningar huvudvärk' },
-]
+// Artiklarna läses direkt ur src/content/articles (TypeScript, via Vite) — samma titlar,
+// beskrivningar och datum som Article.tsx renderar. (Tidigare en hårdkodad kopia som glidit isär.)
+const { module: articleModule } = await runnerImport(resolve(__dirname, '..', 'src', 'content', 'articles', 'index.ts'))
+const articles = articleModule.ARTICLES.map(a => ({
+  slug: a.slug,
+  title: a.title,
+  description: a.description,
+  date: a.date,
+  keywords: a.keywords.join(', '),
+}))
 
 // Bygg full route-lista
 const routes = [
   // Statiska
   {
     path: '/',
-    title: 'Massage i Lund | Let Us Massage – Klassisk, Massageterapi & Gravidmassage',
-    description: 'Professionell massage i Lund med Ioulietta Refene, certifierad medicinsk massageterapeut sedan 2009. Klassisk massage, massageterapi, gravidmassage och relaxmassage. Stora Södergatan 58A, Lund. Boka online.',
+    title: svLocale.seo.title,
+    description: svLocale.seo.description,
     keywords: 'massage Lund, massageterapi Lund, klassisk massage Lund, gravidmassage Lund, deep tissue Lund, friskvård Lund, medicinsk massageterapeut Lund, Ioulietta Refene Lund',
   },
   {
@@ -310,7 +311,7 @@ if (!template.includes(HEAD_START) || !template.includes(HEAD_END)) {
 }
 
 function injectHead(html, route) {
-  const canonical = SITE + (route.path === '/' ? '/' : route.path)
+  const canonical = canonicalUrl(route.path)
   const newHead = head({
     title: route.title,
     description: route.description,
@@ -345,4 +346,17 @@ for (const route of routes) {
   count++
 }
 
-console.log(`[prerender] ✓ Skrev ${count} prerenderade sidor med unik canonical/title/description`)
+// 404-sida: Netlify serverar dist/404.html med status 404 för alla okända adresser
+// (det finns ingen catch-all-rewrite längre). noindex och ingen canonical.
+const ROBOTS_RE = /<meta name="robots" content="[^"]*" \/>/
+if (!ROBOTS_RE.test(template)) {
+  console.error('[prerender] hittade ingen <meta name="robots"> i dist/index.html att byta ut för 404-sidan')
+  process.exit(1)
+}
+const notFoundHead = head({ title: svLocale.notFound.seoTitle, description: svLocale.notFound.text })
+const notFoundHtml = template
+  .replace(new RegExp(`${HEAD_START}[\\s\\S]*?${HEAD_END}`), `${HEAD_START}\n${notFoundHead}\n    ${HEAD_END}`)
+  .replace(ROBOTS_RE, '<meta name="robots" content="noindex, follow" />')
+writeFileSync(resolve(distDir, '404.html'), notFoundHtml, 'utf8')
+
+console.log(`[prerender] ✓ Skrev ${count} prerenderade sidor med unik canonical/title/description + 404.html`)

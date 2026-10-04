@@ -10,8 +10,13 @@ import FAQ from '../components/FAQ'
 import Testimonials from '../components/Testimonials'
 import Information from '../components/Information'
 import Location from '../components/Location'
+import { useTranslation } from 'react-i18next'
+import { usePageMeta } from '../lib/usePageMeta'
 
 export default function Home() {
+  const { t } = useTranslation()
+  usePageMeta({ title: t('seo.title'), description: t('seo.description'), path: '/' })
+
   return (
     <main>
       <Hero />

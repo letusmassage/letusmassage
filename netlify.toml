@@ -5,7 +5,62 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Alla publika sidor är prerenderade som egna filer (dist/<route>/index.html), så
+# ingen catch-all-rewrite behövs. Okända adresser får dist/404.html med status 404
+# i stället för startsidan med 200 (mjuk 404).
+
+# /admin är bara klientroutad och har ingen egen fil.
 [[redirects]]
-  from = "/*"
+  from = "/admin"
   to = "/index.html"
   status = 200
+
+# Gammal dubblettadress för presentkortssidan.
+[[redirects]]
+  from = "/gift-cards"
+  to = "/presentkort/"
+  status = 301
+
+# Vite-hashade filer ändras aldrig under samma namn.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Bilder byts ibland under samma filnamn via /admin — därför bara ett dygn.
+# (Bildmapparna listas explicit; det är oklart om * i ett segment matchar över "/".)
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/services/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/dividers/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/partners/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

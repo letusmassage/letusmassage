@@ -40,7 +40,7 @@ export const article: Article = {
     { type: 'h2', text: 'Hur massageterapi kan ge lindring' },
     {
       type: 'p',
-      text: 'Massage löser inte spänningshuvudvärk genom magi — den arbetar med kroppen på flera fysiologiska nivåer samtidigt. På [Let Us Massage](/) i Lund kombinerar vi flera tekniker inom [massageterapi](/behandlingar/massageterapi) för att nå just orsaken till huvudvärken.',
+      text: 'Massage löser inte spänningshuvudvärk genom magi — den arbetar med kroppen på flera fysiologiska nivåer samtidigt. På [Let Us Massage](/) i Lund kombinerar vi flera tekniker inom [massageterapi](/behandlingar/massageterapi/) för att nå just orsaken till huvudvärken.',
     },
     {
       type: 'ul',
@@ -58,7 +58,7 @@ export const article: Article = {
     { type: 'h2', text: 'När du bör söka hjälp' },
     {
       type: 'p',
-      text: 'Om du har huvudvärk mer än två gånger i veckan, om värktablletter inte längre räcker, eller om du upplever stelhet i nacken som varar över dagen — då är det dags att göra något åt orsaken. En 60- eller 75-minuters [massageterapi-session](/behandlingar/massageterapi) ger oss tid att verkligen arbeta igenom hela det område som ofta orsakar huvudvärken.',
+      text: 'Om du har huvudvärk mer än två gånger i veckan, om värktablletter inte längre räcker, eller om du upplever stelhet i nacken som varar över dagen — då är det dags att göra något åt orsaken. En 60- eller 75-minuters [massageterapi-session](/behandlingar/massageterapi/) ger oss tid att verkligen arbeta igenom hela det område som ofta orsakar huvudvärken.',
     },
     {
       type: 'callout',
@@ -78,7 +78,7 @@ export const article: Article = {
         },
         {
           q: 'Täcks behandlingen av friskvårdsbidraget?',
-          a: 'Massageterapi har terapeutisk inriktning och täcks inte av friskvård. Däremot är [klassisk massage](/behandlingar/klassisk) godkänd och kan användas förebyggande för att minska risken för spänningshuvudvärk.',
+          a: 'Massageterapi har terapeutisk inriktning och täcks inte av friskvård. Däremot är [klassisk massage](/behandlingar/klassisk/) godkänd och kan användas förebyggande för att minska risken för spänningshuvudvärk.',
         },
       ],
     },

@@ -24,4 +24,9 @@ i18n
     react: { useSuspense: false },
   })
 
+// <html lang> följer valt språk (sätts annars bara statiskt till sv i index.html).
+const syncHtmlLang = (lng: string) => { document.documentElement.lang = lng.split('-')[0] }
+syncHtmlLang(i18n.resolvedLanguage ?? i18n.language ?? 'sv')
+i18n.on('languageChanged', syncHtmlLang)
+
 export default i18n

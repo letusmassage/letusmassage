@@ -373,8 +373,8 @@
     "decline": "Avvisa"
   },
   "seo": {
-    "title": "Massage Lund | Let Us Massage – Avslappning & Terapeutisk Massage",
-    "description": "Professionell massage i Lund. Avslappnande massage, klassisk friskvårdsmassage, terapeutisk massageterapi och gravidmassage anpassad efter dina behov. Boka enkelt online."
+    "title": "Massage i Lund | Let Us Massage – Klassisk, Massageterapi & Gravidmassage",
+    "description": "Professionell massage i Lund med Ioulietta Refene, certifierad medicinsk massageterapeut sedan 2009. Klassisk massage, massageterapi, gravidmassage och relaxmassage. Stora Södergatan 58A, Lund. Boka online."
   },
   "friskvardPage": {
     "eyebrow": "Friskvård",
@@ -823,5 +823,11 @@
         "massageterapi"
       ]
     }
+  },
+  "notFound": {
+    "seoTitle": "Sidan hittades inte | Let Us Massage",
+    "title": "Sidan hittades inte",
+    "text": "Sidan du letar efter finns inte eller har flyttats.",
+    "home": "Till startsidan"
   }
 }

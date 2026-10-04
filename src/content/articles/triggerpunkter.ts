@@ -56,7 +56,7 @@ export const article: Article = {
     {
       type: 'ul',
       items: [
-        'Triggerpunkter i **trapezius** (övre axel) → smärta upp i tinningen och bakom ögat ([spänningshuvudvärk](/artiklar/spanningshuvudvark-massage-lund))',
+        'Triggerpunkter i **trapezius** (övre axel) → smärta upp i tinningen och bakom ögat ([spänningshuvudvärk](/artiklar/spanningshuvudvark-massage-lund/))',
         'Triggerpunkter i **gluteus medius** (sätesmuskel) → smärta ner i låret eller ländryggen (ofta missuppfattad som ischias)',
         'Triggerpunkter i **infraspinatus** (axelblad) → smärta längs ut i armen',
         'Triggerpunkter i **scalenus** (sidan av halsen) → domningar och stickningar i armen',
@@ -69,7 +69,7 @@ export const article: Article = {
     { type: 'h2', text: 'Så fungerar trigger point therapy' },
     {
       type: 'p',
-      text: '[Trigger point therapy](/metoder/trigger-point) är en specifik massageteknik där terapeuten lokaliserar varje aktiv triggerpunkt och applicerar ihållande, riktat tryck — ofta i 30–90 sekunder per punkt — tills muskelvävnaden mjuknar upp och släpper.',
+      text: '[Trigger point therapy](/metoder/trigger-point/) är en specifik massageteknik där terapeuten lokaliserar varje aktiv triggerpunkt och applicerar ihållande, riktat tryck — ofta i 30–90 sekunder per punkt — tills muskelvävnaden mjuknar upp och släpper.',
     },
     {
       type: 'p',
@@ -77,7 +77,7 @@ export const article: Article = {
     },
     {
       type: 'p',
-      text: 'I praktiken kombineras tekniken nästan alltid med [myofasciell release](/metoder/myofascial-release) och [deep tissue](/metoder/deep-tissue) för bäst resultat. Det är därför trigger point therapy är en kärnkomponent i vår [Massageterapi](/behandlingar/massageterapi) snarare än en helt egen behandling.',
+      text: 'I praktiken kombineras tekniken nästan alltid med [myofasciell release](/metoder/myofascial-release/) och [deep tissue](/metoder/deep-tissue/) för bäst resultat. Det är därför trigger point therapy är en kärnkomponent i vår [Massageterapi](/behandlingar/massageterapi/) snarare än en helt egen behandling.',
     },
     { type: 'h2', text: 'Hur många sessioner behövs?' },
     {

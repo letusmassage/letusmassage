@@ -80,7 +80,7 @@ export const article: Article = {
     { type: 'h2', text: 'Klassisk massage som förebyggande friskvård' },
     {
       type: 'p',
-      text: 'För dig med stillasittande arbete är [Klassisk massage](/behandlingar/klassisk) i de flesta fall den bästa kombinationen — den arbetar tillräckligt djupt för att lösa upp spänningar, och är **godkänd för friskvårdsbidrag** vilket gör den ekonomiskt tillgänglig.',
+      text: 'För dig med stillasittande arbete är [Klassisk massage](/behandlingar/klassisk/) i de flesta fall den bästa kombinationen — den arbetar tillräckligt djupt för att lösa upp spänningar, och är **godkänd för friskvårdsbidrag** vilket gör den ekonomiskt tillgänglig.',
     },
     {
       type: 'p',
@@ -98,16 +98,16 @@ export const article: Article = {
     },
     {
       type: 'p',
-      text: 'Tekniker som används: [svensk massage](/metoder/svensk-massage) som grund, [deep tissue](/metoder/deep-tissue) på spända områden, [myofasciell release](/metoder/myofascial-release) för bindväven.',
+      text: 'Tekniker som används: [svensk massage](/metoder/svensk-massage/) som grund, [deep tissue](/metoder/deep-tissue/) på spända områden, [myofasciell release](/metoder/myofascial-release/) för bindväven.',
     },
     { type: 'h2', text: 'När det redan har gått för långt — massageterapi' },
     {
       type: 'p',
-      text: 'Om besvären har utvecklats till regelrätta symptom (kronisk smärta, spänningshuvudvärk flera gånger i veckan, frusen axel, refererad smärta i armar) räcker inte längre klassisk friskvårdsmassage. Då behöver du [Massageterapi](/behandlingar/massageterapi) — där vi kombinerar [trigger point therapy](/metoder/trigger-point), [neuromuskulär terapi](/metoder/nmt) och djupare arbete för att verkligen behandla orsaken.',
+      text: 'Om besvären har utvecklats till regelrätta symptom (kronisk smärta, spänningshuvudvärk flera gånger i veckan, frusen axel, refererad smärta i armar) räcker inte längre klassisk friskvårdsmassage. Då behöver du [Massageterapi](/behandlingar/massageterapi/) — där vi kombinerar [trigger point therapy](/metoder/trigger-point/), [neuromuskulär terapi](/metoder/nmt/) och djupare arbete för att verkligen behandla orsaken.',
     },
     {
       type: 'p',
-      text: 'Läs gärna även vår artikel om [klassisk massage vs massageterapi](/artiklar/klassisk-massage-vs-massageterapi) om du vill läsa mer om skillnaden.',
+      text: 'Läs gärna även vår artikel om [klassisk massage vs massageterapi](/artiklar/klassisk-massage-vs-massageterapi/) om du vill läsa mer om skillnaden.',
     },
     { type: 'h2', text: 'Hur ofta — en realistisk plan' },
     {
@@ -136,7 +136,7 @@ export const article: Article = {
         },
         {
           q: 'Kan jag använda mitt friskvårdsbidrag?',
-          a: 'Ja på klassisk massage. Läs mer i vår artikel om [friskvårdsbidrag](/artiklar/friskvardsbidrag-massage-lund).',
+          a: 'Ja på klassisk massage. Läs mer i vår artikel om [friskvårdsbidrag](/artiklar/friskvardsbidrag-massage-lund/).',
         },
       ],
     },

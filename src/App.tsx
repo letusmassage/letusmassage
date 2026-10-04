@@ -1,6 +1,6 @@
 import './i18n'
 import { lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import Layout from './components/Layout'
 import Home from './pages/Home'
@@ -11,6 +11,7 @@ import Article from './pages/Article'
 import Gifts from './pages/Gifts'
 import Friskvard from './pages/Friskvard'
 import Reviews from './pages/Reviews'
+import NotFound from './pages/NotFound'
 
 // Admin-sidan laddas bara när någon besöker /admin – så den (och zip-biblioteket)
 // inte tynger den vanliga hemsidan.
@@ -29,8 +30,10 @@ export default function App() {
             <Route path="/artiklar/:slug" element={<Article />} />
             <Route path="/friskvard" element={<Friskvard />} />
             <Route path="/presentkort" element={<Gifts />} />
-            <Route path="/gift-cards" element={<Gifts />} />
+            {/* Gammal adress — Netlify 301:ar den också, så den inte blir en dubblett. */}
+            <Route path="/gift-cards" element={<Navigate to="/presentkort/" replace />} />
             <Route path="/recensioner" element={<Reviews />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
           <Route
             path="/admin"

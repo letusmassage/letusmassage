@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async'
 import { getArticle, ARTICLES } from '../content/articles'
 import { renderInline } from '../lib/renderInline'
 import type { ArticleBlock } from '../content/articles/types'
+import { usePageMeta } from '../lib/usePageMeta'
+import { SITE, BUSINESS_ID, PERSON_ID, canonicalUrl } from '../lib/site'
 
 function Block({ block }: { block: ArticleBlock }) {
   switch (block.type) {
@@ -56,9 +58,20 @@ export default function ArticlePage() {
   const { slug } = useParams<{ slug: string }>()
   const article = slug ? getArticle(slug) : undefined
 
-  if (!article) return <Navigate to="/artiklar" replace />
+  usePageMeta(
+    article
+      ? {
+          title: `${article.title} | Let Us Massage Lund`,
+          description: article.description,
+          path: `/artiklar/${article.slug}`,
+          ogType: 'article',
+        }
+      : null,
+  )
 
-  const url = `https://let-us-massage.se/artiklar/${article.slug}`
+  if (!article) return <Navigate to="/artiklar/" replace />
+
+  const url = canonicalUrl(`/artiklar/${article.slug}`)
   const related = ARTICLES.filter(a => a.slug !== article.slug).slice(0, 3)
 
   const articleSchema = {
@@ -68,16 +81,19 @@ export default function ArticlePage() {
     description: article.description,
     datePublished: article.date,
     dateModified: article.date,
-    author: { '@type': 'Person', name: 'Ioulietta Refene' },
+    // Författare, utgivare och ämne pekar på noderna i verksamhetsgrafen som
+    // scripts/prerender.mjs bakar in på varje sida.
+    author: { '@type': 'Person', '@id': PERSON_ID, name: 'Ioulietta Refene' },
     publisher: {
       '@type': 'Organization',
-      name: 'Let Us Massage',
-      logo: { '@type': 'ImageObject', url: 'https://let-us-massage.se/logo.png' },
+      '@id': BUSINESS_ID,
+      name: 'Let Us Massage Lund',
+      logo: { '@type': 'ImageObject', url: `${SITE}/logo.png` },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     keywords: article.keywords.join(', '),
     inLanguage: 'sv-SE',
-    about: { '@type': 'LocalBusiness', name: 'Let Us Massage', address: 'Stora Södergatan 58A, 222 23 Lund' },
+    about: { '@id': BUSINESS_ID },
   }
 
   const faqBlock = article.blocks.find(b => b.type === 'faq')
@@ -98,13 +114,8 @@ export default function ArticlePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://let-us-massage.se/' },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Kunskapsbank',
-        item: 'https://let-us-massage.se/artiklar',
-      },
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 2, name: 'Kunskapsbank', item: canonicalUrl('/artiklar') },
       { '@type': 'ListItem', position: 3, name: article.title, item: url },
     ],
   }
@@ -112,16 +123,6 @@ export default function ArticlePage() {
   return (
     <main>
       <Helmet>
-        <title>{article.title} | Let Us Massage Lund</title>
-        <meta name="description" content={article.description} />
-        <meta name="keywords" content={article.keywords.join(', ')} />
-        <link rel="canonical" href={url} />
-        <meta property="og:title" content={article.title} />
-        <meta property="og:description" content={article.description} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={url} />
-        <meta property="article:published_time" content={article.date} />
-        <meta property="article:author" content="Ioulietta Refene" />
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         {faqSchema && <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>}
@@ -130,7 +131,7 @@ export default function ArticlePage() {
       <header className="relative pt-28 pb-12 px-4 bg-gradient-to-b from-stone-50 via-white to-sky-50">
         <div className="max-w-3xl mx-auto">
           <Link
-            to="/artiklar"
+            to="/artiklar/"
             className="inline-flex items-center gap-2 text-sm text-sky-600 hover:text-sky-800 mb-6"
           >
             <span>←</span> Alla artiklar
@@ -181,7 +182,7 @@ export default function ArticlePage() {
               {related.map(r => (
                 <Link
                   key={r.slug}
-                  to={`/artiklar/${r.slug}`}
+                  to={`/artiklar/${r.slug}/`}
                   className="block bg-white border border-stone-200 hover:border-sky-300 rounded-xl p-5 hover:shadow-sm transition-all"
                 >
                   <h3 className="font-serif text-lg text-slate-800 mb-2 leading-snug">{r.title}</h3>

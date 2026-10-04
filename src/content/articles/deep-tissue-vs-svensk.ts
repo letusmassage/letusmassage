@@ -22,7 +22,7 @@ export const article: Article = {
     { type: 'h2', text: 'Svensk massage — fundamentet' },
     {
       type: 'p',
-      text: '[Svensk massage](/metoder/svensk-massage) är basen i nästan all västerländsk massage. Den utvecklades på 1800-talet och bygger på fem grundgrepp: effleurage (långa strykningar), petrissage (knådning), friktion, tapotement (lätt klappning) och vibration.',
+      text: '[Svensk massage](/metoder/svensk-massage/) är basen i nästan all västerländsk massage. Den utvecklades på 1800-talet och bygger på fem grundgrepp: effleurage (långa strykningar), petrissage (knådning), friktion, tapotement (lätt klappning) och vibration.',
     },
     {
       type: 'p',
@@ -31,7 +31,7 @@ export const article: Article = {
     { type: 'h2', text: 'Deep tissue — när det ytliga inte räcker' },
     {
       type: 'p',
-      text: '[Deep tissue](/metoder/deep-tissue) arbetar djupare ner — genom de ytliga muskellagren och in i de underliggande, ofta strama eller fastlåsta strukturerna. Tempot är långsammare, trycket fastare, och rörelserna ofta mer riktade mot specifika spänningsområden.',
+      text: '[Deep tissue](/metoder/deep-tissue/) arbetar djupare ner — genom de ytliga muskellagren och in i de underliggande, ofta strama eller fastlåsta strukturerna. Tempot är långsammare, trycket fastare, och rörelserna ofta mer riktade mot specifika spänningsområden.',
     },
     {
       type: 'p',
@@ -64,7 +64,7 @@ export const article: Article = {
     },
     {
       type: 'p',
-      text: 'Hos oss använder vi svensk massage som grund i [Relaxmassage](/behandlingar/relax) och [Gravidmassage](/behandlingar/prenatal).',
+      text: 'Hos oss använder vi svensk massage som grund i [Relaxmassage](/behandlingar/relax/) och [Gravidmassage](/behandlingar/prenatal/).',
     },
     { type: 'h2', text: 'Vem passar deep tissue?' },
     {
@@ -79,7 +79,7 @@ export const article: Article = {
     },
     {
       type: 'p',
-      text: 'Deep tissue är en av huvudkomponenterna i både [Klassisk massage](/behandlingar/klassisk) och [Massageterapi](/behandlingar/massageterapi).',
+      text: 'Deep tissue är en av huvudkomponenterna i både [Klassisk massage](/behandlingar/klassisk/) och [Massageterapi](/behandlingar/massageterapi/).',
     },
     { type: 'h2', text: 'Hur Let Us Massage kombinerar dem' },
     {

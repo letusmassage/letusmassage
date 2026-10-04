@@ -22,7 +22,7 @@ export const article: Article = {
     { type: 'h2', text: 'Kort version: två olika syften' },
     {
       type: 'p',
-      text: '[Klassisk massage](/behandlingar/klassisk) är **förebyggande friskvård** — den motverkar att spänningar och stelhet bygger upp sig. [Massageterapi](/behandlingar/massageterapi) är **terapeutisk behandling** — den arbetar med besvär som redan finns: smärta, nedsatt rörlighet, kronisk spänning eller specifika symtom.',
+      text: '[Klassisk massage](/behandlingar/klassisk/) är **förebyggande friskvård** — den motverkar att spänningar och stelhet bygger upp sig. [Massageterapi](/behandlingar/massageterapi/) är **terapeutisk behandling** — den arbetar med besvär som redan finns: smärta, nedsatt rörlighet, kronisk spänning eller specifika symtom.',
     },
     {
       type: 'p',
@@ -52,11 +52,11 @@ export const article: Article = {
     { type: 'h2', text: 'Skillnad i tekniker' },
     {
       type: 'p',
-      text: 'Klassisk massage bygger främst på [svensk massage](/metoder/svensk-massage) — långa strykningar, knådning, mjuk till medeldjup [deep tissue](/metoder/deep-tissue) och [myofasciell release](/metoder/myofascial-release). Tempot är mer flytande och avslappnande.',
+      text: 'Klassisk massage bygger främst på [svensk massage](/metoder/svensk-massage/) — långa strykningar, knådning, mjuk till medeldjup [deep tissue](/metoder/deep-tissue/) och [myofasciell release](/metoder/myofascial-release/). Tempot är mer flytande och avslappnande.',
     },
     {
       type: 'p',
-      text: 'Massageterapi kombinerar fler specialiserade tekniker: [triggerpunktsbehandling](/metoder/trigger-point), djupare [deep tissue](/metoder/deep-tissue), [neuromuskulär terapi (NMT)](/metoder/nmt) och rörelsebaserade tekniker. Trycket är ofta intensivare och arbetet mer riktat mot specifika problemområden.',
+      text: 'Massageterapi kombinerar fler specialiserade tekniker: [triggerpunktsbehandling](/metoder/trigger-point/), djupare [deep tissue](/metoder/deep-tissue/), [neuromuskulär terapi (NMT)](/metoder/nmt/) och rörelsebaserade tekniker. Trycket är ofta intensivare och arbetet mer riktat mot specifika problemområden.',
     },
     { type: 'h2', text: 'Skillnad i tid' },
     {
@@ -70,7 +70,7 @@ export const article: Article = {
     { type: 'h2', text: 'Friskvårdsbidrag och regelverk' },
     {
       type: 'p',
-      text: 'Här finns en viktig skattemässig skillnad: **klassisk massage är godkänd för friskvårdsbidrag**. **Massageterapi är inte det**, eftersom den har terapeutisk inriktning. Läs mer om reglerna i vår artikel om [friskvårdsbidrag på massage i Lund](/artiklar/friskvardsbidrag-massage-lund).',
+      text: 'Här finns en viktig skattemässig skillnad: **klassisk massage är godkänd för friskvårdsbidrag**. **Massageterapi är inte det**, eftersom den har terapeutisk inriktning. Läs mer om reglerna i vår artikel om [friskvårdsbidrag på massage i Lund](/artiklar/friskvardsbidrag-massage-lund/).',
     },
     { type: 'h2', text: 'Vilken passar dig — en snabb guide' },
     { type: 'h3', text: 'Välj klassisk massage om...' },

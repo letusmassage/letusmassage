@@ -55,7 +55,7 @@ export default function Techniques() {
               </ul>
 
               <Link
-                to={`/metoder/${item.id}`}
+                to={`/metoder/${item.id}/`}
                 className="text-sm text-sky-600 hover:text-sky-800 font-medium transition-colors mt-auto"
               >
                 {t('detail.readMore')} →

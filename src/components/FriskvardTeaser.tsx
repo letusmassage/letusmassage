@@ -10,7 +10,7 @@ export default function FriskvardTeaser() {
   return (
     <section aria-label={t('friskvardTeaser.title')} className="relative z-10 -mt-16 px-4 md:-mt-14">
       <Link
-        to="/friskvard"
+        to="/friskvard/"
         className="group mx-auto flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-stone-100 bg-white/95 px-5 py-4 shadow-lg backdrop-blur-sm transition-shadow hover:shadow-xl md:flex-row md:justify-between md:gap-6 md:px-8"
       >
         <div className="text-center md:text-left">

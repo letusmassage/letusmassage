@@ -1,37 +1,40 @@
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { ARTICLES } from '../content/articles'
+import { usePageMeta } from '../lib/usePageMeta'
+import { SITE, BUSINESS_ID, canonicalUrl } from '../lib/site'
+
+const PATH = '/artiklar'
+const TITLE = 'Kunskapsbank — Artiklar om massage i Lund | Let Us Massage'
+const DESCRIPTION =
+  'Artiklar och guider om massage, friskvård, spänningshuvudvärk, gravidmassage och förebyggande kroppsvård i Lund.'
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://let-us-massage.se/' },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'Kunskapsbank',
-      item: 'https://let-us-massage.se/artiklar',
-    },
+    { '@type': 'ListItem', position: 1, name: 'Hem', item: `${SITE}/` },
+    { '@type': 'ListItem', position: 2, name: 'Kunskapsbank', item: canonicalUrl(PATH) },
   ],
 }
 
 export default function Articles() {
+  usePageMeta({ title: TITLE, description: DESCRIPTION, path: PATH })
+
   const collectionSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Kunskapsbank — Artiklar om massage i Lund',
-    description:
-      'Artiklar och guider om massage, friskvård, spänningshuvudvärk, gravidmassage och förebyggande kroppsvård i Lund.',
-    url: 'https://let-us-massage.se/artiklar',
+    description: DESCRIPTION,
+    url: canonicalUrl(PATH),
     inLanguage: 'sv-SE',
-    isPartOf: { '@id': 'https://let-us-massage.se/#business' },
+    isPartOf: { '@id': BUSINESS_ID },
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: ARTICLES.map((a, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        url: `https://let-us-massage.se/artiklar/${a.slug}`,
+        url: canonicalUrl(`/artiklar/${a.slug}`),
         name: a.title,
       })),
     },
@@ -40,19 +43,6 @@ export default function Articles() {
   return (
     <main>
       <Helmet>
-        <title>Kunskapsbank — Artiklar om massage i Lund | Let Us Massage</title>
-        <meta
-          name="description"
-          content="Artiklar och guider om massage, friskvård, spänningshuvudvärk, gravidmassage och förebyggande kroppsvård i Lund."
-        />
-        <link rel="canonical" href="https://let-us-massage.se/artiklar" />
-        <meta property="og:title" content="Kunskapsbank — Artiklar om massage i Lund" />
-        <meta
-          property="og:description"
-          content="Guider och fördjupning kring massage, friskvård och kroppsvård i Lund."
-        />
-        <meta property="og:url" content="https://let-us-massage.se/artiklar" />
-        <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(collectionSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
@@ -75,7 +65,7 @@ export default function Articles() {
           {ARTICLES.map(a => (
             <Link
               key={a.slug}
-              to={`/artiklar/${a.slug}`}
+              to={`/artiklar/${a.slug}/`}
               className="block group bg-white border border-stone-200 hover:border-sky-300 rounded-2xl p-7 hover:shadow-md transition-all"
             >
               <div className="flex items-center gap-3 text-xs text-slate-400 mb-2">

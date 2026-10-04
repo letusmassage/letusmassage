@@ -46,10 +46,10 @@ export const article: Article = {
     {
       type: 'ul',
       items: [
-        '✅ **[Relaxmassage](/behandlingar/relax)** — godkänd för friskvårdsbidrag',
-        '✅ **[Klassisk massage](/behandlingar/klassisk)** — godkänd för friskvårdsbidrag',
-        '✅ **[Gravidmassage](/behandlingar/prenatal)** — godkänd för friskvårdsbidrag',
-        '❌ **[Massageterapi](/behandlingar/massageterapi)** — har terapeutisk inriktning och täcks **inte** av friskvård',
+        '✅ **[Relaxmassage](/behandlingar/relax/)** — godkänd för friskvårdsbidrag',
+        '✅ **[Klassisk massage](/behandlingar/klassisk/)** — godkänd för friskvårdsbidrag',
+        '✅ **[Gravidmassage](/behandlingar/prenatal/)** — godkänd för friskvårdsbidrag',
+        '❌ **[Massageterapi](/behandlingar/massageterapi/)** — har terapeutisk inriktning och täcks **inte** av friskvård',
       ],
     },
     {
@@ -64,7 +64,7 @@ export const article: Article = {
     { type: 'h3', text: '1. Via förmånsleverantör (Benifex eller Epassi)' },
     {
       type: 'p',
-      text: 'Vi är anslutna till **Benifex** (tidigare Benify) och **Epassi**. Du köper behandlingen i den plattform din arbetsgivare använder och får då en unik bokningskod. Därefter bokar du din tid på Bokadirekt, anger koden i meddelandefältet och väljer "Betala på plats" — behandlingen är redan betald, så du betalar inget extra hos oss. Hela flödet steg för steg finns på [friskvårdssidan](/friskvard).',
+      text: 'Vi är anslutna till **Benifex** (tidigare Benify) och **Epassi**. Du köper behandlingen i den plattform din arbetsgivare använder och får då en unik bokningskod. Därefter bokar du din tid på Bokadirekt, anger koden i meddelandefältet och väljer "Betala på plats" — behandlingen är redan betald, så du betalar inget extra hos oss. Hela flödet steg för steg finns på [friskvårdssidan](/friskvard/).',
     },
     { type: 'h3', text: '2. Egen utlägg + kvitto till arbetsgivaren' },
     {
@@ -97,7 +97,7 @@ export const article: Article = {
     { type: 'h2', text: 'Boka via Bokadirekt' },
     {
       type: 'p',
-      text: 'Vi tar emot friskvårdsbidrag både via [Benifex och Epassi](/friskvard) och som vanlig betalning med kvitto. Hör av dig om du är osäker på vad som gäller hos just din arbetsgivare — vi hjälper gärna till.',
+      text: 'Vi tar emot friskvårdsbidrag både via [Benifex och Epassi](/friskvard/) och som vanlig betalning med kvitto. Hör av dig om du är osäker på vad som gäller hos just din arbetsgivare — vi hjälper gärna till.',
     },
   ],
 }
