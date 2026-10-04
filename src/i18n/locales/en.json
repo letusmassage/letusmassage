@@ -353,7 +353,7 @@
     },
     "seo": {
       "title": "Reviews – Let Us Massage in Lund | 5.0 out of 5",
-      "description": "Read what clients say about massage with Ioulietta Refene in Lund. 5.0 out of 5 from 13 reviews – classic massage, massage therapy and prenatal massage at Stora Södergatan 58A."
+      "description": "Read what clients say about massage with Ioulietta Refene in Lund. 5.0 out of 5 from {{total}} reviews – classic massage, massage therapy and prenatal massage at Stora Södergatan 58A."
     }
   },
   "contact": {

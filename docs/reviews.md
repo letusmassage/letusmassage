@@ -86,7 +86,7 @@ Behövs bara om varningen ovan dykt upp, eller för omdömen från andra källor
 - **`aggregateRating` måste matcha det som syns på sidan.** Ändras siffran i JSON
   ändras både texten och schemat samtidigt — låt det förbli så.
 - **Ta inte bort negativa omdömen selektivt.** Publiceras omdömen ska urvalet vara
-  representativt; annars är det vilseledande. (Alla 13 är i skrivande stund 5 av 5.)
+  representativt; annars är det vilseledande. (Alla 33 är i skrivande stund 5 av 5.)
 
 ## Om stjärnorna i Google
 

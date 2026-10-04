@@ -264,7 +264,7 @@ const routes = [
   {
     path: '/recensioner',
     title: svLocale.reviewsPage.seo.title,
-    description: svLocale.reviewsPage.seo.description,
+    description: svLocale.reviewsPage.seo.description.replace('{{total}}', reviewData.aggregate.ratingCount),
     keywords: 'recensioner massage Lund, omdömen massageterapeut Lund, Let Us Massage recensioner, bästa massage Lund, Ioulietta Refene omdömen',
   },
   // Behandlingar

@@ -9,7 +9,7 @@ export interface Review {
   rating: number
   /** ISO-datum, härlett från Bokadirekts relativa tidsangivelse (±1 dag). */
   date: string
-  lang: 'sv' | 'en'
+  lang: 'sv' | 'en' | 'nb'
   text: string
 }
 

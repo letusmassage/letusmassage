@@ -3,15 +3,134 @@
   "source": {
     "name": "Bokadirekt",
     "url": "https://www.bokadirekt.se/places/let-us-massage-lund-135622",
-    "lastFetched": "2026-08-22"
+    "lastFetched": "2026-10-04"
   },
   "aggregate": {
     "ratingValue": 5,
-    "ratingCount": 22,
+    "ratingCount": 60,
     "bestRating": 5,
     "worstRating": 1
   },
   "items": [
+    {
+      "author": "Felicia T.",
+      "rating": 5,
+      "date": "2026-10-03",
+      "lang": "sv",
+      "text": "Louiletta är otroligt kunnig, inkännande och gav mig en upplevelse som var helt igenom trygg, proffsig och återhämtande för både kropp och själ. Den bästa massage jag upplevt 🙏"
+    },
+    {
+      "author": "Emelie S.",
+      "rating": 5,
+      "date": "2026-10-02",
+      "lang": "sv",
+      "text": "Mycket duktig och proffsig."
+    },
+    {
+      "author": "Emma G.",
+      "rating": 5,
+      "date": "2026-09-29",
+      "lang": "sv",
+      "text": "Loulietta är fantastisk! Lyhörd, kunnig och väldigt trevlig. Rekommenderas varmt."
+    },
+    {
+      "author": "Lina P.",
+      "rating": 5,
+      "date": "2026-09-26",
+      "lang": "sv",
+      "text": "Helt fantastisk massage. Ioulietta fick mig att slappna av och känna mig trygg. En massör jag kommer besöka igen."
+    },
+    {
+      "author": "Hilda L.",
+      "rating": 5,
+      "date": "2026-09-25",
+      "lang": "sv",
+      "text": "Bästa massagen jag varit på! Hit kommer jag igen 🤩🙏🏼"
+    },
+    {
+      "author": "Tim J.",
+      "rating": 5,
+      "date": "2026-09-25",
+      "lang": "sv",
+      "text": "Helt fantastisk massage! Rekommenderar varmt!"
+    },
+    {
+      "author": "Erik V.",
+      "rating": 5,
+      "date": "2026-09-24",
+      "lang": "en",
+      "text": "Ioulietta is professional, friendly and caring. I highly recommend anyone who wants an incredible massage to visit her."
+    },
+    {
+      "author": "Ludvig L.",
+      "rating": 5,
+      "date": "2026-09-23",
+      "lang": "sv",
+      "text": "Otrolig massage!"
+    },
+    {
+      "author": "Marit H.",
+      "rating": 5,
+      "date": "2026-09-21",
+      "lang": "nb",
+      "text": "Det var rett og slett fantastisk. Alle spenningene i kroppen er borte. Og dermed slipper hodepinen taket. \nEn stor takk til deg 🥰"
+    },
+    {
+      "author": "Susanne S.",
+      "rating": 5,
+      "date": "2026-09-13",
+      "lang": "sv",
+      "text": "Jag fick ett otroligt fint bemötande och den hjälp jag så länge letat efter. Det har nu gått några dagar sen mitt besök och jag känner mig som en ny människa. Ioulietta är så kunnig och skicklig. Hon är på en helt annan nivå än de flesta andra massörer jag varit hos. Och då har jag varit hos otaliga massörer runtom i Skåne. Jag kan varmt rekommendera ett besök hos henne."
+    },
+    {
+      "author": "Annika P.",
+      "rating": 5,
+      "date": "2026-09-05",
+      "lang": "sv",
+      "text": "Otroligt proffesionell och lyhörd. Riktigt kunnig, lyhörd och mycket trevlig!"
+    },
+    {
+      "author": "Göran S.",
+      "rating": 5,
+      "date": "2026-09-03",
+      "lang": "sv",
+      "text": "Så tacksam! Så varmt! Så proffesionellt och respektfullt! 🎈♥️🎈"
+    },
+    {
+      "author": "Johan A.",
+      "rating": 5,
+      "date": "2026-09-02",
+      "lang": "sv",
+      "text": "Här finns både kunskap och kompetens samt ordentlig utbildning, här sätts man i fokus från första steget man tar in i lokalerna. Började med att fylla i ett formulär där man kryssar i samt skriver vart man har ont eller vart man vill att massagen skall fokuseras på. Efter två besök här så kan jag varmt rekommendera att gå hit för att få professionell hjälp."
+    },
+    {
+      "author": "susanne J.",
+      "rating": 5,
+      "date": "2026-08-29",
+      "lang": "sv",
+      "text": "Så bra, hon kan verkligen sitt jobb och det kändes så bra att efteråt."
+    },
+    {
+      "author": "Laila S.",
+      "rating": 5,
+      "date": "2026-08-28",
+      "lang": "sv",
+      "text": "J kan verkligen kroppens alla punkter och sitt jobb.\nDen bästa massören jag träffat på, enkelt o prestigelöst.\nKommer inte välja någon annan framöver"
+    },
+    {
+      "author": "Susanna H.",
+      "rating": 5,
+      "date": "2026-08-25",
+      "lang": "sv",
+      "text": "Mycket bra upplevelse. Professionell och duktig på olika tekniker för att lösa problemen"
+    },
+    {
+      "author": "Karolina L.",
+      "rating": 5,
+      "date": "2026-08-25",
+      "lang": "sv",
+      "text": "Den bästa massagen jag någonsin fått. Helt otroligt bra."
+    },
     {
       "author": "Hedda J.",
       "rating": 5,
@@ -39,6 +158,27 @@
       "date": "2026-08-09",
       "lang": "en",
       "text": "I felt like a new person after the prenatal massage! Louilette did a great job, would highly recommend!"
+    },
+    {
+      "author": "Sibylla L.",
+      "rating": 5,
+      "date": "2026-08-08",
+      "lang": "sv",
+      "text": "En mycket bra massage! Väldigt professionellt och lyhört bemötande, och massagen var både avslappnande och samtidigt effektiv. Det märktes att Ioulietta verkligen lyssnade på vad jag behövde och anpassade behandlingen. Har också fått tips på bra övningar jag behöver göra för min nacke. Fin lokal, centralt läge i Lund,  rent och snyggt!"
+    },
+    {
+      "author": "catharina c.",
+      "rating": 5,
+      "date": "2026-08-07",
+      "lang": "sv",
+      "text": "Väldigt noggrann, inkännande och professionell"
+    },
+    {
+      "author": "Martin A.",
+      "rating": 5,
+      "date": "2026-08-07",
+      "lang": "sv",
+      "text": "Mycket kunnig och engagerad. Fick också hjälp med övningar för mina rygg och nackbesvär."
     },
     {
       "author": "anna f.",

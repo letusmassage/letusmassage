@@ -30,10 +30,10 @@ export default function Reviews() {
     <main>
       <Helmet>
         <title>{t('reviewsPage.seo.title')}</title>
-        <meta name="description" content={t('reviewsPage.seo.description')} />
+        <meta name="description" content={t('reviewsPage.seo.description', { total: reviewAggregate.ratingCount })} />
         <link rel="canonical" href={CANONICAL} />
         <meta property="og:title" content={t('reviewsPage.seo.title')} />
-        <meta property="og:description" content={t('reviewsPage.seo.description')} />
+        <meta property="og:description" content={t('reviewsPage.seo.description', { total: reviewAggregate.ratingCount })} />
         <meta property="og:url" content={CANONICAL} />
         <meta property="og:type" content="website" />
         <html lang={i18n.language} />
