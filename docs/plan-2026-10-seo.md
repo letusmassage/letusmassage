@@ -1,8 +1,58 @@
 # Plan — SEO and findability (October 2026)
 
-Status: **plan only, nothing implemented yet.** Written 2026-10-04 from two read-only
-audits (`claude-seo` local-SEO and technical/on-page agents) plus my own spot checks.
-Line numbers are against commit `6011679`.
+Status: **Phase 1 and Phase 5 implemented 2026-10-04** (see "Progress" below); phases 2–4
+and Letta's items (§7–8) remain. Written 2026-10-04 from two read-only audits (`claude-seo`
+local-SEO and technical/on-page agents) plus my own spot checks. Line numbers in the
+not-yet-done sections are against commit `6011679` and have shifted since.
+
+## Progress
+
+**Decisions (Paul, 2026-10-04):** go with the recommendations in §9. That means:
+- Schema `name` is "Let Us Massage Lund" (matches GBP, Bokadirekt and Hitta), with `alternateName` "Let Us Massage". There is **no `legalName`**: it is an enskild firma without a registered business name.
+- `areaServed` is trimmed to Lund.
+- Google reviews are **not** shown on the site.
+- **No review routine.** None existed any more (no cloud routine, no local scheduled task), so nothing needed killing. `fetch-reviews.mjs` is run by hand.
+- en/el indexing (§4) is not decided yet.
+
+**Phase 1 — done:**
+- One set of head tags per page.
+  - `SEO.tsx` is deleted. The new `src/lib/usePageMeta.ts` updates the prerendered tags in place.
+  - Page Helmets now only carry JSON-LD. `<html lang>` follows i18n (`src/i18n/index.ts`).
+  - Verified on all 22 sitemap URLs in `vite preview`: exactly 1 title, description, canonical and og:url after hydration and after client navigation. The static and rendered values are identical.
+- Trailing slash everywhere.
+  - `canonicalUrl()` is defined in `src/lib/site.ts` and mirrored in `prerender.mjs`.
+  - Updated: canonical, og:url, JSON-LD URLs, `public/sitemap.xml`, and 61 internal links (components and article markdown).
+- `netlify.toml`.
+  - The catch-all is removed. `/admin` gets a 200 rewrite, and `/gift-cards` 301s to `/presentkort/`.
+  - Cache headers: `/assets/*` is immutable; images get one day, because `/admin` swaps images under the same names. Added `nosniff` and `Referrer-Policy`.
+  - `dist/404.html` is prerendered with noindex and no canonical. A `*` route renders `NotFound.tsx`, which sets noindex on client navigation too.
+  - `/behandlingar` and `/metoder` were never real pages, so they get no redirect and now simply 404.
+- Schema fixes:
+  - `priceRange` is "530-1300 SEK" (Bokadirekt service list, 2026-10-04).
+  - `aggregateRating` appears only on `/` and `/recensioner/`, with the exact `ratingValue` 4.97.
+  - `hasMap` and `sameAs` use the CID URL (verified to open the right profile).
+  - Swedish `serviceType`. `ReserveAction` points to Bokadirekt.
+  - The Article schema references `#business` and `#ioulietta` by `@id`. The ServiceDetail Service node shares the prerender `@id`.
+  - Breadcrumb "Home" is now "Hem".
+  - **Skipped on purpose:** per-Offer prices. The site shows no prices, and markup must match visible content.
+- Found while verifying, and fixed:
+  - The prerender had its own stale copies of the treatment, technique and article texts. 8 of 9 treatment/technique descriptions and 7 of 8 article titles/descriptions differed from what the pages render.
+  - It now reads `sv.json` and `src/content/articles` (via Vite `runnerImport`), so raw HTML and rendered DOM can no longer drift.
+  - The home title and description now come from `sv.json` `seo.*` for both prerender and client. The text is the prerender's former one, so the indexed home title is unchanged.
+- **Still open — 1.5, Google review link.** Blocked on Letta copying the short link from the GBP admin.
+
+**Phase 5 — done:**
+- `fetch-reviews.mjs` reads the full list from the `getReviews` API and the exact score from `__PRELOADED_STATE__`.
+- Dates are converted to Swedish time. Curly quotes are normalised in the dedupe key. The language guess knows `nb` (33/33 stored reviews classified correctly).
+- Reviews that disappear from Bokadirekt produce a warning but stay in the file. A second run gives exit 2 ("inget nytt").
+- `docs/reviews.md` is rewritten for manual runs.
+
+**Verify after the next deploy** (can't be tested locally without Netlify):
+- `curl -I` on `/recensioner/` should give 200.
+- `/finns-inte` should give 404.
+- `/assets/<hash>.js` should be `immutable`.
+- `/gift-cards` should 301.
+- Then resubmit the sitemap in Search Console.
 
 Facts I verified myself on 2026-10-04 (everything else in this file comes from the
 audits and should be re-checked before it is relied on):
