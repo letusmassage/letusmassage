@@ -353,7 +353,7 @@
     },
     "seo": {
       "title": "Recensioner & omdömen – Let Us Massage i Lund | 5,0 av 5",
-      "description": "Läs vad kunderna säger om massage hos Ioulietta Refene i Lund. 5,0 av 5 i snitt på {{total}} omdömen – klassisk massage, massageterapi och gravidmassage på Stora Södergatan 58A."
+      "description": "Läs vad kunderna säger om massage hos Ioulietta Refene i Lund. 5,0 av 5 i snitt på {{total}} omdömen – klassisk massage, massageterapi och gravidmassage."
     }
   },
   "contact": {
@@ -373,8 +373,8 @@
     "decline": "Avvisa"
   },
   "seo": {
-    "title": "Massage i Lund | Let Us Massage – Klassisk, Massageterapi & Gravidmassage",
-    "description": "Professionell massage i Lund med Ioulietta Refene, certifierad medicinsk massageterapeut sedan 2009. Klassisk massage, massageterapi, gravidmassage och relaxmassage. Stora Södergatan 58A, Lund. Boka online."
+    "title": "Massage i Lund – massör & massageterapeut | Let Us Massage",
+    "description": "Massage i Lund hos Ioulietta Refene – massör och certifierad medicinsk massageterapeut sedan 2009. Klassisk massage, massageterapi, gravid- och relaxmassage."
   },
   "friskvardPage": {
     "eyebrow": "Friskvård",
@@ -483,8 +483,8 @@
       "button": "Boka din friskvårdsbehandling"
     },
     "seo": {
-      "title": "Friskvårdsmassage i Lund – använd ditt friskvårdsbidrag | Let Us Massage",
-      "description": "Använd ditt friskvårdsbidrag till massage hos Let Us Massage i Lund. Anslutna till Benifex (tidigare Benify) och Epassi. Relaxmassage, klassisk massage och gravidmassage – så fungerar det steg för steg."
+      "title": "Friskvårdsmassage i Lund – friskvårdsbidrag | Let Us Massage",
+      "description": "Använd friskvårdsbidraget till massage i Lund. Vi är anslutna till Benifex (tidigare Benify) och Epassi – relax-, klassisk och gravidmassage. Så fungerar det."
     }
   },
   "gifts": {
@@ -565,7 +565,7 @@
     },
     "seo": {
       "title": "Presentkort på massage i Lund | Let Us Massage",
-      "description": "Ge bort avkoppling – presentkort från Let Us Massage i Lund. Köp digitalt presentkort online via Bokadirekt eller boka en tid och hämta ett fysiskt presentkort på plats."
+      "description": "Ge bort avkoppling – presentkort på massage i Lund. Köp ett digitalt presentkort via Bokadirekt eller hämta ett fysiskt presentkort hos oss på plats."
     }
   },
   "detail": {
@@ -581,7 +581,8 @@
     "importantTitle": "Viktigt att veta",
     "bookNow": "Boka via Bokadirekt",
     "readMore": "Läs mer",
-    "relatedTitle": "Tekniker som ingår"
+    "relatedTitle": "Tekniker som ingår",
+    "inLund": "i Lund"
   },
   "serviceDetails": {
     "relax": {
@@ -614,7 +615,11 @@
       "important": "Godkänd för friskvårdsbidrag enligt svenska regler.",
       "related": [
         "svensk-massage"
-      ]
+      ],
+      "seo": {
+        "title": "Relaxmassage i Lund – avslappnande massage | Let Us Massage",
+        "description": "Relaxmassage i Lund: mjuk svensk massage som släpper spänningar och varvar ner. 30 eller 60 minuter, godkänd för friskvårdsbidrag. Boka enkelt online."
+      }
     },
     "klassisk": {
       "intro": "Klassisk massage är en mer dynamisk och förebyggande massageform som riktar sig till personer med stillasittande arbete och vardaglig muskelbelastning. Syftet är att stödja muskulärt välmående, förbättra rörlighet och förebygga spänningar som uppstår i ett modernt arbetsliv.",
@@ -653,7 +658,11 @@
         "svensk-massage",
         "deep-tissue",
         "myofascial-release"
-      ]
+      ],
+      "seo": {
+        "title": "Klassisk massage i Lund – friskvårdsmassage | Let Us Massage",
+        "description": "Klassisk friskvårdsmassage i Lund mot spänningar i nacke, axlar och rygg – svensk massage, deep tissue och myofasciell release. Godkänd för friskvårdsbidrag."
+      }
     },
     "massageterapi": {
       "intro": "Massageterapi är en avancerad terapeutisk behandlingsform som fokuserar på att minska smärta, förbättra rörlighet och återställa kroppens muskuloskeletala funktion. Det är inte en vanlig avslappningsmassage, utan en riktad behandling som arbetar djupt med spänningar, smärta och begränsad rörlighet.",
@@ -702,7 +711,11 @@
         "trigger-point",
         "nmt",
         "myofascial-release"
-      ]
+      ],
+      "seo": {
+        "title": "Massageterapi i Lund – terapeutisk massage | Let Us Massage",
+        "description": "Massageterapi i Lund vid smärta, spänningar och nedsatt rörlighet. Deep tissue, triggerpunkter och neuromuskulär terapi hos certifierad massageterapeut."
+      }
     },
     "prenatal": {
       "intro": "Gravidmassage är en mjuk och anpassad massageform som är speciellt utformad för gravida kvinnors behov. Under graviditeten förändras kroppen och belastningen ökar, särskilt i ländrygg, axlar, höfter och ben. Behandlingen hjälper till att minska denna belastning och stödja både kroppsligt och mentalt välbefinnande.",
@@ -732,7 +745,11 @@
       "important": "Behandlingen erbjuds från andra trimestern och framåt. Det rekommenderas att du har godkännande från din läkare eller barnmorska. Behandlingen utförs inte vid komplikationer under graviditeten. Rekommenderad frekvens: andra trimestern 1 gång per vecka eller var 10:e dag, tredje trimestern upp till 2 gånger per vecka vid behov.",
       "related": [
         "svensk-massage"
-      ]
+      ],
+      "seo": {
+        "title": "Gravidmassage i Lund – massage för gravida | Let Us Massage",
+        "description": "Trygg gravidmassage i Lund från andra trimestern. Sidoläge med kuddstöd och fokus på rygg, höfter, ben, nacke och axlar. Godkänd för friskvårdsbidrag."
+      }
     }
   },
   "techniqueDetails": {
@@ -752,7 +769,11 @@
         "klassisk",
         "massageterapi",
         "prenatal"
-      ]
+      ],
+      "seo": {
+        "title": "Svensk massage i Lund – för avslappning | Let Us Massage",
+        "description": "Svensk massage i Lund: långa strykningar, knådning och rytmiska rörelser som löser upp spänningar och förbättrar blodcirkulationen. Grunden för avslappning."
+      }
     },
     "deep-tissue": {
       "intro": "Djupgående massage är en mer intensiv behandlingsform som fokuserar på djupare muskelspänningar och långvarig stelhet i kroppen.",
@@ -769,7 +790,11 @@
       "usedIn": [
         "klassisk",
         "massageterapi"
-      ]
+      ],
+      "seo": {
+        "title": "Deep tissue i Lund – djupgående massage | Let Us Massage",
+        "description": "Deep tissue-massage i Lund för djupa muskelspänningar och långvarig stelhet. Långsamt, djupare tryck på muskler, senor och bindväv för bättre rörlighet."
+      }
     },
     "myofascial-release": {
       "intro": "Myofasciell behandling är en mjuk och fokuserad metod som arbetar med kroppens bindväv (fascia) för att minska spänningar och förbättra rörlighet.",
@@ -785,7 +810,11 @@
       "usedIn": [
         "klassisk",
         "massageterapi"
-      ]
+      ],
+      "seo": {
+        "title": "Myofascial release i Lund – fasciabehandling | Let Us Massage",
+        "description": "Myofasciell behandling i Lund: mjukt, ihållande tryck på kroppens bindväv (fascia) som minskar spänningar och förbättrar rörligheten i din egen takt."
+      }
     },
     "nmt": {
       "intro": "Neuromuskulär terapi är en behandlingsmetod som fokuserar på samspelet mellan muskler och nervsystem, med målet att minska smärta och förbättra kroppens funktion.",
@@ -806,7 +835,11 @@
       ],
       "usedIn": [
         "massageterapi"
-      ]
+      ],
+      "seo": {
+        "title": "Neuromuskulär terapi (NMT) i Lund | Let Us Massage",
+        "description": "Neuromuskulär terapi i Lund arbetar med samspelet mellan muskler och nervsystem för att minska smärta och komma åt orsaken till spänningar och obalanser."
+      }
     },
     "trigger-point": {
       "intro": "Triggerpunktsbehandling är en riktad massageteknik som fokuserar på specifika spänningspunkter i musklerna för att minska smärta och förbättra rörlighet.",
@@ -821,7 +854,11 @@
       ],
       "usedIn": [
         "massageterapi"
-      ]
+      ],
+      "seo": {
+        "title": "Triggerpunktsbehandling i Lund | Let Us Massage",
+        "description": "Triggerpunktsbehandling i Lund: riktat tryck på muskelknutor som hjälper musklerna att slappna av, minskar smärta och ger en mer naturlig funktion."
+      }
     }
   },
   "notFound": {

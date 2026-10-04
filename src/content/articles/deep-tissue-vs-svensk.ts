@@ -5,6 +5,8 @@ export const article: Article = {
   title: 'Deep tissue eller svensk massage? Skillnaderna förklarade',
   description:
     'Svensk massage och deep tissue är de två mest använda massageteknikerna. Här förklaras skillnader i tryck, syfte, känsla och vem de passar — så du kan välja rätt i Lund.',
+  seoTitle: 'Deep tissue eller svensk massage?',
+  seoDescription: 'Svensk massage och deep tissue är de vanligaste massageteknikerna. Skillnader i tryck, syfte, känsla och vem de passar – så väljer du rätt i Lund.',
   date: '2026-05-08',
   readMin: 5,
   keywords: [

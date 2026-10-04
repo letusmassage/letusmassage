@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { reviews, reviewAggregate, reviewSource } from '../content/reviews'
+import { GOOGLE_REVIEW_URL } from '../lib/site'
 import ReviewCard from './ReviewCard'
 
 // Visar ett urval på startsidan; hela listan bor på /recensioner.
@@ -45,13 +46,21 @@ export default function Testimonials() {
           ))}
         </div>
 
-        <div className="text-center mt-10">
+        <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
             to="/recensioner/"
             className="inline-block border-2 border-sky-500 text-sky-700 hover:bg-sky-50 font-medium px-6 py-3 rounded-lg transition-colors"
           >
             {t('testimonials.readAll')} →
           </Link>
+          <a
+            href={GOOGLE_REVIEW_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-sky-700 hover:text-sky-900 font-medium px-2 py-3 transition-colors"
+          >
+            {t('reviewsPage.leave.google')} →
+          </a>
         </div>
       </div>
     </section>

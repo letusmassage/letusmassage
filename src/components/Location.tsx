@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { GOOGLE_DIRECTIONS_URL, GOOGLE_MAPS_EMBED_URL } from '../lib/site'
 
 export default function Location() {
   const { t } = useTranslation()
@@ -12,7 +13,7 @@ export default function Location() {
           <p className="text-gray-400 text-sm mt-1">{t('location.building')}</p>
           <p className="text-gray-400 text-sm mt-1 max-w-xl mx-auto">{t('location.nearby')}</p>
           <a
-            href="https://maps.google.com/?q=Stora+S%C3%B6dergatan+58A,+222+23+Lund,+Sweden"
+            href={GOOGLE_DIRECTIONS_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-4 text-sky-500 hover:text-sky-700 text-sm font-medium transition-colors"
@@ -22,8 +23,8 @@ export default function Location() {
         </div>
         <div className="rounded-2xl overflow-hidden shadow-sm h-80 border border-sky-100">
           <iframe
-            title="Let Us Massage location"
-            src="https://maps.google.com/maps?q=Stora+S%C3%B6dergatan+58A,+222+23+Lund,+Sweden&output=embed"
+            title="Karta – Let Us Massage Lund, Stora Södergatan 58A"
+            src={GOOGLE_MAPS_EMBED_URL}
             width="100%"
             height="100%"
             style={{ border: 0 }}

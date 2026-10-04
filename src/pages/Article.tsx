@@ -61,8 +61,8 @@ export default function ArticlePage() {
   usePageMeta(
     article
       ? {
-          title: `${article.title} | Let Us Massage Lund`,
-          description: article.description,
+          title: `${article.seoTitle ?? article.title} | Let Us Massage`,
+          description: article.seoDescription ?? article.description,
           path: `/artiklar/${article.slug}`,
           ogType: 'article',
         }
@@ -80,7 +80,7 @@ export default function ArticlePage() {
     headline: article.title,
     description: article.description,
     datePublished: article.date,
-    dateModified: article.date,
+    dateModified: article.updated ?? article.date,
     // Författare, utgivare och ämne pekar på noderna i verksamhetsgrafen som
     // scripts/prerender.mjs bakar in på varje sida.
     author: { '@type': 'Person', '@id': PERSON_ID, name: 'Ioulietta Refene' },

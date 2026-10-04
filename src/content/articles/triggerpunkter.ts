@@ -5,6 +5,8 @@ export const article: Article = {
   title: 'Triggerpunkter — vad de är och hur de behandlas',
   description:
     'Triggerpunkter, eller muskelknutar, är en vanlig orsak till lokal smärta och refererad smärta i kroppen. Så uppstår de, hur känns de, och hur trigger point therapy fungerar.',
+  seoTitle: 'Triggerpunkter – så behandlas muskelknutor',
+  seoDescription: 'Triggerpunkter (muskelknutor) ger lokal och refererad smärta. Så uppstår de, hur de känns och hur triggerpunktsbehandling fungerar i praktiken.',
   date: '2026-05-09',
   readMin: 5,
   keywords: [

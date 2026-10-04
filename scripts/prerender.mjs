@@ -194,12 +194,11 @@ const ldScript = (obj) =>
   `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`
 
 // Hjälp: bygg HEAD-block för en given sida
-function head({ title, description, canonical, ogType = 'website', ogImage = DEFAULT_OG, keywords, articleDate }) {
+function head({ title, description, canonical, ogType = 'website', ogImage = DEFAULT_OG, articleDate, articleModified }) {
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
   const lines = [
     `<title>${esc(title)}</title>`,
     `<meta name="description" content="${esc(description)}" />`,
-    keywords ? `<meta name="keywords" content="${esc(keywords)}" />` : null,
     canonical ? `<link rel="canonical" href="${esc(canonical)}" />` : null,
     `<meta property="og:type" content="${esc(ogType)}" />`,
     `<meta property="og:site_name" content="Let Us Massage" />`,
@@ -215,6 +214,7 @@ function head({ title, description, canonical, ogType = 'website', ogImage = DEF
     `<meta name="twitter:description" content="${esc(description)}" />`,
     `<meta name="twitter:image" content="${esc(ogImage)}" />`,
     articleDate ? `<meta property="article:published_time" content="${esc(articleDate)}" />` : null,
+    articleModified ? `<meta property="article:modified_time" content="${esc(articleModified)}" />` : null,
     articleDate ? `<meta property="article:author" content="Ioulietta Refene" />` : null,
   ].filter(Boolean)
   return lines.map(l => '    ' + l).join('\n')
@@ -223,74 +223,69 @@ function head({ title, description, canonical, ogType = 'website', ogImage = DEF
 // Data per route. Behandlingar och metoder läses ur sv.json — exakt samma texter som
 // sidorna renderar (ServiceDetail/TechniqueDetail), så att den statiska head:en och den
 // renderade aldrig säger olika saker. (Tidigare hårdkodade kopior hade glidit isär.)
-const services = svLocale.services.items.map(({ id, name, duration, description }) => ({ id, name, duration, description }))
-const techniques = svLocale.techniques.items.map(({ id, name, tagline, description }) => ({ id, name, tagline, description }))
+const serviceIds = svLocale.services.items.map(s => s.id)
+const techniqueIds = svLocale.techniques.items.map(t => t.id)
 
 // Artiklarna läses direkt ur src/content/articles (TypeScript, via Vite) — samma titlar,
 // beskrivningar och datum som Article.tsx renderar. (Tidigare en hårdkodad kopia som glidit isär.)
 const { module: articleModule } = await runnerImport(resolve(__dirname, '..', 'src', 'content', 'articles', 'index.ts'))
 const articles = articleModule.ARTICLES.map(a => ({
   slug: a.slug,
-  title: a.title,
-  description: a.description,
+  title: `${a.seoTitle ?? a.title} | Let Us Massage`,
+  description: a.seoDescription ?? a.description,
   date: a.date,
-  keywords: a.keywords.join(', '),
+  updated: a.updated,
 }))
 
 // Bygg full route-lista
+// lastmod = senaste märkbara innehållsändring. Artiklarnas kommer ur innehållsfilerna
+// (updated ?? date); för övriga sidor uppdateras datumet här för hand när sidan ändras.
+const SERVICES_LASTMOD = '2026-10-04'
+const TECHNIQUES_LASTMOD = '2026-10-04'
+
 const routes = [
   // Statiska
-  {
-    path: '/',
-    title: svLocale.seo.title,
-    description: svLocale.seo.description,
-    keywords: 'massage Lund, massageterapi Lund, klassisk massage Lund, gravidmassage Lund, deep tissue Lund, friskvård Lund, medicinsk massageterapeut Lund, Ioulietta Refene Lund',
-  },
+  { path: '/', title: svLocale.seo.title, description: svLocale.seo.description, lastmod: '2026-10-04' },
   {
     path: '/artiklar',
-    title: 'Kunskapsbank — Artiklar om massage i Lund | Let Us Massage',
-    description: 'Artiklar och guider om massage, friskvård, spänningshuvudvärk, gravidmassage och förebyggande kroppsvård i Lund.',
+    title: articleModule.ARTICLES_PAGE.title,
+    description: articleModule.ARTICLES_PAGE.description,
+    lastmod: '2026-05-24',
   },
-  {
-    path: '/presentkort',
-    title: svLocale.gifts.seo.title,
-    description: svLocale.gifts.seo.description,
-  },
-  {
-    path: '/friskvard',
-    title: svLocale.friskvardPage.seo.title,
-    description: svLocale.friskvardPage.seo.description,
-    keywords: 'friskvårdsbidrag massage Lund, friskvårdsmassage Lund, Epassi massage Lund, Benifex massage Lund, Benify massage Lund, friskvård Lund',
-  },
+  { path: '/presentkort', title: svLocale.gifts.seo.title, description: svLocale.gifts.seo.description, lastmod: '2026-09-06' },
+  { path: '/friskvard', title: svLocale.friskvardPage.seo.title, description: svLocale.friskvardPage.seo.description, lastmod: '2026-09-06' },
   {
     path: '/recensioner',
     title: svLocale.reviewsPage.seo.title,
     description: svLocale.reviewsPage.seo.description.replace('{{total}}', reviewData.aggregate.ratingCount),
-    keywords: 'recensioner massage Lund, omdömen massageterapeut Lund, Let Us Massage recensioner, bästa massage Lund, Ioulietta Refene omdömen',
+    lastmod: reviewData.source.lastFetched,
   },
-  // Behandlingar
-  ...services.map(s => ({
-    path: `/behandlingar/${s.id}`,
-    title: `${s.name} i Lund — ${s.duration} | Let Us Massage`,
-    description: `${s.description} Boka ${s.name.toLowerCase()} hos Let Us Massage på Stora Södergatan 58A i Lund.`,
+  // Behandlingar — samma SEO-texter som ServiceDetail.tsx (sv.json serviceDetails.<id>.seo)
+  ...serviceIds.map(id => ({
+    path: `/behandlingar/${id}`,
+    title: svLocale.serviceDetails[id].seo.title,
+    description: svLocale.serviceDetails[id].seo.description,
     ogType: 'article',
-    ogImage: `${SITE}/services/${s.id}.jpg`,
+    ogImage: `${SITE}/services/${id}.jpg`,
+    lastmod: SERVICES_LASTMOD,
   })),
-  // Metoder
-  ...techniques.map(t => ({
-    path: `/metoder/${t.id}`,
-    title: `${t.name} (${t.tagline}) — Massageteknik i Lund | Let Us Massage`,
-    description: t.description.slice(0, 155),
+  // Metoder — samma SEO-texter som TechniqueDetail.tsx (sv.json techniqueDetails.<id>.seo)
+  ...techniqueIds.map(id => ({
+    path: `/metoder/${id}`,
+    title: svLocale.techniqueDetails[id].seo.title,
+    description: svLocale.techniqueDetails[id].seo.description,
     ogType: 'article',
+    lastmod: TECHNIQUES_LASTMOD,
   })),
   // Artiklar
   ...articles.map(a => ({
     path: `/artiklar/${a.slug}`,
-    title: `${a.title} | Let Us Massage Lund`,
+    title: a.title,
     description: a.description,
-    keywords: a.keywords,
     ogType: 'article',
     articleDate: a.date,
+    articleModified: a.updated,
+    lastmod: a.updated ?? a.date,
   })),
 ]
 
@@ -318,8 +313,8 @@ function injectHead(html, route) {
     canonical,
     ogType: route.ogType,
     ogImage: route.ogImage,
-    keywords: route.keywords,
     articleDate: route.articleDate,
+    articleModified: route.articleModified,
   })
   const graph = REVIEW_PAGES.has(route.path) ? businessGraphWithReviews : businessGraph
   const pageFaq =
@@ -346,6 +341,20 @@ for (const route of routes) {
   count++
 }
 
+// Sitemap — genereras från samma route-lista, så den kan aldrig glida isär från sidorna.
+const sitemap = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ...routes.map(r =>
+    ['  <url>', `    <loc>${canonicalUrl(r.path)}</loc>`, r.lastmod ? `    <lastmod>${r.lastmod}</lastmod>` : null, '  </url>']
+      .filter(Boolean)
+      .join('\n')
+  ),
+  '</urlset>',
+  '',
+].join('\n')
+writeFileSync(resolve(distDir, 'sitemap.xml'), sitemap, 'utf8')
+
 // 404-sida: Netlify serverar dist/404.html med status 404 för alla okända adresser
 // (det finns ingen catch-all-rewrite längre). noindex och ingen canonical.
 const ROBOTS_RE = /<meta name="robots" content="[^"]*" \/>/
@@ -359,4 +368,4 @@ const notFoundHtml = template
   .replace(ROBOTS_RE, '<meta name="robots" content="noindex, follow" />')
 writeFileSync(resolve(distDir, '404.html'), notFoundHtml, 'utf8')
 
-console.log(`[prerender] ✓ Skrev ${count} prerenderade sidor med unik canonical/title/description + 404.html`)
+console.log(`[prerender] ✓ Skrev ${count} prerenderade sidor med unik canonical/title/description + sitemap.xml + 404.html`)

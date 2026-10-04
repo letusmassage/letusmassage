@@ -110,9 +110,10 @@ de sammanfattar "bästa massage i Lund", och den håller sidan konsekvent.
 Det är där omdömen ska samlas i första hand. `/recensioner` har därför en
 CTA som pekar dit.
 
-### TODO
+### Recensionslänken
 
-`GOOGLE_REVIEW_URL` i [`src/pages/Reviews.tsx`](../src/pages/Reviews.tsx) pekar just nu
-på kartlänken. Byt till den korta "skriv omdöme"-länken (`https://g.page/r/.../review`)
-som finns i GBP-adminen — den öppnar formuläret direkt istället för att kräva ett par
-klick till.
+`GOOGLE_REVIEW_URL` i [`src/lib/site.ts`](../src/lib/site.ts) är den korta "skriv omdöme"-länken
+från profilens admin (`https://g.page/r/CT6P9bm9J0tfEBM/review`). Den öppnar formuläret direkt
+och används på `/recensioner/`, i omdömesdelen på startsidan och i sidfoten. Samma länk (eller
+QR-koden i samma ruta i admin) kan användas på mottagningen och i uppföljningsmeddelanden.
+Be alla kunder — inte bara nöjda — och ge aldrig något i utbyte; båda bryter mot Googles regler.

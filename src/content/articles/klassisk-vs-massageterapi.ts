@@ -5,6 +5,7 @@ export const article: Article = {
   title: 'Klassisk massage eller massageterapi — vilken passar dig?',
   description:
     'Skillnaden mellan klassisk friskvårdsmassage och terapeutisk massageterapi: syfte, tekniker, längd och friskvårdsregler. Så väljer du rätt behandling i Lund.',
+  seoTitle: 'Klassisk massage eller massageterapi?',
   date: '2026-05-06',
   readMin: 6,
   keywords: [

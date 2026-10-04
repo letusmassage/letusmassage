@@ -5,7 +5,9 @@ export const article: Article = {
   title: 'Friskvårdsbidrag på massage i Lund — så fungerar det',
   description:
     'Vad gäller för friskvårdsbidrag på massage i Sverige? Belopp, regler, vilka behandlingar som ingår, och hur du nyttjar det hos Let Us Massage i Lund.',
+  seoTitle: 'Friskvårdsbidrag för massage i Lund',
   date: '2026-05-05',
+  updated: '2026-09-06',
   readMin: 5,
   keywords: [
     'friskvårdsbidrag massage',

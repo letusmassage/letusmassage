@@ -5,6 +5,7 @@ export const article: Article = {
   title: 'Spänningshuvudvärk i Lund — kan massage hjälpa?',
   description:
     'Spänningshuvudvärk är vanligt vid stillasittande arbete och stress. Så fungerar det, varför kroppen reagerar så, och hur massageterapi i Lund kan ge lindring.',
+  seoTitle: 'Spänningshuvudvärk – kan massage hjälpa?',
   date: '2026-05-04',
   readMin: 6,
   keywords: [

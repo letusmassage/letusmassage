@@ -152,7 +152,7 @@ export default function Information() {
                   href="tel:+46767690887"
                   className="text-sky-600 hover:text-sky-700 font-medium transition-colors"
                 >
-                  +46 76 769 08 87
+                  076-769 08 87
                 </a>
               </div>
               <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3">

@@ -5,6 +5,8 @@ export const article: Article = {
   title: 'Gravidmassage i Lund — vad är säkert och från när?',
   description:
     'En guide till gravidmassage: när du kan börja, vilka positioner som är säkra, vilka tekniker som används och vilka fördelar du kan vänta dig — hos en certifierad massageterapeut i Lund.',
+  seoTitle: 'Gravidmassage i Lund – vad är säkert?',
+  seoDescription: 'Gravidmassage i Lund: när du kan börja, vilka positioner som är säkra, vilka tekniker som används och vilka fördelar du kan vänta dig.',
   date: '2026-05-07',
   readMin: 6,
   keywords: [

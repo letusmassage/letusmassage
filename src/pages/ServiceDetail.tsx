@@ -27,6 +27,8 @@ interface ServiceDetailData {
   sessions: Session[]
   important?: string
   related?: string[]
+  /** Svensk SEO-titel/beskrivning läses även av scripts/prerender.mjs. */
+  seo: { title: string; description: string }
 }
 
 interface TechniqueItem {
@@ -47,8 +49,8 @@ export default function ServiceDetail() {
   usePageMeta(
     item && detail
       ? {
-          title: `${item.name} i Lund — ${item.duration} | Let Us Massage`,
-          description: `${item.description} Boka ${item.name.toLowerCase()} hos Let Us Massage på Stora Södergatan 58A i Lund.`,
+          title: detail.seo.title,
+          description: detail.seo.description,
           path: `/behandlingar/${item.id}`,
           ogType: 'article',
           ogImage: `${SITE}/services/${item.id}.jpg`,
@@ -112,7 +114,9 @@ export default function ServiceDetail() {
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-sky-600 mb-3">{item.tag}</p>
-              <h1 className="font-serif text-4xl md:text-5xl text-slate-800 mb-4">{item.name}</h1>
+              <h1 className="font-serif text-4xl md:text-5xl text-slate-800 mb-4">
+                {item.name} {t('detail.inLund')}
+              </h1>
               <div className="flex items-center gap-3 flex-wrap mb-6">
                 <span className="text-sm text-slate-500 bg-white border border-stone-200 px-4 py-1.5 rounded-full">{item.duration}</span>
                 {item.friskvard && (

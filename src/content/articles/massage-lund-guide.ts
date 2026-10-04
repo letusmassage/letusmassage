@@ -5,6 +5,8 @@ export const article: Article = {
   title: 'Massage i Lund — guide till olika behandlingsformer',
   description:
     'En översikt över massagealternativ i Lund: avslappning, friskvård, terapeutisk massage och gravidmassage. Så väljer du rätt — och vad du bör veta innan du bokar.',
+  seoTitle: 'Massage i Lund – guide till behandlingsformer',
+  seoDescription: 'Översikt över massage i Lund: avslappning, friskvård, terapeutisk massage och gravidmassage. Så väljer du rätt – och vad du bör veta innan du bokar.',
   date: '2026-05-11',
   readMin: 6,
   keywords: [

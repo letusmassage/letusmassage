@@ -581,7 +581,8 @@
     "importantTitle": "Important to know",
     "bookNow": "Book via Bokadirekt",
     "readMore": "Read more",
-    "relatedTitle": "Techniques used"
+    "relatedTitle": "Techniques used",
+    "inLund": "in Lund"
   },
   "serviceDetails": {
     "relax": {
@@ -614,7 +615,11 @@
       "important": "Eligible for friskvårdsbidrag according to Swedish wellness regulations.",
       "related": [
         "svensk-massage"
-      ]
+      ],
+      "seo": {
+        "title": "Relax Massage in Lund | Let Us Massage",
+        "description": "Gentle Swedish massage in Lund that releases tension and helps you unwind. 30 or 60 minutes, eligible for the Swedish wellness allowance. Book online."
+      }
     },
     "klassisk": {
       "intro": "Klassisk Massage is a more dynamic and preventive massage designed for people with sedentary work and everyday muscle tension. The goal is to support muscular wellbeing, improve mobility, and help prevent tension caused by modern working life.",
@@ -653,7 +658,11 @@
         "svensk-massage",
         "deep-tissue",
         "myofascial-release"
-      ]
+      ],
+      "seo": {
+        "title": "Klassisk Massage in Lund – wellness massage | Let Us Massage",
+        "description": "Preventive wellness massage in Lund for neck, shoulder and back tension – Swedish massage, deep tissue and myofascial release. Wellness allowance eligible."
+      }
     },
     "massageterapi": {
       "intro": "Massageterapi is an advanced therapeutic massage approach focused on reducing pain, improving mobility, and restoring proper musculoskeletal function. It is not a relaxation massage, but a targeted treatment that works deeply with areas of tension, pain, and restricted movement.",
@@ -702,7 +711,11 @@
         "trigger-point",
         "nmt",
         "myofascial-release"
-      ]
+      ],
+      "seo": {
+        "title": "Massageterapi in Lund – massage therapy | Let Us Massage",
+        "description": "Therapeutic massage in Lund for pain, tension and reduced mobility. Deep tissue, trigger point therapy and neuromuscular therapy with a certified therapist."
+      }
     },
     "prenatal": {
       "intro": "Prenatal Massage (pregnancy massage) is a gentle and adapted massage designed specifically for the needs of women during pregnancy. As the body changes, increased pressure is often felt in the lower back, shoulders, hips, and legs.",
@@ -732,7 +745,11 @@
       "important": "Sessions are available from the 2nd trimester onwards. Doctor's approval is recommended before booking. The massage is not performed in case of pregnancy complications. Recommended frequency: 2nd trimester once a week or every 10 days, 3rd trimester up to twice a week depending on needs.",
       "related": [
         "svensk-massage"
-      ]
+      ],
+      "seo": {
+        "title": "Prenatal Massage in Lund | Let Us Massage",
+        "description": "Safe prenatal massage in Lund from the second trimester. Side-lying with full pillow support, focusing on back, hips, legs, neck and shoulders."
+      }
     }
   },
   "techniqueDetails": {
@@ -752,7 +769,11 @@
         "klassisk",
         "massageterapi",
         "prenatal"
-      ]
+      ],
+      "seo": {
+        "title": "Swedish Massage in Lund | Let Us Massage",
+        "description": "Swedish massage in Lund: long strokes, kneading and rhythmic movements that release tension and improve circulation. The foundation of relaxation."
+      }
     },
     "deep-tissue": {
       "intro": "Deep tissue massage is a focused technique designed to target deeper layers of muscles and chronic tension in the body.",
@@ -769,7 +790,11 @@
       "usedIn": [
         "klassisk",
         "massageterapi"
-      ]
+      ],
+      "seo": {
+        "title": "Deep Tissue Massage in Lund | Let Us Massage",
+        "description": "Deep tissue massage in Lund for deep muscle tension and chronic stiffness. Slow, deeper pressure on muscles, tendons and connective tissue."
+      }
     },
     "myofascial-release": {
       "intro": "Myofascial Release is a gentle, targeted technique that works with the body's connective tissue (fascia) to reduce tension and improve mobility.",
@@ -785,7 +810,11 @@
       "usedIn": [
         "klassisk",
         "massageterapi"
-      ]
+      ],
+      "seo": {
+        "title": "Myofascial Release in Lund | Let Us Massage",
+        "description": "Myofascial release in Lund: gentle, sustained pressure on the body's connective tissue (fascia) to reduce tension and improve mobility."
+      }
     },
     "nmt": {
       "intro": "Neuromuscular Therapy is an advanced, targeted approach that focuses on the connection between the muscular and nervous systems to relieve pain and improve body function.",
@@ -806,7 +835,11 @@
       ],
       "usedIn": [
         "massageterapi"
-      ]
+      ],
+      "seo": {
+        "title": "Neuromuscular Therapy (NMT) in Lund | Let Us Massage",
+        "description": "Neuromuscular therapy in Lund works with the connection between muscles and the nervous system to relieve pain and address the cause of tension."
+      }
     },
     "trigger-point": {
       "intro": "Trigger Point Therapy is a focused massage technique that targets specific areas of muscle tension to relieve pain and restore natural movement.",
@@ -821,7 +854,11 @@
       ],
       "usedIn": [
         "massageterapi"
-      ]
+      ],
+      "seo": {
+        "title": "Trigger Point Therapy in Lund | Let Us Massage",
+        "description": "Trigger point therapy in Lund: targeted pressure on muscle knots that helps muscles relax, eases pain and restores more natural function."
+      }
     }
   },
   "notFound": {

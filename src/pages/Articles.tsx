@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { ARTICLES } from '../content/articles'
+import { ARTICLES, ARTICLES_PAGE } from '../content/articles'
 import { usePageMeta } from '../lib/usePageMeta'
 import { SITE, BUSINESS_ID, canonicalUrl } from '../lib/site'
 
 const PATH = '/artiklar'
-const TITLE = 'Kunskapsbank — Artiklar om massage i Lund | Let Us Massage'
-const DESCRIPTION =
-  'Artiklar och guider om massage, friskvård, spänningshuvudvärk, gravidmassage och förebyggande kroppsvård i Lund.'
+const { title: TITLE, description: DESCRIPTION } = ARTICLES_PAGE
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',

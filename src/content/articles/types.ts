@@ -10,7 +10,13 @@ export interface Article {
   slug: string
   title: string
   description: string
+  /** Kortare <title> (utan " | Let Us Massage") när title är för lång för sökresultaten. */
+  seoTitle?: string
+  /** Meta description när den synliga description är längre än ~158 tecken. */
+  seoDescription?: string
   date: string
+  /** Senaste betydande ändring (ISO) — dateModified i schemat och lastmod i sitemapen. */
+  updated?: string
   readMin: number
   keywords: string[]
   relatedServices: string[]

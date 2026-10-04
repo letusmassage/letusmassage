@@ -20,6 +20,8 @@ interface TechniqueDetailData {
   benefits: string[]
   afterSession?: string
   usedIn?: string[]
+  /** Svensk SEO-titel/beskrivning läses även av scripts/prerender.mjs. */
+  seo: { title: string; description: string }
 }
 
 interface ServiceItem {
@@ -40,8 +42,8 @@ export default function TechniqueDetail() {
   usePageMeta(
     item && detail
       ? {
-          title: `${item.name} (${item.tagline}) — Massageteknik i Lund | Let Us Massage`,
-          description: item.description.slice(0, 155),
+          title: detail.seo.title,
+          description: detail.seo.description,
           path: `/metoder/${item.id}`,
           ogType: 'article',
         }
@@ -86,7 +88,9 @@ export default function TechniqueDetail() {
           </Link>
 
           <p className="text-xs uppercase tracking-[0.3em] text-sky-600 mb-3">{item.tagline}</p>
-          <h1 className="font-serif text-4xl md:text-5xl text-slate-800 mb-6">{item.name}</h1>
+          <h1 className="font-serif text-4xl md:text-5xl text-slate-800 mb-6">
+            {item.name} {t('detail.inLund')}
+          </h1>
           <p className="text-lg text-slate-600 leading-relaxed max-w-3xl">{detail.intro}</p>
         </div>
       </header>

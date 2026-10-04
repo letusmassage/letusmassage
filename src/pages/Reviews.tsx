@@ -3,14 +3,10 @@ import { useTranslation } from 'react-i18next'
 import { reviews, reviewAggregate, reviewSource } from '../content/reviews'
 import ReviewCard from '../components/ReviewCard'
 import { usePageMeta } from '../lib/usePageMeta'
-import { SITE, canonicalUrl } from '../lib/site'
+import { SITE, GOOGLE_REVIEW_URL, canonicalUrl } from '../lib/site'
 
 const PATH = '/recensioner'
 const CANONICAL = canonicalUrl(PATH)
-
-// Google Business Profile. TODO(owner): byt till den korta "skriv omdöme"-länken
-// (https://g.page/r/.../review) som finns i GBP-adminen — den öppnar formuläret direkt.
-const GOOGLE_REVIEW_URL = 'https://maps.app.goo.gl/v66Jk7S2g5QqUKn56'
 
 // JSON-LD för aggregateRating + review bakas in statiskt av scripts/prerender.mjs.
 // Här läggs bara breadcrumb till, i linje med övriga undersidor.

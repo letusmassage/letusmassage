@@ -12,6 +12,13 @@ export const ARTICLES: Article[] = [a1, a2, a3, a4, a5, a6, a7, a8].sort(
   (x, y) => (x.date < y.date ? 1 : -1)
 )
 
+// Kunskapsbankens egen titel/beskrivning — läses av både Articles.tsx och scripts/prerender.mjs.
+export const ARTICLES_PAGE = {
+  title: 'Kunskapsbank — Artiklar om massage i Lund | Let Us Massage',
+  description:
+    'Guider om massage i Lund: friskvårdsbidrag, spänningshuvudvärk, gravidmassage, triggerpunkter och förebyggande kroppsvård – av en certifierad massageterapeut.',
+}
+
 export function getArticle(slug: string): Article | undefined {
   return ARTICLES.find(a => a.slug === slug)
 }

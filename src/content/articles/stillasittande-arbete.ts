@@ -5,6 +5,8 @@ export const article: Article = {
   title: 'Stillasittande arbete i Lund? Så förebygger du nack- och ryggspänningar',
   description:
     'Lund är fullt av kontorsarbete. Här är de vanligaste muskelproblemen vid stillasittande arbete, varför de uppstår och hur klassisk friskvårdsmassage förebygger dem.',
+  seoTitle: 'Stillasittande arbete och nackspänningar',
+  seoDescription: 'Kontorsarbete i Lund? De vanligaste muskelproblemen vid stillasittande arbete, varför de uppstår och hur klassisk friskvårdsmassage förebygger dem.',
   date: '2026-05-10',
   readMin: 6,
   keywords: [
