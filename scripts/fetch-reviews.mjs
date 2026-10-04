@@ -1,14 +1,18 @@
-// Hämtar nya kundomdömen från Bokadirekt och slår ihop dem med src/content/reviews.json.
+// Hämtar kundomdömen från Bokadirekt och slår ihop dem med src/content/reviews.json.
 //
-// Bokadirekt bäddar in sitt eget schema.org-JSON-LD i sidan med aggregateRating och
-// de N senaste omdömena (N = 4 i skrivande stund). Vi läser det istället för att
-// skrapa DOM:en — formatet är stabilt, texterna är ordagranna och datumen exakta.
+// Två källor, båda från Bokadirekts egen platssida:
+//  - Omdömena: JSON-API:t som sidan själv anropar (getReviews). Det ger HELA listan
+//    med ordagranna texter och exakta tidsstämplar — till skillnad från sidans
+//    JSON-LD som bara visar de 4 senaste.
+//  - Totalbetyget: sidans window.__PRELOADED_STATE__ → place.reviews.stats, med exakt
+//    snitt (t.ex. 4.97) och antal betyg inklusive de utan text. JSON-LD:n avrundar
+//    snittet till heltal och används inte.
 //
-// Körs av rutinen "Let Us Massage — hämta nya omdömen" och kan köras för hand:
+// Körs för hand när det passar:
 //   node scripts/fetch-reviews.mjs           # skriver ändringar
 //   node scripts/fetch-reviews.mjs --dry-run # visar bara vad som skulle hända
 //
-// Exitkoder:  0 = nya omdömen skrevs   2 = inget nytt   1 = fel (skriv inget, larma)
+// Exitkoder:  0 = ändringar skrevs   2 = inget nytt   1 = fel (inget skrivs)
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
@@ -16,8 +20,13 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const REVIEWS_PATH = resolve(__dirname, '..', 'src', 'content', 'reviews.json')
-const PLACE_URL = 'https://www.bokadirekt.se/places/let-us-massage-lund-135622'
+const PLACE_ID = 135622
+const PLACE_URL = `https://www.bokadirekt.se/places/let-us-massage-lund-${PLACE_ID}`
+const API_URL = `https://www.bokadirekt.se/api/places/getReviews/${PLACE_ID}`
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36'
+const HEADERS = { 'User-Agent': UA, 'Accept-Language': 'sv-SE,sv;q=0.9' }
+const PAGE_LIMIT = 100
+const MAX_PAGES = 20
 
 const dryRun = process.argv.includes('--dry-run')
 
@@ -25,95 +34,116 @@ const dryRun = process.argv.includes('--dry-run')
 class Abort extends Error {}
 const fail = (msg) => { throw new Abort(msg) }
 
+async function get(url, kind) {
+  let res
+  try {
+    res = await fetch(url, { headers: HEADERS })
+  } catch (err) {
+    fail(`kunde inte hämta ${url} — ${err.message}`)
+  }
+  if (!res.ok) fail(`Bokadirekt svarade ${res.status} ${res.statusText} på ${url}`)
+  if (kind === 'json') {
+    try { return await res.json() } catch { fail(`${url} svarade inte med JSON — API:t kan ha ändrats`) }
+  }
+  return res.text()
+}
+
 /** Grov språkgissning — styr bara `inLanguage` och lang-attributet, aldrig texten. */
 function guessLang(text) {
   const t = ` ${text.toLowerCase()} `
-  if (/[åäö]/.test(t)) return 'sv'
-  const sv = [' och ', ' jag ', ' är ', ' för ', ' att ', ' som ', ' hon ', ' mycket ', ' med ', ' på ']
-  const en = [' the ', ' and ', ' was ', ' very ', ' she ', ' with ', ' this ', ' after ', ' from ', ' massage that ']
-  const score = (words) => words.reduce((n, w) => n + (t.includes(w) ? 1 : 0), 0)
-  return score(sv) >= score(en) ? 'sv' : 'en'
+  if (/[äö]/.test(t)) return 'sv'
+  if (/[æø]/.test(t)) return 'nb'
+  const words = {
+    sv: [' och ', ' jag ', ' är ', ' för ', ' att ', ' som ', ' hon ', ' mycket ', ' med ', ' på '],
+    en: [' the ', ' and ', ' was ', ' very ', ' she ', ' with ', ' this ', ' after ', ' from ', ' massage that '],
+    nb: [' og ', ' ikke ', ' jeg ', ' deg ', ' meg ', ' takk ', ' veldig ', ' slett '],
+  }
+  const score = (list) => list.reduce((n, w) => n + (t.includes(w) ? 1 : 0), 0)
+  const [best] = Object.entries(words)
+    .map(([lang, list]) => [lang, score(list)])
+    .sort((a, b) => b[1] - a[1] || (a[0] === 'sv' ? -1 : 1))
+  return best[1] > 0 ? best[0] : 'sv'
 }
 
 /** Identitet för ett omdöme — texten är det enda som är stabilt över tid. */
-const keyOf = (r) => r.text.replace(/\s+/g, ' ').trim().toLowerCase()
+const keyOf = (r) => r.text.replace(/[‘’]/g, "'").replace(/\s+/g, ' ').trim().toLowerCase()
+
+/** Kalenderdatum i svensk tid (createdAt är UTC). */
+const stockholmDate = (iso) => new Date(iso).toLocaleDateString('sv-SE', { timeZone: 'Europe/Stockholm' })
+
+async function fetchAllReviews() {
+  const items = []
+  let count = null
+  for (let page = 1; page <= MAX_PAGES; page++) {
+    const data = await get(`${API_URL}?page=${page}&limit=${PAGE_LIMIT}&mp-reviews=true&rating=0`, 'json')
+    if (!Array.isArray(data?.items)) fail('getReviews saknar items[] — API:t har ändrats')
+    items.push(...data.items)
+    count = Number(data.count ?? count)
+    if (!data.nextPage || data.items.length === 0) break
+  }
+  if (Number.isFinite(count) && items.length !== count) {
+    fail(`getReviews angav ${count} omdömen men gav ${items.length} — avbryter hellre än skriver en halv lista`)
+  }
+  return items
+}
+
+async function fetchStats() {
+  const html = await get(PLACE_URL, 'text')
+  const m = html.match(/"reviews":\{"stats":\{"score":([0-9.]+),"count":(\d+)\}/)
+  if (!m) fail('hittade inte reviews.stats i platssidans __PRELOADED_STATE__ — sidstrukturen har ändrats')
+  return { score: Number(m[1]), count: Number(m[2]) }
+}
 
 async function main() {
-  // --- 1. Hämta sidan -----------------------------------------------------
-  let html
-  try {
-    const res = await fetch(PLACE_URL, {
-      headers: { 'User-Agent': UA, 'Accept-Language': 'sv-SE,sv;q=0.9' },
+  // --- 1. Hämta ------------------------------------------------------------
+  const [raw, stats] = await Promise.all([fetchAllReviews(), fetchStats()])
+
+  const scraped = raw
+    .filter(i => i?.review?.text?.trim() && i?.author?.name && i?.createdAt)
+    .map(i => {
+      const text = String(i.review.text).trim()
+      return {
+        author: String(i.author.name).trim(),
+        rating: Number(i.review.score),
+        date: stockholmDate(i.createdAt),
+        lang: guessLang(text),
+        text,
+      }
     })
-    if (!res.ok) fail(`Bokadirekt svarade ${res.status} ${res.statusText}`)
-    html = await res.text()
-  } catch (err) {
-    if (err instanceof Abort) throw err
-    fail(`kunde inte hämta ${PLACE_URL} — ${err.message}`)
-  }
-  if (html.length < 50_000) {
-    fail(`svaret var misstänkt kort (${html.length} tecken) — troligen en felsida`)
-  }
-
-  // --- 2. Plocka ut LocalBusiness-schemat ---------------------------------
-  const blocks = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
-  if (!blocks.length) fail('inga ld+json-block i svaret — Bokadirekt kan ha ändrat sidan')
-
-  let biz = null
-  for (const b of blocks) {
-    let parsed
-    try { parsed = JSON.parse(b[1]) } catch { continue }
-    for (const node of [].concat(parsed)) {
-      if (node && node['@type'] === 'LocalBusiness' && Array.isArray(node.review)) biz = node
-    }
-  }
-  if (!biz) fail('hittade inget LocalBusiness-schema med review[] — sidstrukturen har ändrats')
-
-  const scraped = biz.review
-    .filter(r => r?.reviewBody && r?.author?.name && r?.reviewRating?.ratingValue)
-    .map(r => ({
-      author: String(r.author.name).trim(),
-      rating: Number(r.reviewRating.ratingValue),
-      date: String(r.datePublished ?? '').slice(0, 10),
-      lang: guessLang(String(r.reviewBody)),
-      text: String(r.reviewBody).trim(),
-    }))
     .filter(r => /^\d{4}-\d{2}-\d{2}$/.test(r.date) && r.rating >= 1 && r.rating <= 5)
 
-  if (!scraped.length) fail('review[] fanns men innehöll inga giltiga omdömen')
-
-  // --- 3. Slå ihop med befintlig fil --------------------------------------
+  // --- 2. Rimlighetskontroller ---------------------------------------------
   const current = JSON.parse(readFileSync(REVIEWS_PATH, 'utf8'))
-  const existing = new Set(current.items.map(keyOf))
-  const fresh = scraped.filter(r => !existing.has(keyOf(r)))
-
-  const scrapedTotal = Number(biz.aggregateRating?.reviewCount ?? current.aggregate.ratingCount)
-  const scrapedValue = Number(biz.aggregateRating?.ratingValue ?? current.aggregate.ratingValue)
   const prevTotal = current.aggregate.ratingCount
+  const ratingValue = Math.round(stats.score * 100) / 100
 
-  if (!Number.isFinite(scrapedTotal) || !Number.isFinite(scrapedValue) || scrapedValue < 1 || scrapedValue > 5) {
-    fail(`orimligt aggregat från Bokadirekt (${scrapedValue} / ${scrapedTotal}) — avbryter`)
+  if (!Number.isFinite(ratingValue) || ratingValue < 1 || ratingValue > 5 || !Number.isFinite(stats.count)) {
+    fail(`orimligt aggregat från Bokadirekt (${stats.score} / ${stats.count}) — avbryter`)
   }
-  if (scrapedTotal < prevTotal) {
-    fail(`Bokadirekt rapporterar färre betyg än vi har sparat (${scrapedTotal} < ${prevTotal}) — avbryter, kontrollera för hand`)
+  if (stats.count < prevTotal) {
+    fail(`Bokadirekt rapporterar färre betyg än vi har sparat (${stats.count} < ${prevTotal}) — kontrollera för hand`)
   }
-
-  console.log(`[fetch-reviews] Bokadirekt: ${scrapedValue} i snitt på ${scrapedTotal} betyg, ${scraped.length} omdömen exponerade`)
-  console.log(`[fetch-reviews] lokalt: ${current.items.length} omdömen, ${prevTotal} betyg`)
-
-  // Skyddsräcke: fönstret hos Bokadirekt är litet. Har betygsräknaren ökat mer än
-  // antalet nya vi fick tag på kan omdömen ha hunnit falla ur listan.
-  const missed = (scrapedTotal - prevTotal) - fresh.length
-  if (missed > 0) {
-    console.warn(
-      `[fetch-reviews] VARNING: betygen ökade med ${scrapedTotal - prevTotal} men bara ${fresh.length} nya ` +
-      `omdömen syntes. Upp till ${missed} kan ha fallit ur Bokadirekts fönster på ${scraped.length} — ` +
-      `hämta dem för hand enligt docs/reviews.md, eller kör rutinen oftare.`
-    )
+  if (scraped.length > stats.count) {
+    fail(`fler skrivna omdömen (${scraped.length}) än betyg (${stats.count}) — avbryter`)
+  }
+  if (!scraped.length && current.items.length) {
+    fail('Bokadirekt gav inga omdömen alls men vi har sparade — avbryter')
   }
 
-  const aggregateUnchanged =
-    scrapedTotal === prevTotal && scrapedValue === current.aggregate.ratingValue
+  console.log(`[fetch-reviews] Bokadirekt: ${ratingValue} i snitt på ${stats.count} betyg, ${scraped.length} skrivna omdömen`)
+  console.log(`[fetch-reviews] lokalt: ${current.aggregate.ratingValue} i snitt på ${prevTotal} betyg, ${current.items.length} omdömen`)
+
+  // --- 3. Slå ihop (lägger bara till, tar aldrig bort) --------------------
+  const existing = new Set(current.items.map(keyOf))
+  const onBokadirekt = new Set(scraped.map(keyOf))
+  const fresh = scraped.filter(r => !existing.has(keyOf(r)))
+  const gone = current.items.filter(r => !onBokadirekt.has(keyOf(r)))
+
+  for (const r of gone) {
+    console.warn(`[fetch-reviews] VARNING: ${r.author} (${r.date}) finns inte längre på Bokadirekt (borttaget eller redigerat) — ligger kvar, kontrollera för hand.`)
+  }
+
+  const aggregateUnchanged = stats.count === prevTotal && ratingValue === current.aggregate.ratingValue
   if (!fresh.length && aggregateUnchanged) {
     console.log('[fetch-reviews] Inget nytt.')
     return 2
@@ -122,25 +152,24 @@ async function main() {
   for (const r of fresh) {
     console.log(`[fetch-reviews]  + ${r.author} (${r.date}, ${r.rating}★, ${r.lang}): ${r.text.slice(0, 60)}…`)
   }
-
-  // --- 4. Skriv -----------------------------------------------------------
-  const merged = [...current.items, ...fresh].sort((a, b) => b.date.localeCompare(a.date))
-
-  // Sanity: sammanslagningen får aldrig tappa ett befintligt omdöme.
-  if (merged.length < current.items.length) {
-    fail('sammanslagningen tappade omdömen — avbryter utan att skriva')
+  if (!aggregateUnchanged) {
+    console.log(`[fetch-reviews]  ~ aggregat: ${current.aggregate.ratingValue}/${prevTotal} → ${ratingValue}/${stats.count}`)
   }
+
+  // --- 4. Skriv ------------------------------------------------------------
+  const merged = [...current.items, ...fresh].sort((a, b) => b.date.localeCompare(a.date))
+  if (merged.length < current.items.length) fail('sammanslagningen tappade omdömen — avbryter utan att skriva')
 
   const next = {
     ...current,
-    source: { ...current.source, lastFetched: new Date().toISOString().slice(0, 10) },
-    aggregate: { ...current.aggregate, ratingValue: scrapedValue, ratingCount: scrapedTotal },
+    source: { ...current.source, lastFetched: stockholmDate(new Date().toISOString()) },
+    aggregate: { ...current.aggregate, ratingValue, ratingCount: stats.count },
     items: merged,
   }
 
   if (dryRun) {
     console.log(`[fetch-reviews] --dry-run: skulle skriva ${merged.length} omdömen (${fresh.length} nya).`)
-    return fresh.length ? 0 : 2
+    return 0
   }
 
   writeFileSync(REVIEWS_PATH, JSON.stringify(next, null, 2) + '\n', 'utf8')

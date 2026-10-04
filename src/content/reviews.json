@@ -1,12 +1,12 @@
 {
-  "_comment": "Riktiga omdömen hämtade från Bokadirekt-profilen. Texterna är ordagranna — skriv ALDRIG om dem och hitta ALDRIG på nya. Namnen är redan förkortade av Bokadirekt (förnamn + initial). Datumen är härledda från Bokadirekts relativa tidsangivelser ('för 12 dagar sedan') vid hämtningen 2026-08-06 och är därför ±1 dag. Uppdatera via den tvåveckliga SEO-rutinen: se docs/reviews.md.",
+  "_comment": "Riktiga omdömen hämtade från Bokadirekt-profilen. Texterna är ordagranna — skriv ALDRIG om dem och hitta ALDRIG på nya. Namnen är redan förkortade av Bokadirekt (förnamn + initial). Datumen är Bokadirekts egna tidsstämplar i svensk tid. Uppdateras för hand med node scripts/fetch-reviews.mjs — se docs/reviews.md.",
   "source": {
     "name": "Bokadirekt",
     "url": "https://www.bokadirekt.se/places/let-us-massage-lund-135622",
     "lastFetched": "2026-10-04"
   },
   "aggregate": {
-    "ratingValue": 5,
+    "ratingValue": 4.97,
     "ratingCount": 60,
     "bestRating": 5,
     "worstRating": 1
