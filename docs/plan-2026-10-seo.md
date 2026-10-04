@@ -1,0 +1,281 @@
+# Plan — SEO and findability (October 2026)
+
+Status: **plan only, nothing implemented yet.** Written 2026-10-04 from two read-only
+audits (`claude-seo` local-SEO and technical/on-page agents) plus my own spot checks.
+Line numbers are against commit `6011679`.
+
+Facts I verified myself on 2026-10-04 (everything else in this file comes from the
+audits and should be re-checked before it is relied on):
+
+| Fact | Evidence |
+| --- | --- |
+| Every prerendered page ships an empty body | `dist/*/index.html` contain only `<div id="root"></div>`. Head and JSON-LD are static; H1, text, NAP and links exist only after JS |
+| Every sitemap URL except `/` 301s | `curl https://let-us-massage.se/recensioner` → `301 → /recensioner/` (Netlify serves `dist/<route>/index.html`), while canonical, `og:url` and the sitemap use the no-slash form |
+| Unknown URLs return 200 | `curl https://let-us-massage.se/finns-inte` → `200` with the homepage shell (`netlify.toml` catch-all `/* → /index.html 200`) |
+| Head tags are duplicated after hydration | `/recensioner` in dev: 3× `meta[name=description]` + 2× `og:description` with different content (`index.html`, `src/components/SEO.tsx`, the page's own Helmet) |
+| Bokadirekt's real score is 4.967, not 5 | Bokadirekt page state `reviews.stats.score = 4.9667`, `ratingCounts = {4: 2, 5: 58}`. All 33 written reviews are 5★; the two 4★ have no text. Bokadirekt's own JSON-LD rounds to 5 |
+| Google Business Profile: 5.0 from 9 reviews, owner replies to all | Public Maps view, logged out (only 5 of 9 visible) |
+
+## 0. Overview
+
+| Phase | What | Size | Why |
+| --- | --- | --- | --- |
+| 1 | Canonical/slash consistency, duplicate head tags, Netlify 404 + headers, schema fixes | S–M | Removes conflicting signals Google has to guess between. Cheap, ship together |
+| 2 | Titles, descriptions, H1s, generated sitemap | S | "massör Lund" and "massageterapeut Lund" are missing from every title/H1 |
+| 3 | Real static HTML (SSR prerender), code splitting, images, fonts | L | Content visible without JS; big LCP win |
+| 4 | `/en/` and `/el/` URLs with hreflang | L | en/el content is currently invisible to search engines. **Needs a decision** (§9) |
+| 5 | Review fetcher reads the full Bokadirekt list | S | Ends the 4-review window and the rounded 5.0 |
+| — | Things Letta does in GBP / directories | — | §7 and §8. Review volume on Google is the biggest local-pack lever |
+
+Ground rules: Swedish comments and Swedish conventional commits (repo convention).
+Per-page SEO today lives in three places that must agree: the page Helmet, the route
+entry in `scripts/prerender.mjs`, and `public/sitemap.xml`. Phase 1–2 should reduce
+that to one source where possible. Push once at the end (each push is a deploy).
+
+## 1. Phase 1 — remove conflicting signals
+
+### 1.1 One URL form: trailing slash everywhere
+
+Netlify already serves `/recensioner/`; switching every reference to the slash form is
+zero-risk. (The alternative, flat `recensioner.html` + Pretty URLs, was not verified.)
+
+- `scripts/prerender.mjs:313` — `canonical = SITE + (route.path === '/' ? '/' : route.path + '/')`.
+  This also drives `og:url` (:198).
+- JSON-LD URLs built from paths in `prerender.mjs` (business/service/offer URLs around :79, :122, :156) — same rule.
+- `public/sitemap.xml` — slash form (or generate it, §2.4).
+- `src/pages/{Reviews,Gifts,Friskvard}.tsx:7–8` `CANONICAL` constants, plus Article/ServiceDetail/TechniqueDetail if they build one.
+- Internal links (`Footer.tsx`, `Navbar.tsx`, article bodies): `/recensioner/`, `/friskvard/` etc., so crawlers don't hit a 301 per link. `/#services` and `/#techniques` stay as they are.
+
+### 1.2 One set of head tags per page
+
+With React 19, react-helmet-async 3 hoists real elements and (per its README; not
+tested here) does **not** dedupe. So `SEO.tsx` (mounted in `Layout.tsx:24`) adds a
+second title/description/canonical/og set on top of the prerendered one, and pages with
+their own Helmet add a third.
+
+- `src/components/SEO.tsx:20–47`: keep only `<html lang>`. Drop title, description, canonical, the self-only hreflang (:26–27, misleading — see §4), og/twitter, and the duplicate `robots` (already in `index.html:18`) and `geo.*`/`ICBM`/`author` (ignored by search engines).
+- `src/pages/Home.tsx` has no Helmet → after removing `SEO.tsx` metadata, home keeps the prerendered head. Fine for sv; for en/el titles see §4.
+- Page Helmets (Reviews, Gifts, Friskvard, Article, ServiceDetail, TechniqueDetail): keep JSON-LD scripts; title/description/canonical there duplicate the prerender. Either remove them, or replace with a small `usePageMeta()` hook that **updates the existing tags in place** (so client-side navigation still changes the title).
+- Verify in the browser: `document.querySelectorAll('title, meta[name=description], link[rel=canonical]').length === 3` on every route, including after client-side navigation.
+
+### 1.3 `netlify.toml`: real 404s, cache and security headers
+
+- Remove the catch-all `/* → /index.html 200`. All 22 routes are static files.
+- Add explicit rules: `/admin  /index.html  200`, `/gift-cards  /presentkort/  301` (duplicate route in `App.tsx:32`), `/behandlingar  /#services  301`, `/metoder  /#techniques  301`.
+- Prerender `dist/404.html` with `noindex` (Netlify serves it with status 404 automatically) and add a `path="*"` NotFound route in `App.tsx`.
+- `[[headers]]`: `/assets/*` → `Cache-Control: public, max-age=31536000, immutable`; images/fonts → `public, max-age=604800`; site-wide `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`. (Live images are `max-age=0,must-revalidate` today.)
+
+### 1.4 Schema fixes (`scripts/prerender.mjs`)
+
+| Line | Now | Change |
+| --- | --- | --- |
+| :109 | `priceRange: '550-1295 SEK'` | Bokadirekt prices run 530–1300 kr per the audit — re-check the service list, then update |
+| :31–38 | `ratingValue` copied from `reviews.json` (5) | Store the real score (4.97, from Phase 5). Visible text stays "5,0" via `toFixed(1)` |
+| :117, :64 | `aggregateRating` on all 22 pages | Only on `REVIEW_PAGES` (`/`, `/recensioner`), where the rating is visible |
+| :73–75 | `name`/`legalName` "Let Us Massage", `alternateName` "Let Us Massage Lund" | GBP, Bokadirekt and Hitta all say "Let Us Massage Lund". Align after the name decision (§9) |
+| :93, :113–116 | `hasMap` short link, `sameAs` = Bokadirekt + short link | `hasMap`: `https://www.google.com/maps?cid=6866625752678633278` (derived from CID `0x5f4b27bdb9f58f3e`; open once to confirm). Add to `sameAs` once tidy: Instagram, Hitta, Kroppsterapeuterna profile, Facebook if any |
+| :94–102 | `areaServed` lists Lomma, Staffanstorp, Bjärred, Eslöv, Dalby | None of these appear in visible content. Either mention them (§2.3) or trim to Lund |
+| :119–124, :157 | Offers without price; English `serviceType` | Add `price` + `priceCurrency: 'SEK'` per duration; Swedish service types; `potentialAction: ReserveAction` → Bokadirekt |
+| `src/pages/Article.tsx:80` | `about` = orphan LocalBusiness with a string address | `{ '@id': 'https://let-us-massage.se/#business' }`; author/publisher by `@id` too |
+| `src/pages/Reviews.tsx:22` | Breadcrumb name `'Home'` | `'Hem'` |
+
+### 1.5 Google review link
+
+`src/pages/Reviews.tsx:11` still uses the Maps share link (existing TODO in
+`docs/reviews.md`). Letta copies the short "Ask for reviews" link
+(`https://g.page/r/…/review`) from the GBP admin; then use it there, in the home
+Testimonials section and in the footer. **Blocked on Letta.**
+
+## 2. Phase 2 — titles, descriptions, H1s
+
+Keyword coverage today: "massage Lund", "gravidmassage Lund" and "friskvårdsmassage Lund"
+are covered; **"massageterapeut Lund" is weak and "massör Lund" is absent** from every
+title, description, H1 and locale string (one body hit in `massage-lund-guide.ts:67`).
+
+### 2.1 Titles (≤ 60 chars)
+
+- Home (`prerender.mjs:244`, 73 chars): e.g. "Massage i Lund – massör & massageterapeut | Let Us Massage".
+- Treatments (`prerender.mjs:273`): drop the durations ("— 30 / 45 / 60 min"), e.g. "Klassisk massage i Lund – friskvårdsmassage | Let Us Massage".
+- Techniques: 66–87 chars today, e.g. "Deep tissue-massage i Lund | Let Us Massage".
+- Articles: 59–76 chars; shorten the long ones.
+- Keep `sv.json` `seo.title` identical to the prerendered home title (they differ today).
+
+### 2.2 Descriptions (140–158 chars)
+
+- Treatments are 201–237 chars because `prerender.mjs:274` appends a "Boka … Stora Södergatan 58A" sentence — shorten.
+- `prerender.mjs:282` does `slice(0, 155)` and cuts mid-word (`/metoder/deep-tissue` ends "…förbättra "). Write real descriptions or cut at a word boundary + "…".
+- Home 206, friskvard 202, recensioner 170 (now with `{{total}}`), presentkort 169.
+
+### 2.3 H1s and on-page local signals
+
+- `Hero.tsx:33`: the H1 is the small `text-sm` line; the visual headline is a `<p>`. Consider making the real headline the H1 with "massage i Lund" in it, or at least keep the keyword in the H1 (it is there today).
+- Treatment H1s (`ServiceDetail.tsx:109`) and technique H1s (`TechniqueDetail.tsx:85`) are just the name → add "i Lund".
+- Add "massör / massageterapeut i Lund" naturally to the home description, an About H2 and one FAQ answer.
+- A short visible "Hitta hit" block: near Lund C, parking space no. 6 with entrance from Gyllenkroks allé, opening hours, and the towns from `areaServed` if they are kept.
+- Footer (`Footer.tsx:62–66`): add links to the four treatment pages; show the phone number in national format "076-769 08 87" to match GBP (keep `tel:+46767690887`).
+- `Location.tsx:15,26`: the map embed and directions link use an address query → use GBP's "Share → Embed a map" iframe / the CID link so they resolve to the business entity.
+- Remove `<meta name="keywords">` (`prerender.mjs:191`) — ignored by Google.
+- Low: `/behandlingar/prenatal` → `/behandlingar/gravidmassage` with a 301 in `netlify.toml`. Cheap now while the site is young; optional.
+
+### 2.4 Generate the sitemap
+
+`public/sitemap.xml` is hand-edited and drifts (e.g. `friskvardsbidrag-massage-lund`
+lastmod 2026-09-06 vs date 2026-05-05 in `prerender.mjs`). Generate it in
+`prerender.mjs` from the same `routes` array; `lastmod` from the article's modified
+date; drop `changefreq`/`priority`. Also give articles a real `dateModified`.
+
+## 3. Phase 3 — real HTML and performance
+
+### 3.1 Prerender the body (largest item)
+
+- Add `src/entry-server.tsx` (`StaticRouter` + i18n initialised to `sv` + `HelmetProvider`) and build it with `vite build --ssr`.
+- In `prerender.mjs`, `renderToString` per route and write the result into `<div id="root">`.
+- `src/main.tsx`: `hydrateRoot` when `#root` has children, else `createRoot`.
+- Guard browser-only code: the i18n LanguageDetector reads localStorage (`src/i18n/index.ts:19–22`), `CookieBanner`, anything touching `window` at module level.
+- Prerender the Article and BreadcrumbList JSON-LD as well (today client-only via Helmet).
+- Stopgap if SSR is deferred: bake the H1, intro paragraph and nav links per route into `#root`.
+
+### 3.2 Bundle
+
+- Main chunk is 567 kB (168 kB gzip). Only Admin is lazy (`App.tsx:14–17`).
+- `React.lazy` for Article, Articles, Reviews, Friskvard, Gifts, ServiceDetail and TechniqueDetail. Dynamic `import()` per article slug. Load `en`/`el` locale JSON on demand. Use a vendor chunk via `manualChunks`.
+
+### 3.3 Images and fonts
+
+- Largest images: `dividers/6x2a2260.jpg` 176 kB, `presentkort-fysiskt.jpg` 168 kB, `letta.jpg` 100 kB.
+  - Check that the existing `.webp` siblings are actually used.
+  - Add width/height to every `<img>`. Several lack them, including the hero and logos.
+  - Lazy-load everything below the fold.
+  - Mind the admin image-swap caveat noted in `plan-2026-09-changes.md` §1.
+- `index.html:15` preloads `/hero.jpg` on all 22 pages. Emit it only for `/` from the prerender.
+- `index.html:37–39`: Google Fonts, two families and 9 weights, render-blocking. Self-host variable woff2 and preload the one above the fold. This also stops sending visitor IPs to Google.
+
+## 4. Phase 4 — English and Greek URLs (decision needed)
+
+Language is chosen client-side from localStorage only (`src/i18n/index.ts:19–22`,
+switch in `Navbar.tsx:68`); there are no language URLs, `prerender.mjs:20–22` reads only
+`sv.json`, and the sitemap has no alternates. Googlebot is stateless, so it only ever
+sees Swedish. The existing hreflang (sv + x-default → same URL) is meaningless.
+
+If wanted (English first — Lund has a large international population):
+
+- `/en/…` and `/el/…` prefixes.
+  - i18n detection from the path.
+  - The language switcher as real `<a href>` links.
+- `prerender.mjs` loops over locales. Per locale it sets:
+  - `<html lang>` and `og:locale`.
+  - Titles and descriptions from the locale files. The service/technique SEO strings are hard-coded Swedish at `prerender.mjs:213–294`, so they move into the locale files.
+- A reciprocal hreflang cluster (sv/en/el + x-default → sv) in the head and as `xhtml:link` alternates in the sitemap.
+- Articles are Swedish-only, so keep them out of the cluster.
+
+If not wanted: delete the misleading hreflang in `SEO.tsx` and treat Swedish-only indexing as a deliberate choice.
+
+## 5. Phase 5 — review fetcher
+
+`scripts/fetch-reviews.mjs` reads Bokadirekt's JSON-LD, which only exposes the 4 newest
+reviews and a rounded score. On 2026-10-04 it would have missed 16 reviews; the full
+list was fetched by hand from the endpoint below (commit `6011679`).
+
+- Items come from `GET https://www.bokadirekt.se/api/places/getReviews/135622?page=1&limit=100&mp-reviews=true&rating=0`. That returns `{ items, count }`; each item has `review.{score,text}`, `createdAt` (ISO, UTC) and `author.name`. Paginate via `nextPage` if `count > limit`.
+- The aggregate comes from the place page's state object `"reviews":{"stats":{"score":…,"count":…},"ratingCounts":{…}}` in the HTML. Use that instead of the JSON-LD.
+- Normalise curly quotes in `keyOf` (`’` → `'`). Ammie B.'s stored text has `I've` while the API has `I’ve`, and the current key would treat that as a new review.
+- `guessLang` only knows sv/en. Norwegian (Marit H.) was set to `nb` by hand, and the `Review.lang` type now allows it. Either add a cheap nb/da check or leave overrides to the human.
+- Keep the abort-rather-than-guess guards (fewer ratings than stored, implausible aggregate, missing items).
+- Routine: `docs/reviews.md` says a weekly cloud routine runs this and **pushes to `main`**. `lastFetched` was 2026-08-22, so it has evidently not run since. If it is revived, have it commit and ask instead of pushing (Paul's rule: no push without a yes).
+
+## 6. What already passes (don't break it)
+
+- robots.txt: `Allow: /`, `Disallow: /admin`, and a valid `Sitemap:` line. The sitemap returns 200 with 22 URLs.
+- Every route has a unique title, description and canonical in the static head.
+- JSON-LD parses and uses consistent `@id`s. `geo` (55.696716, 13.1891482) matches the GBP pin.
+- Core NAP is consistent across the site, GBP and Bokadirekt: Stora Södergatan 58A, 222 23 Lund, 076-769 08 87.
+- Opening hours on the site match Bokadirekt (Mon–Fri 10–19, Sat 10–15). The full GBP week is unverified.
+- All images have alt text. HTTPS and HSTS are on. Brotli is on.
+
+## 7. For Letta — Google Business Profile and platforms (no code)
+
+**High**
+1. **Google reviews.** Bokadirekt has 60 ratings and Google has 9. Review count and velocity drive the local pack.
+   - Ask *every* client, not only happy ones. No discounts or gifts for reviews (both against Google policy).
+   - Use the short review link: a QR code at the clinic, a follow-up message within 24 h, and the site (§1.5).
+   - If Bokadirekt's client messages allow custom text, add one line asking for a Google review too (unverified).
+   - Never copy Bokadirekt reviews into Google.
+   - Keep replying to every review, as she does today.
+2. **Services in GBP**, mirroring Bokadirekt with the same names and prices:
+   - Relaxmassage 30/60
+   - Klassisk massage 30/45/60
+   - Massageterapi 45/60/75/90
+   - Gravidmassage 60
+3. **Booking link** (Edit profile → Bookings) set to the Bokadirekt URL. Confirm the Website field is `https://let-us-massage.se`.
+4. **Categories.**
+   - Keep "Massage therapist" as the primary category.
+   - Add secondary categories only if they truly apply. Check what the top "massage Lund" competitors use.
+   - No medical or physio categories. The site itself says the service is not medical treatment.
+5. **Instagram @letusmassage** (linked from Bokadirekt).
+   - Per the audit, its older posts advertise a home-visit massage business in Athens (letusmassage.gr, a Greek phone number). Unverified by me — Instagram is login-walled.
+   - If so: update the bio to Lund, the Swedish phone number and the website, and archive or separate the old posts before linking it from the site.
+6. **Hitta.se** (`hitta.se/verksamhet/let-us-massage-lund-jpqyyeeij`). Claim it via "Verifiera ditt företag", then fix it:
+   - The category is "Dagspa, bastu och ångbastu". Change it to a massage category.
+   - Add the phone number, hours and website.
+   - A second address (Södra Esplanaden) and a different Gmail address are listed. Check whether they are wanted.
+   - The listing also shows the business's organisation number. For an enskild firma that is normally the personal identity number. Letta should be aware.
+7. **Shared premises with Lagom Massage.**
+   - Make sure Lagom's GBP has its own phone and website, so Google doesn't merge or confuse the two listings.
+
+**Medium**
+- **GBP description** (max 750 chars, no URLs or phone number). Draft for Letta to adapt; it is *not* her copy:
+  > Let Us Massage är en massageklinik på Stora Södergatan i centrala Lund, nära Lund C. Ioulietta Refene är certifierad medicinsk massageterapeut och medlem i Kroppsterapeuternas Yrkesförbund, med över 15 års erfarenhet. Vi erbjuder klassisk massage, relaxmassage, massageterapi vid spänningar och smärta samt gravidmassage. Tekniker: svensk massage, deep tissue, neuromuskulär terapi och triggerpunktsbehandling. Friskvårdsbidrag kan användas via Benifex och Epassi. Kundparkering med infart från Gyllenkroks allé. Boka online via Bokadirekt.
+- **Photos.**
+  - Exterior with the entrance, the parking spot and how to find the clinic.
+  - The treatment room, Letta herself, logo and cover.
+  - A few new photos a month.
+- **Posts** every 1–2 weeks. Seasonal ideas:
+  - Gift cards from mid-November.
+  - "Use your friskvårdsbidrag before year-end" in November–December.
+  - Gravidmassage.
+- **Attributes.** Only true ones: appointment required, online booking, payment methods, languages (sv/en/el).
+- **Products.** If available for the category, add "Presentkort" → `/presentkort/`.
+- **Hours.** Verify the full week matches Mon–Fri 10–19 and Sat 10–15. Set holiday hours (Christmas, Easter, midsommar).
+
+## 8. Directories (Sweden), in priority order
+
+| Priority | Where | Status / action |
+| --- | --- | --- |
+| High | Google Business Profile | Exists — optimise per §7 |
+| High | Bokadirekt | Exists, good — keep NAP identical |
+| High | Hitta.se | Exists, unclaimed and wrong — claim and fix |
+| High | Kroppsterapeuterna "Sök medlem" / Kropps.se | Check she is listed with address, phone, website (unverified) |
+| High | Epassi and Benifex provider directories | Check listing exists and NAP matches (unverified) |
+| Medium | Apple Business Connect (Apple Maps), Bing Places (import from GBP) | Claim |
+| Medium | Eniro, Facebook page | Unverified (blocked from the audit) — check manually |
+| Low | Foursquare; Allabolag/Ratsit/Proff/Merinfo | Registry-fed; check for consistency, little control |
+
+## 9. Decisions for Paul / Letta
+
+1. **Business name.** Pick one canonical name: "Let Us Massage" (site) or "Let Us Massage Lund" (GBP, Bokadirekt, Hitta). Also, what is the registered firma name at Bolagsverket, for `legalName`? Google can revert GBP names that add a city unless the city is genuinely part of the name.
+2. **`areaServed` towns** (Lomma, Staffanstorp, Bjärred, Eslöv, Dalby). Mention them visibly, or drop them?
+3. **English/Greek indexing (§4).** Build it (L effort), or explicitly stay Swedish-only?
+4. **Google reviews on the site.** Today everything is attributed to Bokadirekt, including the visible text, the schema `publisher` and the aggregate. Showing Google reviews needs a per-review `source` field and attribution. Wanted?
+5. **Review routine.** Revive it (with commit-and-ask instead of push), or run the fetcher by hand?
+
+## 10. Suggested commit sequence
+
+1. `fix(seo): kanoniska URL:er med avslutande snedstreck överallt`
+2. `fix(seo): en uppsättning head-taggar per sida (SEO.tsx bantad)`
+3. `fix(netlify): riktiga 404, cache- och säkerhetshuvuden`
+4. `fix(schema): prisintervall, exakt betyg, aggregateRating bara där det syns`
+5. `feat(seo): titlar, beskrivningar och H1 för massör/massageterapeut Lund`
+6. `chore(seo): sitemap genereras av prerender`
+7. `feat(reviews): fetch-reviews läser hela Bokadirekt-listan`
+8. (larger, separate) `feat(prerender): SSR av sidinnehållet` · `perf: koddelning per route`
+
+## 11. Verification checklist
+
+- [ ] `npm run build` passes. Lint has one known, pre-existing error in `CookieBanner.tsx`.
+- [ ] On every route in `dist`, exactly one `<title>`, one `meta[name=description]` and one canonical, and the canonical ends with `/`.
+- [ ] In the browser after hydration and after client-side navigation, still one of each.
+- [ ] `curl -I` on a sitemap URL gives 200, not 301. `/finns-inte` gives 404.
+- [ ] `curl -I /assets/<hash>.js` shows `immutable`.
+- [ ] JSON-LD: `aggregateRating` only on `/` and `/recensioner/`. `ratingValue` is 4.97. `priceRange` matches Bokadirekt.
+- [ ] Run Google Rich Results Test and Schema.org validator on `/` and `/recensioner/`.
+- [ ] After deploy, resubmit the sitemap in Search Console and inspect `/` and `/recensioner/` with URL Inspection.
