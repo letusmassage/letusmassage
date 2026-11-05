@@ -3,15 +3,78 @@
   "source": {
     "name": "Bokadirekt",
     "url": "https://www.bokadirekt.se/places/let-us-massage-lund-135622",
-    "lastFetched": "2026-10-04"
+    "lastFetched": "2026-11-05"
   },
   "aggregate": {
-    "ratingValue": 4.97,
-    "ratingCount": 60,
+    "ratingValue": 4.95,
+    "ratingCount": 86,
     "bestRating": 5,
     "worstRating": 1
   },
   "items": [
+    {
+      "author": "Ida S.",
+      "rating": 5,
+      "date": "2026-10-29",
+      "lang": "sv",
+      "text": "En avslappnad miljö och en varsam och genomgående gravidmassage. Kommer tillbaka!"
+    },
+    {
+      "author": "Maria V.",
+      "rating": 5,
+      "date": "2026-10-25",
+      "lang": "sv",
+      "text": "Ioulieta är väldigt lyhörd och anpassar massagen till det man behöver. Superbra! Rekommenderar!"
+    },
+    {
+      "author": "Linda M.",
+      "rating": 5,
+      "date": "2026-10-24",
+      "lang": "sv",
+      "text": "Kan varmt rekommendera ”Let Us Massage” i Lund – bästa massagen jag någonsin har fått! \n\nFint bemötande, Loulietta är otroligt professionell och kompetent, med magiska händer som hittade varenda knuta och spänning i hela kroppen. Hon är lyhörd och anpassar massagen efter ens egna behov. För att inte tala om hur omhändertagande och mån hon är om att allt känns bra under hela behandlingen. Ser fram emot nästa gång!"
+    },
+    {
+      "author": "Mohammad A.",
+      "rating": 5,
+      "date": "2026-10-21",
+      "lang": "sv",
+      "text": "Perfekt massage, trevlig personlighet och fin lokal"
+    },
+    {
+      "author": "Magnus L.",
+      "rating": 5,
+      "date": "2026-10-16",
+      "lang": "sv",
+      "text": "Professionell, kompetent, trevlig och lyhörd. Väldigt bra massage!"
+    },
+    {
+      "author": "Bea L.",
+      "rating": 5,
+      "date": "2026-10-16",
+      "lang": "sv",
+      "text": "Älskar Ioulietta och hennes magiska händer!"
+    },
+    {
+      "author": "Gunilla A.",
+      "rating": 5,
+      "date": "2026-10-13",
+      "lang": "sv",
+      "text": "Jag fick en mycket välgörande massage och dessutom fina tips på träning för mitt problem. Jag är väldigt nöjd och känner mig mycket väl omhändertagen. Tusen tack! 🙏🏻"
+    },
+    {
+      "author": "Frida L.",
+      "rating": 5,
+      "date": "2026-10-09",
+      "lang": "sv",
+      "text": "Wow. Vilken fantastisk massage. Så proffsig och genuin utförd. Rekommenderas varmast."
+    },
+    {
+      "author": "Linda F.",
+      "rating": 5,
+      "date": "2026-10-05",
+      "lang": "sv",
+      "text": "Trevligt och professionellt bemötande. Fantastisk massage. 10/10.✨✨✨✨✨"
+    },
     {
       "author": "Felicia T.",
       "rating": 5,
