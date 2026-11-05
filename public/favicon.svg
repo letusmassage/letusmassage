@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Rounded square background, calm sage green -->
-  <rect width="64" height="64" rx="14" fill="#3F6B5E"/>
+  <!-- Rounded square background, same blue as logo-blue.png -->
+  <rect width="64" height="64" rx="14" fill="#01B1C7"/>
   <!-- Stylized lotus/leaf mark in cream -->
   <g fill="#F5EFE3">
     <!-- Center petal/leaf -->
