@@ -245,7 +245,13 @@ const TECHNIQUES_LASTMOD = '2026-10-04'
 
 const routes = [
   // Statiska
-  { path: '/', title: svLocale.seo.title, description: svLocale.seo.description, lastmod: '2026-10-04' },
+  // Startsidan visar de senaste omdömena och totalbetyget, så den ändras också vid varje hämtning.
+  {
+    path: '/',
+    title: svLocale.seo.title,
+    description: svLocale.seo.description,
+    lastmod: ['2026-10-04', reviewData.source.lastFetched].sort().at(-1),
+  },
   {
     path: '/artiklar',
     title: articleModule.ARTICLES_PAGE.title,

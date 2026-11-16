@@ -78,6 +78,13 @@ not-yet-done sections are against commit `6011679` and have shifted since.
 - `/gift-cards` should 301.
 - Then resubmit the sitemap in Search Console.
 
+**Check 2026-11-16:**
+- The deploy checks above all pass on the live site. `/recensioner/` gives 200, `/recensioner` 301s to it, `/finns-inte` gives 404, `/gift-cards` 301s to `/presentkort/` and assets are `immutable`. Search Console resubmission is still Paul's/Letta's to do.
+- Bokadirekt: 4.95 from 99 ratings and 45 written reviews (3 new since 2026-11-05).
+- Google Business Profile: 5.0 from 19 reviews (9 on 2026-10-04). Name, category (Massageterapeut), website, phone and booking button are all correct.
+  - Letta has replied to every review except the two newest (Anette Larsson and Andreea Duna, both 2026-11-16).
+- `/` now takes `lastmod` from `reviews.json` too, since it shows the latest reviews.
+
 Facts I verified myself on 2026-10-04 (everything else in this file comes from the
 audits and should be re-checked before it is relied on):
 
