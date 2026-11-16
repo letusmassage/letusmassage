@@ -3,15 +3,36 @@
   "source": {
     "name": "Bokadirekt",
     "url": "https://www.bokadirekt.se/places/let-us-massage-lund-135622",
-    "lastFetched": "2026-11-05"
+    "lastFetched": "2026-11-16"
   },
   "aggregate": {
     "ratingValue": 4.95,
-    "ratingCount": 86,
+    "ratingCount": 99,
     "bestRating": 5,
     "worstRating": 1
   },
   "items": [
+    {
+      "author": "Philip T.",
+      "rating": 5,
+      "date": "2026-11-16",
+      "lang": "en",
+      "text": "Wonderful and professional treatment!"
+    },
+    {
+      "author": "Abdulla M.",
+      "rating": 5,
+      "date": "2026-11-14",
+      "lang": "sv",
+      "text": "Mår mycket bättre nu"
+    },
+    {
+      "author": "Jennifer I.",
+      "rating": 5,
+      "date": "2026-11-08",
+      "lang": "sv",
+      "text": "Massage som både är avslappnande och som gör så där \"bra ont\" 😊"
+    },
     {
       "author": "Ida S.",
       "rating": 5,
